@@ -23,19 +23,32 @@ export default function Footer() {
               Service, Wartung und Verkauf von Steinbearbeitungsmaschinen. Seit 2012 selbstständig, seit 2001 in
               der Branche.
             </p>
-            <a
-              href={siteConfig.links.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6">
-                <rect x="3" y="3" width="18" height="18" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
-              </svg>
-              @{siteConfig.social.instagramHandle}
-            </a>
+            <div className="mt-5 flex flex-col gap-2.5">
+              <a
+                href={siteConfig.links.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+                </svg>
+                @{siteConfig.social.instagramHandle}
+              </a>
+              <a
+                href={siteConfig.links.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+                Facebook
+              </a>
+            </div>
           </div>
 
           <div>

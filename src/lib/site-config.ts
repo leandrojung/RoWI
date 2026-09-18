@@ -55,6 +55,7 @@ export const siteConfig = {
     googleMaps:
       "https://www.google.com/maps?vet=10CAAQoqAOahcKEwi4xoKKm_iWAxUAAAAAHQAAAAAQBQ..i&client=safari&fvr=1&pvq=Cg0vZy8xMWZscnhjMDJnIgoKBHJvd2kQAhgD&lqi=CgRyb3dpSM6Alv7KrYCACFoKEAAYACIEcm93aZIBDG1hY2hpbmVfc2hvcA&cs=0&um=1&ie=UTF-8&fb=1&gl=de&sa=X&geocode=KXcbNMC8X7hHMaQJdgX63_Mh&daddr=Friesenstraße+30b,+46359+Heiden",
     instagram: "https://www.instagram.com/rowi_maschinenservice/",
+    facebook: "https://www.facebook.com/robert.wikarek75",
   },
 
   social: {
