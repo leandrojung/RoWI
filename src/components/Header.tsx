@@ -6,6 +6,7 @@ import Image from "next/image";
 import { siteConfig, navigationMain } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
 import Icon from "./Icon";
+import LiquidButton from "./ui/LiquidButton";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -131,13 +132,19 @@ export default function Header() {
           </ul>
         </nav>
 
-        <a
+        <LiquidButton
           href={siteConfig.contact.phoneHref}
-          className="hidden shrink-0 items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-accent-dark lg:flex"
+          fill="#c8102e"
+          blobColor="#8b0b1c"
+          textColor="#ffffff"
+          rounded={8}
+          padding="12px 20px"
+          blobSize={60}
+          className="hidden shrink-0 lg:inline-flex"
         >
           <Icon name="phone" size={18} />
-          {siteConfig.contact.phoneDisplay}
-        </a>
+          <span className="text-sm">{siteConfig.contact.phoneDisplay}</span>
+        </LiquidButton>
 
         <button
           type="button"

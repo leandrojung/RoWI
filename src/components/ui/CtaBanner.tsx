@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "./Container";
 import Icon from "../Icon";
+import LiquidButton from "./LiquidButton";
 import { siteConfig } from "@/lib/site-config";
 
 export default function CtaBanner({
@@ -19,13 +20,18 @@ export default function CtaBanner({
           <p className="mt-3 max-w-[52ch] text-white/85">{lead}</p>
         </div>
         <div className="flex w-full shrink-0 flex-col gap-3 sm:flex-row lg:w-auto">
-          <a
+          <LiquidButton
             href={siteConfig.contact.phoneHref}
-            className="flex items-center justify-center gap-3 rounded-xl bg-white px-7 py-4 text-base font-bold text-accent transition-transform duration-300 hover:scale-[1.02]"
+            fill="#ffffff"
+            blobColor="#e8e8e8"
+            textColor="#c8102e"
+            rounded={12}
+            padding="16px 28px"
+            blobSize={76}
           >
             <Icon name="phone" size={20} />
             {siteConfig.contact.phoneDisplay}
-          </a>
+          </LiquidButton>
           <a
             href={siteConfig.contact.whatsappHref}
             target="_blank"

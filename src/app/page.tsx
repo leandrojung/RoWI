@@ -11,6 +11,7 @@ import PhotoFrame from "@/components/PhotoFrame";
 import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import PopcornText from "@/components/motion/PopcornText";
+import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
 import { faqCategories } from "@/lib/faq-data";
@@ -80,13 +81,18 @@ export default function HomePage() {
 
           {/* CTAs */}
           <div className="hero-in hero-in-delay-3 mt-10 flex flex-col gap-3 sm:flex-row">
-            <a
+            <LiquidButton
               href={siteConfig.contact.phoneHref}
-              className="group flex items-center justify-center gap-3 rounded-full bg-accent px-8 py-4 text-base font-bold text-white transition-all duration-300 hover:bg-accent-dark"
+              fill="#c8102e"
+              blobColor="#8b0b1c"
+              textColor="#ffffff"
+              rounded={9999}
+              padding="16px 32px"
+              blobSize={80}
             >
               <Icon name="phone" size={20} />
               {siteConfig.contact.phoneDisplay}
-            </a>
+            </LiquidButton>
             <a
               href={siteConfig.contact.whatsappHref}
               target="_blank"
