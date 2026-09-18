@@ -18,7 +18,7 @@ export default function VanReveal() {
         width={720}
         height={400}
         className="w-full max-w-[680px] object-contain"
-        style={{ filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.12))" }}
+        style={{ mixBlendMode: "multiply" }}
       />
     </motion.div>
   );
