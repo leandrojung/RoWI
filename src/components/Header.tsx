@@ -8,13 +8,34 @@ import { services } from "@/lib/services-data";
 import Icon from "./Icon";
 import LiquidButton from "./ui/LiquidButton";
 
+function NavLink({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) {
+  return (
+    <Link
+      href={href}
+      onClick={onClick}
+      className="group relative flex items-center whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-ink transition-all duration-200 hover:bg-accent/[0.06] hover:text-accent"
+    >
+      <span className="relative inline-block">
+        {children}
+        <span
+          aria-hidden
+          className="absolute -bottom-0.5 left-0 right-0 h-[2px] origin-left scale-x-0 rounded-full bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100"
+        />
+      </span>
+    </Link>
+  );
+}
+
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [leistungenOpen, setLeistungenOpen] = useState(false);
   const [mobileLeistungenOpen, setMobileLeistungenOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 border-b border-border bg-white/95 backdrop-blur" style={{ zIndex: "var(--z-sticky)" }}>
+    <header
+      className="sticky top-0 border-b border-border/60 bg-white/85 shadow-[0_2px_20px_rgba(0,0,0,0.07)] backdrop-blur-xl"
+      style={{ zIndex: "var(--z-sticky)" }}
+    >
       <a href="#main-content" className="skip-link">
         Zum Inhalt springen
       </a>
@@ -57,7 +78,7 @@ export default function Header() {
         </Link>
 
         <nav aria-label="Hauptnavigation" className="hidden flex-1 justify-center lg:flex">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-0.5">
             {navigationMain.map((item) => {
               if (item.label === "Leistungen") {
                 return (
@@ -69,63 +90,75 @@ export default function Header() {
                   >
                     <button
                       type="button"
-                      className="flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-accent"
+                      className="group relative flex items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium text-ink transition-all duration-200 hover:bg-accent/[0.06] hover:text-accent"
                       aria-expanded={leistungenOpen}
                       aria-haspopup="true"
                       onClick={() => setLeistungenOpen((v) => !v)}
                     >
-                      Leistungen
-                      <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" className={`transition-transform duration-200 ${leistungenOpen ? "rotate-180" : ""}`}>
+                      <span className="relative inline-block">
+                        Leistungen
+                        <span
+                          aria-hidden
+                          className="absolute -bottom-0.5 left-0 right-0 h-[2px] origin-left scale-x-0 rounded-full bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100"
+                        />
+                      </span>
+                      <svg
+                        width="11"
+                        height="11"
+                        viewBox="0 0 12 12"
+                        aria-hidden="true"
+                        className={`flex-shrink-0 transition-transform duration-200 ${leistungenOpen ? "rotate-180" : ""}`}
+                      >
                         <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" />
                       </svg>
                     </button>
-                    {leistungenOpen && (
-                      <div
-                        className="absolute left-1/2 top-full w-[34rem] -translate-x-1/2 pt-2"
-                        style={{ zIndex: "var(--z-dropdown)" }}
-                      >
-                        <ul className="grid grid-cols-2 gap-1 rounded-xl border border-border bg-white p-2 shadow-xl">
-                          {services.map((service) => (
-                            <li key={service.slug}>
-                              <Link
-                                href={`/leistungen/${service.slug}`}
-                                className="flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-surface-muted"
-                                onClick={() => setLeistungenOpen(false)}
-                              >
-                                <span className="mt-0.5 text-accent">
-                                  <Icon name={service.icon} size={18} />
-                                </span>
-                                <span>
-                                  <span className="block text-sm font-semibold text-ink">{service.navLabel}</span>
-                                  <span className="block text-xs text-ink-soft">{service.teaser}</span>
-                                </span>
-                              </Link>
-                            </li>
-                          ))}
-                          <li className="col-span-2 mt-1 border-t border-border pt-2">
+
+                    <div
+                      className={`absolute left-1/2 top-full w-[34rem] -translate-x-1/2 pt-2 transition-all duration-200 ease-out ${
+                        leistungenOpen
+                          ? "pointer-events-auto translate-y-0 opacity-100"
+                          : "pointer-events-none -translate-y-1 opacity-0"
+                      }`}
+                      style={{ zIndex: "var(--z-dropdown)" }}
+                    >
+                      <ul className="grid grid-cols-2 gap-1 rounded-2xl border border-border/50 bg-white/90 p-2 shadow-2xl backdrop-blur-xl">
+                        {services.map((service) => (
+                          <li key={service.slug}>
                             <Link
-                              href="/leistungen"
-                              className="flex items-center justify-center gap-2 rounded-lg p-2 text-sm font-semibold text-accent transition-colors hover:bg-surface-muted"
+                              href={`/leistungen/${service.slug}`}
+                              className="group/item flex items-start gap-3 rounded-xl p-2.5 transition-all duration-200 hover:bg-accent/[0.06]"
                               onClick={() => setLeistungenOpen(false)}
                             >
-                              Alle Leistungen im Überblick
-                              <Icon name="arrow-right" size={16} />
+                              <span className="mt-0.5 text-ink-soft transition-colors duration-200 group-hover/item:text-accent">
+                                <Icon name={service.icon} size={18} />
+                              </span>
+                              <span>
+                                <span className="block text-sm font-semibold text-ink transition-colors duration-200 group-hover/item:text-accent">
+                                  {service.navLabel}
+                                </span>
+                                <span className="block text-xs text-ink-soft">{service.teaser}</span>
+                              </span>
                             </Link>
                           </li>
-                        </ul>
-                      </div>
-                    )}
+                        ))}
+                        <li className="col-span-2 mt-1 border-t border-border/60 pt-2">
+                          <Link
+                            href="/leistungen"
+                            className="flex items-center justify-center gap-2 rounded-xl p-2 text-sm font-semibold text-accent transition-all duration-200 hover:bg-accent hover:text-white"
+                            onClick={() => setLeistungenOpen(false)}
+                          >
+                            Alle Leistungen im Überblick
+                            <Icon name="arrow-right" size={16} />
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </li>
                 );
               }
               return (
                 <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="block whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-accent"
-                  >
-                    {item.label}
-                  </Link>
+                  <NavLink href={item.href}>{item.label}</NavLink>
                 </li>
               );
             })}
@@ -165,7 +198,7 @@ export default function Header() {
       </div>
 
       {mobileOpen && (
-        <nav id="mobile-menu" aria-label="Mobile Hauptnavigation" className="border-t border-border bg-white lg:hidden">
+        <nav id="mobile-menu" aria-label="Mobile Hauptnavigation" className="border-t border-border/60 bg-white/90 backdrop-blur-xl lg:hidden">
           <ul className="mx-auto max-w-6xl space-y-1 px-4 py-4">
             {navigationMain.map((item) => {
               if (item.label === "Leistungen") {
@@ -174,7 +207,7 @@ export default function Header() {
                     <div className="flex items-center justify-between">
                       <Link
                         href="/leistungen"
-                        className="block flex-1 rounded-md px-3 py-2.5 text-base font-medium text-ink"
+                        className="block flex-1 rounded-lg px-3 py-2.5 text-base font-medium text-ink transition-colors hover:text-accent"
                         onClick={() => setMobileOpen(false)}
                       >
                         Leistungen
@@ -197,7 +230,7 @@ export default function Header() {
                           <li key={service.slug}>
                             <Link
                               href={`/leistungen/${service.slug}`}
-                              className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm text-ink-soft"
+                              className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm text-ink-soft transition-colors hover:text-accent"
                               onClick={() => setMobileOpen(false)}
                             >
                               <span className="text-accent">
@@ -216,7 +249,7 @@ export default function Header() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="block rounded-md px-3 py-2.5 text-base font-medium text-ink"
+                    className="block rounded-lg px-3 py-2.5 text-base font-medium text-ink transition-colors hover:text-accent"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}
