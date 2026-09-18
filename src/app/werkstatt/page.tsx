@@ -21,11 +21,11 @@ const galleryImages = [
   },
   {
     src: "/fotos/werkstatt-02.jpg",
-    alt: "Donatoni CNC-Brückensäge nach Aufstellung und Inbetriebnahme in Werkstatt",
+    alt: "Donatoni CNC-Brückensäge nach Aufstellung und Inbetriebnahme",
   },
   {
     src: "/fotos/werkstatt-03.jpg",
-    alt: "Blick in die Werkstatt von Rowi Maschinenservice — mehrere Steinmaschinen in Betrieb",
+    alt: "Blick in die Werkstatt von Rowi Maschinenservice — mehrere Maschinen in Betrieb",
   },
   {
     src: "/fotos/werkstatt-04.jpg",
@@ -34,6 +34,18 @@ const galleryImages = [
   {
     src: "/fotos/werkstatt-05.jpg",
     alt: "Serviceeinsatz an einer CNC-Poliermaschine — Werkzeug und Ersatzteile bereitgelegt",
+  },
+  {
+    src: "/fotos/werkstatt-06.jpg",
+    alt: "Musa Next Kantenschleifmaschine — Aufstellung in neuem Produktionsgebäude",
+  },
+  {
+    src: "/fotos/werkstatt-07.jpg",
+    alt: "Schaltschrank-Revision — Steuerungstechnik einer Steinbearbeitungsmaschine",
+  },
+  {
+    src: "/fotos/werkstatt-08.jpg",
+    alt: "X-Drive Fräskopf in Aktion — Konturbearbeitung an Granit und Naturstein",
   },
 ];
 
