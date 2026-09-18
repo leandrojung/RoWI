@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import CtaBanner from "@/components/ui/CtaBanner";
 import ManufacturerMarquee from "@/components/ManufacturerMarquee";
@@ -32,53 +33,63 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-ink text-white">
-        <div className="absolute inset-0 grid-texture" aria-hidden="true" />
-        <div
-          className="absolute -right-32 top-1/4 h-96 w-96 rounded-full bg-accent/15 blur-3xl"
+      <section className="relative flex min-h-[100svh] flex-col overflow-hidden text-white">
+        {/* Full-bleed background photo */}
+        <Image
+          src="/fotos/werkstatt-03.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          priority
           aria-hidden="true"
         />
-        <Container className="relative grid grid-cols-1 gap-12 py-16 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:py-24">
-          <div className="min-w-0">
-            <p className="hero-in inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold text-white/80">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
-              Seit 2012 selbstständig · seit 2001 in der Branche
-            </p>
+        {/* Cinematic dark overlay */}
+        <div className="absolute inset-0 bg-ink/78" aria-hidden="true" />
+        {/* Bottom gradient — softens transition to trust bar */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-ink/55" aria-hidden="true" />
 
-            <h1 className="hero-in hero-in-delay-1 mt-6 text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-[1.06]">
-              Service &amp; Wartung für {STEINBEARBEITUNGSMASCHINEN}
-            </h1>
+        {/* Content stack — centered */}
+        <div className="relative flex flex-1 flex-col items-center justify-center px-6 py-28 text-center">
+          {/* Badge */}
+          <p className="hero-in inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white/80">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+            </span>
+            Seit 2012 selbstständig · seit 2001 in der Branche
+          </p>
 
-            <p className="hero-in hero-in-delay-2 mt-5 max-w-[52ch] text-lg text-white/70">
-              Fachbetrieb in Heiden — im Einsatz in ganz Deutschland. Für Steinmetze, Bildhauer,
-              Natursteinbetriebe und Baumärkte.
-            </p>
+          {/* Headline */}
+          <h1 className="hero-in hero-in-delay-1 mt-6 max-w-[16ch] text-[clamp(2.75rem,6vw,4.75rem)] font-bold leading-[1.05] tracking-[-0.02em] text-balance">
+            Service &amp; Wartung für {STEINBEARBEITUNGSMASCHINEN}
+          </h1>
 
-            <div className="hero-in hero-in-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={siteConfig.contact.phoneHref}
-                className="group flex items-center justify-center gap-3 rounded-xl bg-accent px-7 py-4 text-base font-bold text-white transition-all duration-300 hover:bg-accent-dark hover:shadow-lg hover:shadow-accent/25"
-              >
-                <Icon name="phone" size={20} />
-                {siteConfig.contact.phoneDisplay}
-              </a>
-              <a
-                href={siteConfig.contact.whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 rounded-xl border border-white/25 px-7 py-4 text-base font-semibold text-white transition-colors duration-300 hover:bg-white hover:text-ink"
-              >
-                <Icon name="whatsapp" size={20} />
-                WhatsApp
-              </a>
-            </div>
+          {/* Lead text */}
+          <p className="hero-in hero-in-delay-2 mt-6 max-w-[48ch] text-lg leading-relaxed text-white/70">
+            Fachbetrieb in Heiden — im Einsatz in ganz Deutschland. Für Steinmetze, Bildhauer,
+            Natursteinbetriebe und Baumärkte.
+          </p>
+
+          {/* CTAs */}
+          <div className="hero-in hero-in-delay-3 mt-10 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={siteConfig.contact.phoneHref}
+              className="group flex items-center justify-center gap-3 rounded-full bg-accent px-8 py-4 text-base font-bold text-white transition-all duration-300 hover:bg-accent-dark"
+            >
+              <Icon name="phone" size={20} />
+              {siteConfig.contact.phoneDisplay}
+            </a>
+            <a
+              href={siteConfig.contact.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 rounded-full border border-white/30 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/10"
+            >
+              <Icon name="whatsapp" size={20} />
+              WhatsApp
+            </a>
           </div>
-
-          <PhotoFrame photo="heroWorkshop" tone="dark" aspect="aspect-[4/5]" className="hero-in hero-in-delay-2 mx-auto w-full max-w-sm lg:max-w-none" priority />
-        </Container>
+        </div>
       </section>
 
       {/* Vertrauensleiste */}
