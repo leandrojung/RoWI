@@ -38,12 +38,18 @@ export default function PopcornText({
   const [scope, animate] = useAnimate();
   const firedRef = useRef(false);
 
+  // Deterministic pseudo-random so SSR and client hydration produce identical values
+  const seededRand = (seed: number) => {
+    const x = Math.sin(seed + 1) * 10000;
+    return x - Math.floor(x);
+  };
+
   // Sequential order — each char pops in left to right
   const charsConfig = useMemo(() => {
     const chars = (text ?? "").split("");
     return chars.map((char, i) => ({
       char,
-      rot: (Math.random() * 2 - 1) * rotationRange,
+      rot: (seededRand(i) * 2 - 1) * rotationRange,
       staggerOrder: i,
     }));
   }, [text, rotationRange]);
