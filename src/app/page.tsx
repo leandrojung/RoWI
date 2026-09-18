@@ -12,6 +12,7 @@ import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import PopcornText from "@/components/motion/PopcornText";
 import ImageFlip from "@/components/motion/ImageFlip";
+import FrostGlassCard from "@/components/motion/FrostGlassCard";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
@@ -49,25 +50,6 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-ink/78" aria-hidden="true" />
         {/* Bottom gradient — softens transition to trust bar */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-ink/55" aria-hidden="true" />
-
-        {/* Firmenwagen freigestellt — schwebt sauber im Hero */}
-        <div
-          className="hero-in hero-in-delay-3 pointer-events-none absolute bottom-0 right-[-2%] hidden w-[clamp(420px,52vw,780px)] select-none lg:block"
-          aria-hidden="true"
-        >
-          <Image
-            src="/fotos/firmenwagen-freigestellt.png"
-            alt=""
-            width={1200}
-            height={800}
-            className="h-auto w-full object-contain drop-shadow-2xl"
-            priority
-            style={{
-              maskImage: "linear-gradient(to right, transparent 0%, black 22%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%)",
-            }}
-          />
-        </div>
 
         {/* Content stack — centered */}
         <div className="relative flex flex-1 flex-col items-center justify-center px-6 py-28 text-center">
@@ -168,6 +150,25 @@ export default function HomePage() {
             <p className="text-3xl font-bold leading-none text-ink">Bundesweit</p>
             <p className="text-sm text-ink-soft">Mobiler Einsatz</p>
           </div>
+        </Container>
+      </section>
+
+      {/* Firmenwagen — FrostGlass Showcase */}
+      <section className="bg-surface-muted py-10 sm:py-14">
+        <Container>
+          <Reveal>
+            <FrostGlassCard
+              src="/fotos/firmenwagen-hq.png"
+              alt="Rowi Maschinenservice Firmenwagen"
+              height={420}
+              title="Deutschlandweit für Sie im Einsatz"
+              description="Von Heiden aus zu jedem Standort — schnell, zuverlässig, mit dem richtigen Werkzeug."
+              blur={16}
+              reach={280}
+              rounded={16}
+              tint="rgba(200,16,46,0.06)"
+            />
+          </Reveal>
         </Container>
       </section>
 
