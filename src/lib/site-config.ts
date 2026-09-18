@@ -114,26 +114,48 @@ export const manufacturerGroups = [
   {
     category: "Sägen & Fräsen",
     icon: "saw",
-    names: ["Löffler", "Kolb", "M. Kolb", "Thibaut", "Burkhardt"],
+    brands: [
+      { name: "Löffler", url: "https://burkhardt-loeffler.com" },
+      { name: "Kolb", url: "https://www.kolb-mb.com" },
+      { name: "M. Kolb", url: "https://www.kolb-mb.com" },
+      { name: "Thibaut", url: "https://www.thibaut.fr" },
+      { name: "Burkhardt", url: "https://burkhardt-loeffler.com" },
+    ],
   },
   {
     category: "Poliermaschinen & Kantenbearbeitung",
     icon: "polish",
-    names: ["Comandulli", "Marmo Meccanica", "Fickert & Winterling", "Denver"],
+    brands: [
+      { name: "Comandulli", url: "https://comandulli.it" },
+      { name: "Marmo Meccanica", url: "https://www.marmomeccanica.com" },
+      { name: "Fickert & Winterling", url: "https://www.fickertwinterling.de" },
+      { name: "Denver", url: "https://www.denver.sm" },
+    ],
   },
   {
     category: "Anlagen & Handling",
     icon: "crane",
-    names: ["Steup", "Spielvogel", "EuroMasiv", "Schmidt & Exner", "Hensel", "Schlatter"],
+    brands: [
+      { name: "Steup", url: "https://www.steup-online.de" },
+      { name: "Spielvogel", url: "https://spielvogel-steintechnik.de" },
+      { name: "EuroMasiv", url: "https://www.euromasiv.cz" },
+      { name: "Schmidt & Exner", url: undefined },
+      { name: "Hensel", url: undefined },
+      { name: "Schlatter", url: undefined },
+    ],
   },
   {
     category: "Wasser, Pumpen & Absaugung",
     icon: "water",
-    names: ["Seitz Pumpen", "Eich Wasseraufbereitung", "Martini Aeroimpianti"],
+    brands: [
+      { name: "Seitz Pumpen", url: "https://www.seitz-pumpen.de" },
+      { name: "Eich Wasseraufbereitung", url: "https://www.ecs-eich.com" },
+      { name: "Martini Aeroimpianti", url: "https://martiniaeroimpianti.it" },
+    ],
   },
 ];
 
-export const manufacturers = manufacturerGroups.flatMap((group) => group.names);
+export const manufacturers = manufacturerGroups.flatMap((group) => group.brands.map((b) => b.name));
 
 export const processSteps = [
   {
