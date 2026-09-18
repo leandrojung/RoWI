@@ -11,6 +11,7 @@ import PhotoFrame from "@/components/PhotoFrame";
 import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import PopcornText from "@/components/motion/PopcornText";
+import ImageFlip from "@/components/motion/ImageFlip";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
@@ -49,17 +50,21 @@ export default function HomePage() {
         {/* Bottom gradient — softens transition to trust bar */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-ink/55" aria-hidden="true" />
 
-        {/* Firmenwagen-Foto — unten rechts, eingerahmt */}
-        <div className="hero-in hero-in-delay-3 absolute bottom-8 right-6 hidden w-[clamp(200px,22vw,320px)] overflow-hidden rounded-xl border border-white/20 shadow-2xl lg:block">
-          <Image
-            src="/fotos/firmenwagen.webp"
-            alt="Rowi Maschinenservice Firmenwagen"
-            width={640}
-            height={640}
-            className="h-auto w-full object-cover"
-          />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-3 py-2">
-            <p className="text-xs font-semibold text-white/90">Ihr Service-Fahrzeug — deutschlandweit im Einsatz</p>
+        {/* Firmenwagen-Foto — unten rechts, interaktiv (klicken zum Weiterblättern) */}
+        <div className="hero-in hero-in-delay-3 absolute bottom-8 right-6 hidden w-[clamp(200px,22vw,300px)] lg:block">
+          <div className="relative overflow-hidden rounded-xl border border-white/20 shadow-2xl" style={{ height: "clamp(180px,20vw,280px)" }}>
+            <ImageFlip
+              images={[
+                { src: "/fotos/firmenwagen.webp", alt: "Rowi Firmenwagen", focusY: 50 },
+                { src: "/fotos/werkstatt-01.jpg", alt: "Werkstatt", focusY: 50 },
+                { src: "/fotos/werkstatt-04.jpg", alt: "Werkstatt Innen", focusY: 50 },
+              ]}
+              rounded={0}
+              tiltOptions={{ effect: "attract", tiltLimit: 10, scale: 104 }}
+            />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent px-3 py-2">
+              <p className="text-xs font-semibold text-white/90">Deutschlandweit im Einsatz — klicken zum Blättern</p>
+            </div>
           </div>
         </div>
 
