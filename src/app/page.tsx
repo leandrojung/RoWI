@@ -12,6 +12,7 @@ import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import PopcornText from "@/components/motion/PopcornText";
 import ImageFlip from "@/components/motion/ImageFlip";
+import VanReveal from "@/components/motion/VanReveal";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
@@ -149,6 +150,43 @@ export default function HomePage() {
             <p className="text-3xl font-bold leading-none text-ink">Bundesweit</p>
             <p className="text-sm text-ink-soft">Mobiler Einsatz</p>
           </div>
+        </Container>
+      </section>
+
+      {/* Firmenwagen — Einsatzsignal */}
+      <section className="overflow-hidden bg-ink">
+        <Container className="grid grid-cols-1 items-center gap-8 py-16 sm:py-20 lg:grid-cols-[1fr_1.1fr] lg:gap-0 lg:py-0">
+          {/* Text */}
+          <Reveal className="py-0 lg:py-24">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Mobiler Einsatz</p>
+            <h2 className="mt-4 max-w-[14ch] text-[clamp(2rem,4vw,3.25rem)] font-bold leading-[1.1] tracking-[-0.02em] text-white text-balance">
+              Deutschlandweit direkt zu Ihrer Maschine
+            </h2>
+            <p className="mt-5 max-w-[44ch] text-base leading-relaxed text-white/55">
+              Vollausgerüsteter Firmenwagen, ein fester Ansprechpartner — kein Callcenter, keine Fremdvergabe.
+              Robert Wikarek kommt persönlich.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={siteConfig.contact.phoneHref}
+                className="inline-flex items-center gap-3 rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-white transition-colors hover:bg-accent/85"
+              >
+                <Icon name="phone" size={17} />
+                {siteConfig.contact.phoneDisplay}
+              </a>
+              <a
+                href={siteConfig.contact.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white/80 transition-colors hover:bg-white/8 hover:text-white"
+              >
+                <Icon name="whatsapp" size={17} />
+                WhatsApp schreiben
+              </a>
+            </div>
+          </Reveal>
+          {/* Van */}
+          <VanReveal />
         </Container>
       </section>
 
