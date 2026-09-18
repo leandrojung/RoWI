@@ -154,15 +154,23 @@ export default function HomePage() {
       </section>
 
       {/* Firmenwagen — Einsatzsignal */}
-      <section className="overflow-hidden" style={{ backgroundColor: "#201a1a" }}>
+      <section
+        className="overflow-hidden"
+        style={{
+          background:
+            "radial-gradient(ellipse 45% 100% at 0% 50%, rgba(200,16,46,0.09) 0%, transparent 65%), " +
+            "radial-gradient(ellipse 45% 100% at 100% 50%, rgba(200,16,46,0.09) 0%, transparent 65%), " +
+            "#ffffff",
+        }}
+      >
         <Container className="grid grid-cols-1 items-center gap-8 py-16 sm:py-20 lg:grid-cols-[1fr_1.1fr] lg:gap-0 lg:py-0">
           {/* Text */}
           <Reveal className="py-0 lg:py-24">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Mobiler Einsatz</p>
-            <h2 className="mt-4 max-w-[14ch] text-[clamp(2rem,4vw,3.25rem)] font-bold leading-[1.1] tracking-[-0.02em] text-white text-balance">
+            <h2 className="mt-4 max-w-[14ch] text-[clamp(2rem,4vw,3.25rem)] font-bold leading-[1.1] tracking-[-0.02em] text-ink text-balance">
               Deutschlandweit direkt zu Ihrer Maschine
             </h2>
-            <p className="mt-5 max-w-[44ch] text-base leading-relaxed text-white/55">
+            <p className="mt-5 max-w-[44ch] text-base leading-relaxed text-ink-soft">
               Vollausgerüsteter Firmenwagen, ein fester Ansprechpartner — kein Callcenter, keine Fremdvergabe.
               Robert Wikarek kommt persönlich.
             </p>
@@ -178,7 +186,7 @@ export default function HomePage() {
                 href={siteConfig.contact.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white/80 transition-colors hover:bg-white/8 hover:text-white"
+                className="inline-flex items-center gap-3 rounded-full border border-border px-7 py-3.5 text-sm font-semibold text-ink transition-colors hover:bg-surface"
               >
                 <Icon name="whatsapp" size={17} />
                 WhatsApp schreiben
