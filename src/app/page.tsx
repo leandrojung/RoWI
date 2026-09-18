@@ -267,6 +267,7 @@ export default function HomePage() {
             <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-xl lg:max-w-none">
               <ImageFlip
                 images={[
+                  { src: "/fotos/inhaber-einsatz.webp", alt: "Robert Wikarek beim Maschineneinsatz", focusY: 40 },
                   { src: "/fotos/team.webp", alt: "Das Rowi-Team auf der Messe", focusY: 45 },
                   { src: "/fotos/firmenwagen.webp", alt: "Rowi Firmenwagen", focusY: 50 },
                 ]}
@@ -277,7 +278,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal className="min-w-0">
             <h2 className="text-3xl font-bold text-ink sm:text-4xl">
-              Das Team hinter dem Betrieb
+              Bei uns packt der Chef selbst mit an
             </h2>
             <div className="mt-5 max-w-[62ch] space-y-4 text-ink-soft">
               <p>
