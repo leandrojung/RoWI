@@ -50,23 +50,21 @@ export default function HomePage() {
         {/* Bottom gradient — softens transition to trust bar */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-ink/55" aria-hidden="true" />
 
-        {/* Firmenwagen — cinematic bottom-right, fließt aus dem Dunkel */}
+        {/* Firmenwagen freigestellt — schwebt sauber im Hero */}
         <div
-          className="hero-in hero-in-delay-3 pointer-events-none absolute bottom-0 right-0 hidden w-[clamp(380px,50vw,720px)] select-none lg:block"
+          className="hero-in hero-in-delay-3 pointer-events-none absolute bottom-0 right-[-2%] hidden w-[clamp(420px,52vw,780px)] select-none lg:block"
           aria-hidden="true"
         >
           <Image
-            src="/fotos/firmenwagen-seite.jpg"
+            src="/fotos/firmenwagen-freigestellt.png"
             alt=""
-            width={1280}
-            height={853}
-            className="h-auto w-full object-contain"
+            width={1200}
+            height={800}
+            className="h-auto w-full object-contain drop-shadow-2xl"
             priority
             style={{
-              maskImage: "linear-gradient(to right, transparent 0%, black 32%), linear-gradient(to top, transparent 0%, black 22%), linear-gradient(to bottom, transparent 0%, black 20%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 32%), linear-gradient(to top, transparent 0%, black 22%), linear-gradient(to bottom, transparent 0%, black 20%)",
-              maskComposite: "intersect",
-              WebkitMaskComposite: "source-in",
+              maskImage: "linear-gradient(to right, transparent 0%, black 22%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%)",
             }}
           />
         </div>
