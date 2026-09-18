@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback, useMemo } from "react";
+import React, { useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, useAnimate, type AnimationOptions } from "framer-motion";
 
 type ScrollConfig = { position: "top" | "bottom"; distance: number };
@@ -135,29 +135,31 @@ export default function PopcornText({
   return (
     <MotionTag ref={scope} aria-label={text} className={className} style={{ display: "inline" }}>
       {wordGroups.map((group, wi) => (
-        <span key={wi} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
-          {group.chars.map((item, ci) => (
-            <motion.span
-              key={ci}
-              className="pc"
-              aria-hidden="true"
-              style={
-                {
-                  display: "inline-block",
-                  "--start-rot": `${item.rot}deg`,
-                  rotate: `var(--start-rot)`,
-                  y: startY,
-                  scale: startScale,
-                  opacity: startOpacity,
-                  willChange: "transform, opacity",
-                } as React.CSSProperties
-              }
-            >
-              {item.char}
-            </motion.span>
-          ))}
+        <React.Fragment key={wi}>
+          <span style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+            {group.chars.map((item, ci) => (
+              <motion.span
+                key={ci}
+                className="pc"
+                aria-hidden="true"
+                style={
+                  {
+                    display: "inline-block",
+                    "--start-rot": `${item.rot}deg`,
+                    rotate: `var(--start-rot)`,
+                    y: startY,
+                    scale: startScale,
+                    opacity: startOpacity,
+                    willChange: "transform, opacity",
+                  } as React.CSSProperties
+                }
+              >
+                {item.char}
+              </motion.span>
+            ))}
+          </span>
           {group.space && " "}
-        </span>
+        </React.Fragment>
       ))}
     </MotionTag>
   );
