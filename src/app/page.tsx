@@ -199,14 +199,14 @@ export default function HomePage() {
       </section>
 
       {/* Leistungen */}
-      <section className="py-20 sm:py-24">
+      <section className="bg-ink py-20 sm:py-28">
         <Container>
           <Reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="max-w-[16ch] text-3xl font-bold text-ink sm:text-4xl">
+              <h2 className="max-w-[16ch] text-3xl font-bold text-white sm:text-4xl">
                 <PopcornText text="Alles für Ihre Maschine, aus einer Hand" tag="span" appearTrigger="scroll" stagger={0.025} rotationRange={15} />
               </h2>
-              <p className="mt-3 max-w-[55ch] text-ink-soft">
+              <p className="mt-3 max-w-[55ch] text-white/50">
                 Von der Eilreparatur bis zur Schulung — ein Ansprechpartner für den gesamten
                 Maschinenlebenszyklus.
               </p>
@@ -215,50 +215,75 @@ export default function HomePage() {
               href="/leistungen"
               className="group inline-flex shrink-0 items-center gap-2 font-semibold text-accent"
             >
-              Alle Leistungen
+              Alle Leistungen im Überblick
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 <Icon name="arrow-right" size={18} />
               </span>
             </Link>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Hervorgehobene Leistung */}
+          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Sofortdienst — volle Breite, dominanter Block */}
             <Link
               href={`/leistungen/${highlightService.slug}`}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-accent p-8 text-white transition-shadow duration-300 hover:shadow-xl hover:shadow-accent/20 sm:col-span-2 lg:row-span-2"
+              className="group relative col-span-full overflow-hidden rounded-2xl p-10 text-white sm:p-14"
+              style={{ background: "linear-gradient(135deg, #c8102e 0%, #8b0b1c 60%, #5a0612 100%)" }}
             >
-              <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 transition-transform duration-500 group-hover:scale-125" aria-hidden="true" />
-              <div className="relative">
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-bold">
-                  {highlightService.badge}
+              {/* Glow orb */}
+              <div
+                className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-30 transition-transform duration-700 group-hover:scale-150"
+                style={{ background: "radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 70%)" }}
+                aria-hidden="true"
+              />
+              {/* Pulsing live badge */}
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wide">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-80" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
                 </span>
-                <Icon name={highlightService.icon} size={44} className="mt-8" />
-                <h3 className="mt-5 text-2xl font-bold sm:text-3xl">Sofortdienst bei Stillstand</h3>
-                <p className="mt-3 max-w-[38ch] text-white/85">
-                  Produktion steht? Dringende Fälle werden vorgezogen — telefonische Ersteinschätzung
-                  sofort, Einsatz deutschlandweit.
-                </p>
-              </div>
-              <span className="relative mt-10 inline-flex items-center gap-2 font-bold">
-                Jetzt melden
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  <Icon name="arrow-right" size={18} />
-                </span>
+                Sofortdienst — Produktion steht?
               </span>
+
+              <div className="relative mt-6 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <Icon name={highlightService.icon} size={52} />
+                  <h3 className="mt-4 text-[clamp(1.75rem,4vw,3rem)] font-bold leading-tight">
+                    Jetzt Soforteinsatz melden
+                  </h3>
+                  <p className="mt-3 max-w-[52ch] text-lg text-white/75">
+                    Dringende Fälle werden vorgezogen — telefonische Ersteinschätzung sofort,
+                    Einsatz deutschlandweit.
+                  </p>
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-3 rounded-full border-2 border-white/40 bg-white/10 px-8 py-4 font-bold transition-all duration-300 group-hover:border-white group-hover:bg-white group-hover:text-accent">
+                  Jetzt melden
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    <Icon name="arrow-right" size={18} />
+                  </span>
+                </span>
+              </div>
             </Link>
 
+            {/* Weitere Leistungen */}
             {otherServices.map((service) => (
               <Link
                 key={service.slug}
                 href={`/leistungen/${service.slug}`}
-                className="group rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink hover:shadow-lg"
+                className="group flex flex-col rounded-2xl border border-white/8 p-7 transition-all duration-300 hover:border-accent/50 hover:shadow-lg"
+                style={{ background: "rgba(255,255,255,0.04)" }}
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-muted text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
-                  <Icon name={service.icon} size={22} />
+                <span
+                  className="flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110"
+                  style={{ background: "rgba(200,16,46,0.15)", color: "#c8102e" }}
+                >
+                  <Icon name={service.icon} size={24} />
                 </span>
-                <h3 className="mt-4 text-lg font-bold text-ink">{service.navLabel}</h3>
-                <p className="mt-1.5 text-sm text-ink-soft">{service.teaser}</p>
+                <h3 className="mt-5 text-lg font-bold text-white">{service.navLabel}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-white/50">{service.teaser}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent/70 transition-all duration-300 group-hover:gap-3 group-hover:text-accent">
+                  Mehr erfahren
+                  <Icon name="arrow-right" size={14} />
+                </span>
               </Link>
             ))}
           </div>
