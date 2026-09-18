@@ -154,7 +154,7 @@ export default function HomePage() {
       </section>
 
       {/* Firmenwagen — Einsatzsignal */}
-      <section className="overflow-hidden bg-ink">
+      <section className="overflow-hidden" style={{ backgroundColor: "#201a1a" }}>
         <Container className="grid grid-cols-1 items-center gap-8 py-16 sm:py-20 lg:grid-cols-[1fr_1.1fr] lg:gap-0 lg:py-0">
           {/* Text */}
           <Reveal className="py-0 lg:py-24">

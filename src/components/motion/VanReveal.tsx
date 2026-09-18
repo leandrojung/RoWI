@@ -13,12 +13,12 @@ export default function VanReveal() {
       className="relative flex items-center justify-end"
     >
       <Image
-        src="/fotos/firmenwagen-hq.webp"
+        src="/fotos/firmenwagen-neu.png"
         alt="Rowi Maschinenservice Firmenwagen"
         width={720}
         height={400}
         className="w-full max-w-[680px] object-contain"
-        style={{ filter: "drop-shadow(0 24px 60px rgba(200,16,46,0.22)) drop-shadow(0 4px 16px rgba(0,0,0,0.6))" }}
+        style={{ filter: "drop-shadow(0 28px 40px rgba(200,16,46,0.28)) drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
       />
     </motion.div>
   );
