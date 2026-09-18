@@ -10,6 +10,7 @@ import Icon from "@/components/Icon";
 import PhotoFrame from "@/components/PhotoFrame";
 import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
+import PopcornText from "@/components/motion/PopcornText";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
 import { faqCategories } from "@/lib/faq-data";
@@ -59,8 +60,15 @@ export default function HomePage() {
           </p>
 
           {/* Headline */}
-          <h1 className="hero-in hero-in-delay-1 mt-6 max-w-[18ch] text-[clamp(2.75rem,6vw,4.75rem)] font-bold leading-[1.05] tracking-[-0.02em] text-balance">
-            Maschinenservice & Wartung — direkt vom Fachmann
+          <h1 className="hero-in hero-in-delay-1 mt-6 max-w-[18ch] text-[clamp(2.75rem,6vw,4.75rem)] font-bold leading-[1.08] tracking-[-0.02em] text-balance">
+            <PopcornText
+              text="Maschinenservice & Wartung — direkt vom Fachmann"
+              tag="span"
+              appearTrigger="default"
+              stagger={0.032}
+              rotationRange={22}
+              startY={32}
+            />
           </h1>
 
           {/* Lead text */}
@@ -142,7 +150,7 @@ export default function HomePage() {
           <Reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h2 className="max-w-[16ch] text-3xl font-bold text-ink sm:text-4xl">
-                Alles für Ihre Maschine, aus einer Hand
+                <PopcornText text="Alles für Ihre Maschine, aus einer Hand" tag="span" appearTrigger="scroll" stagger={0.025} rotationRange={15} />
               </h2>
               <p className="mt-3 max-w-[55ch] text-ink-soft">
                 Von der Eilreparatur bis zur Schulung — ein Ansprechpartner für den gesamten
@@ -274,7 +282,9 @@ export default function HomePage() {
       <section className="border-y border-border bg-ink py-20 text-white sm:py-24">
         <Container>
           <Reveal>
-            <h2 className="max-w-[18ch] text-3xl font-bold sm:text-4xl">Vier Schritte bis die Maschine wieder läuft</h2>
+            <h2 className="max-w-[18ch] text-3xl font-bold sm:text-4xl">
+              <PopcornText text="Vier Schritte bis die Maschine wieder läuft" tag="span" appearTrigger="scroll" stagger={0.025} rotationRange={15} />
+            </h2>
           </Reveal>
           <Reveal stagger className="relative mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, index) => (
@@ -300,7 +310,7 @@ export default function HomePage() {
         <Container>
           <Reveal>
             <h2 className="max-w-[20ch] text-3xl font-bold text-ink sm:text-4xl">
-              Warum Betriebe uns anrufen
+              <PopcornText text="Warum Betriebe uns anrufen" tag="span" appearTrigger="scroll" stagger={0.03} rotationRange={15} />
             </h2>
           </Reveal>
           <Reveal stagger className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
