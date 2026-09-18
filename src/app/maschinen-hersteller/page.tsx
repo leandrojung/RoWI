@@ -41,12 +41,25 @@ export default function MaschinenHerstellerPage() {
                   <h2 className="text-xl font-bold text-ink">{group.category}</h2>
                 </div>
                 <ul className="mt-6 flex flex-wrap gap-2">
-                  {group.names.map((name) => (
-                    <li
-                      key={name}
-                      className="rounded-lg bg-surface-muted px-4 py-2.5 text-sm font-semibold text-ink-soft transition-colors duration-200 hover:bg-ink hover:text-white"
-                    >
-                      {name}
+                  {group.brands.map((brand) => (
+                    <li key={brand.name}>
+                      {brand.url ? (
+                        <a
+                          href={brand.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 rounded-lg bg-surface-muted px-4 py-2.5 text-sm font-semibold text-ink-soft transition-all duration-200 hover:bg-accent hover:text-white hover:shadow-[0_4px_12px_rgba(200,16,46,0.3)]"
+                        >
+                          {brand.name}
+                          <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" className="opacity-60">
+                            <path d="M7 1h4v4M11 1L5 7M2 3H1v8h8V9" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </a>
+                      ) : (
+                        <span className="rounded-lg bg-surface-muted px-4 py-2.5 text-sm font-semibold text-ink-soft">
+                          {brand.name}
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
