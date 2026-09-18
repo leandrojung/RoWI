@@ -6,6 +6,7 @@ import { blogPosts } from "@/lib/blog-data";
 const staticRoutes = [
   { path: "/", priority: 1, changeFrequency: "weekly" as const },
   { path: "/ueber-uns", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/werkstatt", priority: 0.6, changeFrequency: "monthly" as const },
   { path: "/leistungen", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/maschinen-hersteller", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/einsatzgebiet", priority: 0.6, changeFrequency: "monthly" as const },

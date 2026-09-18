@@ -160,6 +160,7 @@ export const processSteps = [
 export const navigationMain = [
   { label: "Startseite", href: "/" },
   { label: "Über uns", href: "/ueber-uns" },
+  { label: "Werkstatt", href: "/werkstatt" },
   { label: "Leistungen", href: "/leistungen" },
   { label: "Hersteller", href: "/maschinen-hersteller" },
   { label: "Einsatzgebiet", href: "/einsatzgebiet" },

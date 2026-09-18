@@ -29,12 +29,12 @@ export const photos = {
     hint: "Porträt Robert Wikarek, gerne in Arbeitskleidung vor einer Maschine",
   },
   workshopWide: {
-    src: null,
+    src: "/fotos/werkstatt-03.jpg",
     alt: "Werkstatt von Rowi Maschinenservice in Heiden im Münsterland",
     hint: "Querformat: Werkstatt in Heiden, Innenansicht mit Maschinen",
   },
   serviceOnSite: {
-    src: null,
+    src: "/fotos/werkstatt-05.jpg",
     alt: "Mobiler Service an einer Steinbearbeitungsmaschine im Kundenbetrieb",
     hint: "Querformat: Einsatz beim Kunden, Werkzeug und Maschine im Bild",
   },
