@@ -62,12 +62,13 @@ export default function HomePage() {
           {/* Headline */}
           <h1 className="hero-in hero-in-delay-1 mt-6 max-w-[18ch] text-[clamp(2.75rem,6vw,4.75rem)] font-bold leading-[1.08] tracking-[-0.02em] text-balance">
             <PopcornText
-              text="Maschinenservice & Wartung — direkt vom Fachmann"
+              text="Maschinenservice & Wartung direkt vom Fachmann"
               tag="span"
               appearTrigger="default"
-              stagger={0.032}
-              rotationRange={22}
-              startY={32}
+              stagger={0.018}
+              rotationRange={18}
+              startY={28}
+              transition={{ type: "spring", stiffness: 420, damping: 16, mass: 0.9 }}
             />
           </h1>
 

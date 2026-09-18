@@ -38,18 +38,13 @@ export default function PopcornText({
   const [scope, animate] = useAnimate();
   const firedRef = useRef(false);
 
-  // Shuffle indices so letters pop in random order
+  // Sequential order — each char pops in left to right
   const charsConfig = useMemo(() => {
     const chars = (text ?? "").split("");
-    const indices = chars.map((_, i) => i);
-    for (let i = indices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [indices[i], indices[j]] = [indices[j], indices[i]];
-    }
     return chars.map((char, i) => ({
       char,
       rot: (Math.random() * 2 - 1) * rotationRange,
-      staggerOrder: indices[i],
+      staggerOrder: i,
     }));
   }, [text, rotationRange]);
 
@@ -118,29 +113,51 @@ export default function PopcornText({
     };
   }, [appearTrigger, scrollConfig, runAppear, resetToHidden, scope]);
 
+  // Group chars into words so each word is wrapped in white-space:nowrap,
+  // preventing mid-word line breaks when chars are display:inline-block
+  const wordGroups = useMemo(() => {
+    const groups: { chars: typeof charsConfig; space: boolean }[] = [];
+    let current: typeof charsConfig = [];
+    charsConfig.forEach((item) => {
+      if (item.char === " ") {
+        groups.push({ chars: current, space: true });
+        current = [];
+      } else {
+        current.push(item);
+      }
+    });
+    if (current.length) groups.push({ chars: current, space: false });
+    return groups;
+  }, [charsConfig]);
+
   const MotionTag = motion[tag] as typeof motion.span;
 
   return (
-    <MotionTag ref={scope} aria-label={text} className={className} style={{ display: "inline", whiteSpace: "pre-wrap" }}>
-      {charsConfig.map((item, i) => (
-        <motion.span
-          key={i}
-          className="pc"
-          aria-hidden="true"
-          style={
-            {
-              display: "inline-block",
-              "--start-rot": `${item.rot}deg`,
-              rotate: `var(--start-rot)`,
-              y: startY,
-              scale: startScale,
-              opacity: startOpacity,
-              willChange: "transform, opacity",
-            } as React.CSSProperties
-          }
-        >
-          {item.char === " " ? " " : item.char}
-        </motion.span>
+    <MotionTag ref={scope} aria-label={text} className={className} style={{ display: "inline" }}>
+      {wordGroups.map((group, wi) => (
+        <span key={wi} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+          {group.chars.map((item, ci) => (
+            <motion.span
+              key={ci}
+              className="pc"
+              aria-hidden="true"
+              style={
+                {
+                  display: "inline-block",
+                  "--start-rot": `${item.rot}deg`,
+                  rotate: `var(--start-rot)`,
+                  y: startY,
+                  scale: startScale,
+                  opacity: startOpacity,
+                  willChange: "transform, opacity",
+                } as React.CSSProperties
+              }
+            >
+              {item.char}
+            </motion.span>
+          ))}
+          {group.space && " "}
+        </span>
       ))}
     </MotionTag>
   );
