@@ -222,43 +222,51 @@ export default function HomePage() {
             </Link>
           </Reveal>
 
-          <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((service) => {
-              const isHighlight = service.slug === "sofortdienst";
-              return (
-                <Link
-                  key={service.slug}
-                  href={`/leistungen/${service.slug}`}
-                  className="group flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:border-accent/50 hover:shadow-lg"
-                  style={{
-                    background: isHighlight ? "rgba(200,16,46,0.08)" : "rgba(255,255,255,0.04)",
-                    borderColor: isHighlight ? "rgba(200,16,46,0.35)" : "rgba(255,255,255,0.08)",
-                  }}
-                >
-                  <div className="flex items-start justify-between">
-                    <span
-                      className="flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-105"
-                      style={{ background: "rgba(200,16,46,0.18)", color: "#c8102e" }}
-                    >
-                      <Icon name={service.icon} size={22} />
+          <Reveal className="mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+              {services.map((service, i) => {
+                const isHighlight = service.slug === "sofortdienst";
+                const isLeft = i % 2 === 0;
+                const isLastItem = i === services.length - 1;
+                const isSecondLast = i === services.length - 2;
+                return (
+                  <Link
+                    key={service.slug}
+                    href={`/leistungen/${service.slug}`}
+                    className={[
+                      "group flex items-center gap-5 py-5 transition-colors duration-200",
+                      isLastItem ? "" : "border-b border-white/[0.07]",
+                      isSecondLast ? "sm:border-b-0" : "",
+                      isLeft
+                        ? "sm:border-r sm:border-white/[0.07] sm:pr-10"
+                        : "sm:pl-10",
+                    ].join(" ")}
+                  >
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-accent transition-all duration-200 group-hover:scale-105 group-hover:bg-accent group-hover:text-white">
+                      <Icon name={service.icon} size={20} />
                     </span>
-                    {isHighlight && (
-                      <span className="flex h-2 w-2 items-center justify-center">
-                        <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-accent opacity-75" />
-                        <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                    <div className="min-w-0 flex-1">
+                      <span className="flex items-center gap-2.5">
+                        <span className="font-bold text-white transition-colors duration-200 group-hover:text-accent">
+                          {service.navLabel}
+                        </span>
+                        {isHighlight && (
+                          <span className="relative flex h-2 w-2 shrink-0">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                          </span>
+                        )}
                       </span>
-                    )}
-                  </div>
-                  <h3 className="mt-4 font-bold text-white">{service.navLabel}</h3>
-                  <p className="mt-1.5 flex-1 text-sm leading-relaxed text-white/45">{service.teaser}</p>
-                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent/65 transition-all duration-300 group-hover:gap-2.5 group-hover:text-accent">
-                    Mehr erfahren
-                    <Icon name="arrow-right" size={13} />
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+                      <p className="mt-0.5 text-sm leading-snug text-white/45">{service.teaser}</p>
+                    </div>
+                    <span className="shrink-0 text-white/25 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-accent">
+                      <Icon name="arrow-right" size={16} />
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </Reveal>
         </Container>
       </section>
 
