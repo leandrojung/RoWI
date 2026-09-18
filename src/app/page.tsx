@@ -12,7 +12,6 @@ import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import PopcornText from "@/components/motion/PopcornText";
 import ImageFlip from "@/components/motion/ImageFlip";
-import FrostGlassCard from "@/components/motion/FrostGlassCard";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
@@ -150,25 +149,6 @@ export default function HomePage() {
             <p className="text-3xl font-bold leading-none text-ink">Bundesweit</p>
             <p className="text-sm text-ink-soft">Mobiler Einsatz</p>
           </div>
-        </Container>
-      </section>
-
-      {/* Firmenwagen — FrostGlass Showcase */}
-      <section className="bg-surface-muted py-10 sm:py-14">
-        <Container>
-          <Reveal>
-            <FrostGlassCard
-              src="/fotos/firmenwagen-hq.png"
-              alt="Rowi Maschinenservice Firmenwagen"
-              height={420}
-              title="Deutschlandweit für Sie im Einsatz"
-              description="Von Heiden aus zu jedem Standort — schnell, zuverlässig, mit dem richtigen Werkzeug."
-              blur={16}
-              reach={280}
-              rounded={16}
-              tint="rgba(200,16,46,0.06)"
-            />
-          </Reveal>
         </Container>
       </section>
 
