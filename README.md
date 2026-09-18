@@ -34,14 +34,39 @@ npm run lint    # ESLint
   `services-data.ts` (die 8 Leistungsseiten), `faq-data.ts`, `blog-data.ts`, `schema.ts`
   (JSON-LD-Generatoren). Änderungen an Texten/Kontaktdaten werden hier zentral gepflegt.
 
-## Wichtiger Hinweis zum Kontaktformular
+## Fotos einfügen
 
-Das Kontaktformular (`src/components/ContactForm.tsx` → `src/app/api/contact/route.ts`)
-validiert Anfragen und zeigt eine Erfolgsmeldung, **verschickt aber aktuell keine
-E-Mail**, da noch kein Versanddienst angebunden ist. Vor Live-Gang muss in
-`src/app/api/contact/route.ts` ein echter Versandweg ergänzt werden (z. B. SMTP über
-das Hostinger-Postfach oder ein Dienst wie Resend/Postmark). Siehe TODO-Kommentar
-in der Datei.
+Alle Bildplätze sind vorbereitet. Um ein echtes Foto einzusetzen:
+
+1. Bilddatei nach `public/fotos/` legen (z. B. `public/fotos/robert-wikarek.jpg`)
+2. In `src/lib/photos.ts` beim passenden Eintrag den Pfad setzen:
+   `src: "/fotos/robert-wikarek.jpg"`
+
+Solange `src: null` steht, erscheint an der Stelle ein gestalteter Platzhalter mit
+Motivbeschreibung. Die Alt-Texte sind bereits SEO-freundlich hinterlegt.
+
+Vorbereitete Plätze: Hero der Startseite, Porträt Robert Wikarek (Startseite und
+Über uns), Werkstatt (Über uns, Hersteller-Seite).
+
+## Kontaktformular: E-Mail-Versand aktivieren
+
+Das Formular versendet über SMTP. Dafür werden Umgebungsvariablen benötigt — legen
+Sie eine Datei `.env.local` an (wird nicht eingecheckt):
+
+```
+SMTP_HOST=smtp.hostinger.com
+SMTP_PORT=465
+SMTP_USER=info@rowi-maschinenservice.de
+SMTP_PASSWORD=das-postfach-passwort
+CONTACT_TO=info@rowi-maschinenservice.de
+```
+
+Beim Hosting-Anbieter werden dieselben Variablen in den Projekteinstellungen
+hinterlegt.
+
+**Solange keine Zugangsdaten gesetzt sind**, geht keine Anfrage verloren: Das
+Formular öffnet dann automatisch einen vorausgefüllten E-Mail-Entwurf im
+Mailprogramm des Besuchers und weist ihn darauf hin, diesen abzusenden.
 
 ---
 
@@ -74,8 +99,9 @@ in der Datei.
 - [ ] **Stundensatz / Preise:** Aktuell steht überall „Preise auf Anfrage" (kein
       Stundensatz veröffentlicht), da die 74 €/Std. aus den AGB nicht datiert und
       damit nicht sicher aktuell sind. Sobald bestätigt, kann ein Preis ergänzt werden.
-- [ ] **Service-Hotline 0173 3082859:** Aktualität bestätigen; ggf. als WhatsApp-Nummer
-      einbinden (aktuell nirgends auf der Seite verwendet, siehe `site-config.ts`).
+- [ ] **Nummer 0173 3082859** ist jetzt die Hauptnummer für alle Call-to-Actions und
+      liegt auch auf dem WhatsApp-Button. Festnetz und Fax stehen weiterhin auf der
+      Kontaktseite und im Impressum. Bitte gegenprüfen, ob das so gewollt ist.
 - [ ] **USPs** (`src/lib/site-config.ts`, `usps`) gegenlesen/bestätigen.
 - [ ] **Schwerpunktregionen** innerhalb „deutschlandweit" ergänzen, falls vorhanden
       (`src/app/einsatzgebiet/page.tsx`).
@@ -87,11 +113,7 @@ in der Datei.
       auch bewusst ohne Anzahl im JSON-LD-Schema ausgegeben, siehe `src/lib/schema.ts`).
 - [ ] **Echte Kundenstimmen** für die Bewertungen-Seite (`src/app/bewertungen/page.tsx`)
       — aktuell als klar gekennzeichnete Platzhalter hinterlegt.
-- [ ] **Echte Fotos** von Werkstatt/Maschinen/Robert Wikarek bei der Arbeit einsetzen —
-      aktuell mit konkret formulierten Platzhalter-Bildbeschreibungen vorbereitet
-      (z. B. im Hero der Startseite, `src/app/page.tsx`).
-- [ ] **Echtes Firmenlogo** einbinden (`public/logo.svg` ist aktuell eine einfache
-      Platzhalter-Nachbildung der beschriebenen Wortmarke).
+- [ ] **Echte Fotos** einsetzen — siehe Abschnitt „Fotos einfügen" oben.
 - [ ] Geo-Koordinaten in `src/lib/site-config.ts` (`geo`) vor Live-Gang exakt
       verifizieren (aktuell eine Näherung für Heiden).
 

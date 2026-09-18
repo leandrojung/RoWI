@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Container from "@/components/ui/Container";
 import PageHero from "@/components/ui/PageHero";
 import CtaBanner from "@/components/ui/CtaBanner";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import ManufacturerList from "@/components/ManufacturerList";
+import Icon from "@/components/Icon";
+import Reveal from "@/components/motion/Reveal";
+import PhotoFrame from "@/components/PhotoFrame";
+import { manufacturerGroups, manufacturers, siteConfig } from "@/lib/site-config";
+import type { IconName } from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: "Maschinen & Hersteller",
   description:
-    "Service für Steinbearbeitungsmaschinen namhafter Hersteller: Löffler, Kolb, Comandulli, Marmo Meccanica und weitere. Service für weitere Hersteller auf Anfrage.",
+    "Service für Steinbearbeitungsmaschinen von Löffler, Kolb, Comandulli, Thibaut, Marmo Meccanica und weiteren Herstellern. Weitere Marken auf Anfrage.",
   alternates: { canonical: "/maschinen-hersteller" },
 };
 
@@ -17,27 +22,75 @@ export default function MaschinenHerstellerPage() {
     <>
       <Breadcrumbs items={[{ name: "Maschinen & Hersteller", href: "/maschinen-hersteller" }]} />
       <PageHero
-        eyebrow="Maschinen & Hersteller"
-        title="Service für Steinbearbeitungsmaschinen namhafter Hersteller"
-        lead="Ob Sägen, Fräsen, Poliermaschinen oder Bearbeitungszentren: Service wird für Maschinen zahlreicher namhafter Hersteller aus der Steinbearbeitung angeboten."
+        title="Service für die Marken Ihrer Werkstatt"
+        lead={`Sägen, Fräsen, Poliermaschinen, Pumpen und Absauganlagen — Erfahrung mit über ${manufacturers.length} Herstellern.`}
       />
 
       <section className="py-16 sm:py-20">
-        <Container className="max-w-4xl">
-          <p className="text-ink-soft">
-            Die folgenden Hersteller decken einen Großteil der in Steinmetz- und Natursteinbetrieben
-            eingesetzten Maschinen ab. Ist Ihr Hersteller nicht aufgeführt, fragen Sie gerne trotzdem an — Service
-            für weitere Hersteller ist auf Anfrage möglich.
-          </p>
-          <div className="mt-10">
-            <ManufacturerList />
+        <Container>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            {manufacturerGroups.map((group) => (
+              <Reveal
+                key={group.category}
+                className="rounded-2xl border border-border p-7 transition-shadow duration-300 hover:shadow-md sm:p-8"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ink text-white">
+                    <Icon name={group.icon as IconName} size={22} />
+                  </span>
+                  <h2 className="text-xl font-bold text-ink">{group.category}</h2>
+                </div>
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {group.names.map((name) => (
+                    <li
+                      key={name}
+                      className="rounded-lg bg-surface-muted px-4 py-2.5 text-sm font-semibold text-ink-soft transition-colors duration-200 hover:bg-ink hover:text-white"
+                    >
+                      {name}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </section>
 
+      <section className="border-y border-border bg-surface-muted py-16 sm:py-20">
+        <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          <Reveal className="min-w-0">
+            <h2 className="text-3xl font-bold text-ink">Ihre Marke ist nicht dabei?</h2>
+            <p className="mt-4 max-w-[55ch] text-ink-soft">
+              Die Liste zeigt die Hersteller, die am häufigsten auf dem Tisch liegen — sie ist nicht
+              abschließend. Vieles an Steinbearbeitungsmaschinen ähnelt sich technisch stark. Fragen Sie
+              einfach mit Maschinentyp und Baujahr an.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={siteConfig.contact.phoneHref}
+                className="flex items-center justify-center gap-3 rounded-xl bg-accent px-6 py-3.5 font-bold text-white transition-colors hover:bg-accent-dark"
+              >
+                <Icon name="phone" size={18} />
+                {siteConfig.contact.phoneDisplay}
+              </a>
+              <Link
+                href="/kontakt#kontaktformular"
+                className="flex items-center justify-center gap-3 rounded-xl border-2 border-ink px-6 py-3.5 font-semibold text-ink transition-colors hover:bg-ink hover:text-white"
+              >
+                <Icon name="mail" size={18} />
+                Maschine anfragen
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal>
+            <PhotoFrame photo="workshopWide" aspect="aspect-[4/3]" />
+          </Reveal>
+        </Container>
+      </section>
+
       <CtaBanner
-        title="Ihr Hersteller ist nicht dabei?"
-        lead="Sprechen Sie uns direkt an — Service für weitere Hersteller ist auf Anfrage möglich."
+        title="Unsicher, ob Ihre Maschine dabei ist?"
+        lead="Ein kurzer Anruf klärt das schneller als jede Liste."
       />
     </>
   );

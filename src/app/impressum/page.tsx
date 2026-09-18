@@ -43,6 +43,8 @@ export default function ImpressumPage() {
             <p className="mt-3">
               Telefon: {siteConfig.contact.phoneDisplay}
               <br />
+              Festnetz: {siteConfig.contact.landlineDisplay}
+              <br />
               Telefax: {siteConfig.contact.faxDisplay}
               <br />
               E-Mail: {siteConfig.contact.email}

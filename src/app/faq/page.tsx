@@ -20,9 +20,8 @@ export default function FaqPage() {
     <>
       <Breadcrumbs items={[{ name: "FAQ", href: "/faq" }]} />
       <PageHero
-        eyebrow="FAQ"
         title="Häufig gestellte Fragen"
-        lead="Antworten auf die wichtigsten Fragen rund um Rowi Maschinenservice — von Leistungen über Preise bis zum Einsatzgebiet."
+        lead="Von Leistungen über Preise bis zum Einsatzgebiet — kurz und ohne Umschweife beantwortet."
       />
 
       <section className="py-16 sm:py-20">
@@ -39,8 +38,8 @@ export default function FaqPage() {
       </section>
 
       <CtaBanner
-        title="Ihre Frage war nicht dabei?"
-        lead="Kontaktieren Sie uns direkt — wir beantworten Ihr Anliegen gerne persönlich."
+        title="Frage nicht dabei?"
+        lead="Rufen Sie an — meist ist das in zwei Minuten geklärt."
       />
       <JsonLd data={jsonLdGraph([faqSchema(allFaqItems)])} />
     </>

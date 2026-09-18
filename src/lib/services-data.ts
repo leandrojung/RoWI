@@ -1,13 +1,21 @@
+import type { IconName } from "@/components/Icon";
+
 export type ServiceFaq = { question: string; answer: string };
 
 export type Service = {
   slug: string;
   navLabel: string;
+  /** Ein Halbsatz für Navigation und Karten */
+  teaser: string;
+  icon: IconName;
+  /** Optionales Hervorhebungs-Label auf der Karte */
+  badge?: string;
   h1: string;
   metaTitle: string;
   metaDescription: string;
   intro: string;
-  description: string[];
+  /** Drei Kernaussagen statt langer Fließtextabsätze */
+  highlights: { title: string; text: string }[];
   benefits: string[];
   process: { title: string; description: string }[];
   faqs: ServiceFaq[];
@@ -17,185 +25,202 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "reparatur",
-    navLabel: "Reparaturleistung",
-    h1: "Reparatur von Steinbearbeitungsmaschinen – Rowi Maschinenservice",
+    navLabel: "Reparatur",
+    teaser: "Maschine defekt? Schnell wieder laufen.",
+    icon: "wrench",
+    h1: "Reparatur von Steinbearbeitungsmaschinen",
     metaTitle: "Reparatur von Steinbearbeitungsmaschinen | Rowi Maschinenservice",
     metaDescription:
-      "Fachgerechte Reparatur von Steinbearbeitungsmaschinen für Steinmetze und Natursteinbetriebe. Service in Heiden und deutschlandweit. Jetzt anfragen.",
-    intro:
-      "Ein Maschinenausfall in der Steinbearbeitung bedeutet Stillstand in der Produktion. Rowi Maschinenservice repariert Steinbearbeitungsmaschinen namhafter Hersteller fachgerecht, nachvollziehbar dokumentiert und mit dem Ziel, Ihren Betrieb so schnell wie möglich wieder arbeitsfähig zu machen.",
-    description: [
-      "Ob mechanischer Defekt, Verschleiß an Antrieb oder Führung, ein Problem an der Steuerung oder ein Ausfall der Kühl- und Wasseraufbereitung: Als ausgebildeter Industriemechaniker mit Fachrichtung Betriebstechnik und über 20 Jahren Erfahrung im Service für Steinbearbeitungsmaschinen kenne ich die typischen Schwachstellen von Sägen, Fräsen, Poliermaschinen und Bearbeitungszentren aus der Praxis.",
-      "Die Reparatur erfolgt nach einer sorgfältigen Fehlerdiagnose vor Ort. Sie erhalten vorab eine ehrliche Einschätzung zu Aufwand und Vorgehen, damit Sie die Entscheidung über Reparatur, Ersatzteilbeschaffung oder Alternativen selbst treffen können.",
+      "Fachgerechte Reparatur von Steinbearbeitungsmaschinen für Steinmetze und Natursteinbetriebe. Heiden und deutschlandweit. Jetzt anfragen.",
+    intro: "Maschinenausfall heißt Produktionsstillstand. Wir bringen Ihre Maschine schnell und fachgerecht wieder zum Laufen.",
+    highlights: [
+      {
+        title: "Jede Baugruppe",
+        text: "Antrieb, Führung, Steuerung, Kühlung und Wasseraufbereitung — aus über 20 Jahren Praxis.",
+      },
+      {
+        title: "Erst Diagnose, dann Rechnung",
+        text: "Sie erfahren vorab, was zu tun ist und was es kostet. Keine Überraschungen.",
+      },
+      {
+        title: "Werkstatt oder vor Ort",
+        text: "In Heiden oder mobil in Ihrem Betrieb — je nachdem, was schneller geht.",
+      },
     ],
     benefits: [
-      "Fachgerechte Reparatur durch ausgebildeten Industriemechaniker",
-      "Erfahrung mit Maschinen zahlreicher namhafter Hersteller aus einer Hand",
-      "Transparente Rückmeldung vor Beginn der Arbeiten",
-      "Reparatur vor Ort in der Werkstatt in Heiden oder mobil bei Ihnen im Betrieb",
-      "Abschluss mit unterschriebenem Montagezettel als nachvollziehbare Abrechnungsgrundlage",
+      "Ausgebildeter Industriemechaniker, kein Aushilfspersonal",
+      "Erfahrung mit über 18 Herstellern",
+      "Original- oder günstigere Alternativteile — Ihre Wahl",
+      "Abschluss mit unterschriebenem Montagezettel",
     ],
     process: [
-      { title: "Fehlerbeschreibung", description: "Sie schildern das Problem telefonisch, per E-Mail oder über das Kontaktformular." },
-      { title: "Diagnose", description: "Vor Ort oder nach Rücksprache wird die Ursache eingegrenzt und der Reparaturaufwand eingeschätzt." },
-      { title: "Reparatur", description: "Durchführung der Reparatur inklusive notwendiger Ersatzteile, original oder als kostengünstigere Alternative." },
-      { title: "Übergabe", description: "Funktionsprüfung und Übergabe mit unterschriebenem Montagezettel." },
+      { title: "Fehler melden", description: "Kurz schildern, was die Maschine macht — oder eben nicht." },
+      { title: "Diagnose", description: "Ursache eingrenzen, Aufwand einschätzen." },
+      { title: "Reparatur", description: "Instandsetzung inklusive benötigter Ersatzteile." },
+      { title: "Funktionsprüfung", description: "Testlauf und Übergabe mit Montagezettel." },
     ],
     faqs: [
       {
-        question: "Welche Steinbearbeitungsmaschinen reparieren Sie?",
+        question: "Welche Maschinen reparieren Sie?",
         answer:
-          "Reparaturen werden für Maschinen zahlreicher namhafter Hersteller angeboten, unter anderem Löffler, Kolb, Comandulli, Thibaut, Steup, Fickert & Winterling, Marmo Meccanica und weitere. Service für zusätzliche Hersteller ist auf Anfrage möglich.",
+          "Sägen, Fräsen, Poliermaschinen und Bearbeitungszentren zahlreicher Hersteller — unter anderem Löffler, Kolb, Comandulli, Thibaut und Marmo Meccanica. Andere Marken gerne auf Anfrage.",
       },
       {
-        question: "Reparieren Sie auch vor Ort in meinem Betrieb?",
-        answer:
-          "Ja, Reparatureinsätze erfolgen sowohl in der Werkstatt in Heiden als auch mobil deutschlandweit direkt bei Ihnen vor Ort — je nach Maschine, Defekt und Absprache.",
-      },
-      {
-        question: "Wie schnell erhalte ich eine Rückmeldung?",
-        answer:
-          "Nach Ihrer Anfrage erfolgt in der Regel zeitnah eine erste Rückmeldung zur weiteren Vorgehensweise. Bei akutem Ausfall nennen Sie uns dies bitte direkt — für dringende Fälle gibt es den Sofortdienst.",
+        question: "Kommen Sie auch in meinen Betrieb?",
+        answer: "Ja, mobile Reparatur ist deutschlandweit möglich. Was sinnvoller ist, klären wir am Telefon.",
       },
       {
         question: "Was kostet eine Reparatur?",
         answer:
-          "Die Kosten hängen von Aufwand, Ersatzteilen und Anfahrt ab. Aktuell gilt: Preise auf Anfrage, mit transparenter Abrechnung nach unterschriebenem Montagezettel.",
+          "Das hängt von Defekt, Ersatzteilen und Anfahrt ab. Preise auf Anfrage, abgerechnet wird transparent nach unterschriebenem Montagezettel.",
       },
     ],
     relatedSlugs: ["fehlersuche", "ersatzteile", "sofortdienst"],
   },
   {
     slug: "wartung",
-    navLabel: "Wartungs-Service",
-    h1: "Wartungs-Service für Steinbearbeitungsmaschinen – Rowi Maschinenservice",
+    navLabel: "Wartung",
+    teaser: "Ausfälle verhindern, bevor sie teuer werden.",
+    icon: "gear",
+    h1: "Wartung von Steinbearbeitungsmaschinen",
     metaTitle: "Wartung von Steinbearbeitungsmaschinen | Rowi Maschinenservice",
     metaDescription:
-      "Regelmäßige Wartung von Steinbearbeitungsmaschinen verhindert Ausfälle. Wartungs-Service von Rowi Maschinenservice in Heiden und deutschlandweit.",
-    intro:
-      "Regelmäßige Wartung ist der wirksamste Schutz vor teuren Maschinenausfällen. Rowi Maschinenservice prüft, pflegt und stellt Steinbearbeitungsmaschinen so ein, dass sie zuverlässig und präzise laufen.",
-    description: [
-      "Steinbearbeitungsmaschinen sind hohen Belastungen ausgesetzt: Steinstaub, Wasser, ständige Vibration und hoher Verschleiß an Sägeblättern, Lagern und Führungen. Ohne planmäßige Wartung steigt das Risiko für ungeplante Ausfälle spürbar.",
-      "Beim Wartungs-Service werden verschleißanfällige Bauteile geprüft, Einstellungen kontrolliert und nachjustiert sowie die Wasseraufbereitung und Kühlung mit einbezogen. Ziel ist, Probleme frühzeitig zu erkennen, bevor sie zum Stillstand führen.",
+      "Regelmäßige Wartung verhindert teure Ausfälle. Wartungs-Service für Steinbearbeitungsmaschinen in Heiden und deutschlandweit.",
+    intro: "Steinstaub, Wasser und Dauerbetrieb fressen jede Maschine. Planmäßige Wartung ist billiger als jeder Stillstand.",
+    highlights: [
+      {
+        title: "Verschleiß früh erkennen",
+        text: "Lager, Führungen, Dichtungen und Sägeblätter werden geprüft, bevor sie Folgeschäden verursachen.",
+      },
+      {
+        title: "Wasser wird mitgedacht",
+        text: "Kühlung und Wasseraufbereitung sind die meistunterschätzte Fehlerquelle — sie gehören dazu.",
+      },
+      {
+        title: "Termin nach Ihrem Plan",
+        text: "Wartung läuft dann, wenn sie Ihre Produktion am wenigsten stört.",
+      },
     ],
     benefits: [
-      "Weniger ungeplante Ausfälle durch frühzeitiges Erkennen von Verschleiß",
+      "Weniger ungeplante Stillstände",
       "Längere Lebensdauer Ihrer Maschinen",
-      "Gleichbleibende Bearbeitungsqualität durch korrekt eingestellte Maschinen",
-      "Wartung für Maschinen zahlreicher namhafter Hersteller aus einer Hand",
-      "Planbare Einsätze, abgestimmt auf Ihren Betriebsablauf",
+      "Gleichbleibende Bearbeitungsqualität",
+      "Planbare Termine statt Notfälle",
     ],
     process: [
-      { title: "Terminabstimmung", description: "Ein Wartungstermin wird passend zu Ihrem Produktionsplan vereinbart." },
-      { title: "Prüfung", description: "Mechanik, Antrieb, Steuerung, Wasseraufbereitung und Verschleißteile werden kontrolliert." },
-      { title: "Einstellung & Pflege", description: "Nachjustierung und Wartungsarbeiten gemäß Herstellervorgaben und Praxiserfahrung." },
-      { title: "Dokumentation", description: "Abschluss mit unterschriebenem Montagezettel und Hinweisen für die nächste Wartung." },
+      { title: "Termin abstimmen", description: "Passend zu Ihrem Produktionsplan." },
+      { title: "Durchsicht", description: "Mechanik, Antrieb, Steuerung, Wasseraufbereitung." },
+      { title: "Einstellen", description: "Nachjustieren nach Herstellervorgabe und Praxis." },
+      { title: "Protokoll", description: "Montagezettel plus Hinweis auf den nächsten Termin." },
     ],
     faqs: [
       {
-        question: "Wie oft sollte eine Steinbearbeitungsmaschine gewartet werden?",
+        question: "Wie oft sollte gewartet werden?",
         answer:
-          "Das hängt von Maschinentyp, Auslastung und Einsatzbedingungen ab. Bei intensiver Nutzung empfiehlt sich eine deutlich engere Taktung als bei gelegentlichem Einsatz — sprechen Sie uns für eine konkrete Empfehlung zu Ihrer Maschine an.",
+          "Das hängt von Maschine und Auslastung ab. Im Mehrschichtbetrieb deutlich häufiger als bei gelegentlichem Einsatz — wir empfehlen Ihnen einen konkreten Rhythmus für Ihre Maschine.",
       },
       {
-        question: "Warten Sie auch Maschinen, die nicht von Rowi verkauft wurden?",
-        answer:
-          "Ja, der Wartungs-Service richtet sich an Maschinen zahlreicher namhafter Hersteller, unabhängig davon, wo sie ursprünglich erworben wurden.",
-      },
-      {
-        question: "Kann Wartung Reparaturen vermeiden?",
-        answer:
-          "Regelmäßige Wartung senkt das Risiko größerer Reparaturen deutlich, da Verschleiß frühzeitig erkannt und behoben werden kann, bevor Folgeschäden entstehen.",
+        question: "Auch Maschinen, die ich woanders gekauft habe?",
+        answer: "Selbstverständlich. Woher die Maschine stammt, spielt keine Rolle.",
       },
     ],
     relatedSlugs: ["reparatur", "fehlersuche", "ersatzteile"],
   },
   {
     slug: "sofortdienst",
-    navLabel: "Sofortdienst & Eilreparaturen",
-    h1: "Sofortdienst & Eilreparaturen für Steinbearbeitungsmaschinen – Rowi Maschinenservice",
+    navLabel: "Sofortdienst",
+    teaser: "Produktion steht? Priorisierter Einsatz.",
+    icon: "bolt",
+    badge: "Kurze Reaktionszeit",
+    h1: "Sofortdienst & Eilreparaturen",
     metaTitle: "Sofortdienst & Eilreparatur Steinbearbeitungsmaschinen | Rowi Maschinenservice",
     metaDescription:
-      "Maschinenausfall in der Steinbearbeitung? Sofortdienst und Eilreparaturen von Rowi Maschinenservice — schnelle Reaktionszeiten, Heiden und deutschlandweit.",
-    intro:
-      "Steht Ihre Produktion durch einen Maschinenausfall still, zählt jede Stunde. Der Sofortdienst von Rowi Maschinenservice ist auf kurze Reaktionszeiten bei dringenden Fällen ausgelegt.",
-    description: [
-      "Ein defektes Sägeblatt-Lager, ein Ausfall der Steuerung oder ein Problem in der Wasseraufbereitung kann im laufenden Betrieb schnell zum kompletten Stillstand führen. Für genau diese Fälle gibt es den Sofortdienst: priorisierte Bearbeitung Ihrer Anfrage und schnelle Terminfindung.",
-      "Nach Ihrer Meldung wird zunächst telefonisch versucht, das Problem einzugrenzen. Je nach Situation folgt ein zeitnaher Vor-Ort-Termin in der Werkstatt in Heiden oder mobil bei Ihnen — deutschlandweit.",
+      "Maschinenausfall? Sofortdienst mit kurzen Reaktionszeiten für Steinbearbeitungsmaschinen — Heiden und deutschlandweit.",
+    intro: "Wenn die Produktion steht, zählt jede Stunde. Dringende Fälle werden vorgezogen.",
+    highlights: [
+      {
+        title: "Direkt am Telefon",
+        text: "Erste Fehlereingrenzung sofort im Gespräch — manchmal ist das Problem damit schon gelöst.",
+      },
+      {
+        title: "Vorgezogener Termin",
+        text: "Akute Ausfälle werden vor regulären Aufträgen eingeplant.",
+      },
+      {
+        title: "Auch weite Wege",
+        text: "Der Sofortdienst gilt deutschlandweit, nicht nur im Münsterland.",
+      },
     ],
     benefits: [
-      "Kurze Reaktionszeiten bei dringenden Ausfällen",
-      "Priorisierte Bearbeitung im Vergleich zu regulären Terminen",
-      "Erste telefonische Einschätzung zur schnellen Fehlereingrenzung",
-      "Mobiler Einsatz deutschlandweit möglich",
-      "Direkter Ansprechpartner ohne Umwege über mehrere Stellen",
+      "Priorisierte Bearbeitung bei Stillstand",
+      "Ein Ansprechpartner, keine Warteschleife",
+      "Telefonische Ersteinschätzung",
+      "Auch per WhatsApp erreichbar",
     ],
     process: [
-      { title: "Sofortmeldung", description: "Rufen Sie direkt an oder schreiben Sie unter Angabe von \"dringend\" eine Nachricht." },
-      { title: "Telefonische Ersteinschätzung", description: "Erste Fehlereingrenzung und Klärung der Dringlichkeit." },
-      { title: "Priorisierter Einsatz", description: "Kurzfristige Terminvereinbarung für Werkstatt- oder Vor-Ort-Einsatz." },
-      { title: "Abschluss", description: "Reparatur bzw. Sofortmaßnahme mit unterschriebenem Montagezettel." },
+      { title: "Anrufen", description: "Direkt melden und „dringend“ sagen." },
+      { title: "Einschätzen", description: "Fehler telefonisch eingrenzen, Dringlichkeit klären." },
+      { title: "Anfahrt", description: "Kurzfristiger Termin, Werkstatt oder vor Ort." },
+      { title: "Wieder laufen", description: "Instandsetzung und Übergabe." },
     ],
     faqs: [
       {
-        question: "Was zählt als Notfall im Sofortdienst?",
-        answer:
-          "In der Regel jeder Maschinenausfall, der Ihre Produktion akut stoppt oder erheblich beeinträchtigt. Im Zweifel einfach anrufen und die Situation kurz schildern — die Priorität wird dann gemeinsam eingeschätzt.",
+        question: "Was gilt als Notfall?",
+        answer: "Alles, was Ihre Produktion akut stoppt. Im Zweifel einfach anrufen — wir schätzen es gemeinsam ein.",
       },
       {
-        question: "Ist der Sofortdienst auch außerhalb von Heiden verfügbar?",
+        question: "Wie schnell sind Sie da?",
         answer:
-          "Ja, der Sofortdienst ist grundsätzlich deutschlandweit verfügbar. Die tatsächliche Reaktionszeit hängt von Entfernung, Auslastung und Art des Defekts ab.",
-      },
-      {
-        question: "Fallen für den Sofortdienst zusätzliche Kosten an?",
-        answer:
-          "Zur genauen Preisgestaltung des Sofortdienstes bitte direkt anfragen. Grundsätzlich gilt: Preise auf Anfrage, transparente Abrechnung nach unterschriebenem Montagezettel.",
+          "Das hängt von Entfernung und Art des Defekts ab. Eine belastbare Aussage bekommen Sie direkt im Telefonat, keine leeren Versprechen vorab.",
       },
     ],
     relatedSlugs: ["reparatur", "fehlersuche", "ersatzteile"],
   },
   {
     slug: "maschinenaufstellung",
-    navLabel: "Maschinenaufstellung & Inbetriebnahme",
-    h1: "Maschinenaufstellung, Inbetriebnahme & Umstellung – Rowi Maschinenservice",
-    metaTitle: "Maschinenaufstellung & Inbetriebnahme Steinbearbeitungsmaschinen | Rowi Maschinenservice",
+    navLabel: "Aufstellung",
+    teaser: "Neu, umgezogen oder umgestellt.",
+    icon: "install",
+    h1: "Maschinenaufstellung, Inbetriebnahme & Umstellung",
+    metaTitle: "Maschinenaufstellung & Inbetriebnahme | Rowi Maschinenservice",
     metaDescription:
-      "Aufstellung, Inbetriebnahme und Umstellung von Steinbearbeitungsmaschinen durch Rowi Maschinenservice — fachgerecht, Heiden und deutschlandweit.",
-    intro:
-      "Ob Neuanschaffung, Standortwechsel oder Umbau der Werkshalle: Rowi Maschinenservice übernimmt die fachgerechte Aufstellung, Inbetriebnahme und Umstellung Ihrer Steinbearbeitungsmaschinen.",
-    description: [
-      "Eine Steinbearbeitungsmaschine ist nur so gut wie ihre Aufstellung. Ausrichtung, Anschluss an Strom, Wasser und Absaugung sowie die Erstjustierung entscheiden maßgeblich über Präzision und Standzeit. Bei der Inbetriebnahme werden alle relevanten Parameter geprüft und eingestellt, bevor die Maschine in den Produktivbetrieb geht.",
-      "Auch bei der Umstellung bereits vorhandener Maschinen — etwa bei Hallenumbau, Standortwechsel oder veränderter Produktionsplanung — unterstützt Rowi Maschinenservice von der Demontage über den Transport bis zur erneuten Aufstellung und Wiederinbetriebnahme.",
+      "Aufstellung, Inbetriebnahme und Umstellung von Steinbearbeitungsmaschinen — fachgerecht ausgerichtet, Heiden und deutschlandweit.",
+    intro: "Eine Maschine ist nur so präzise wie ihre Aufstellung. Ausrichtung und Erstjustierung entscheiden über Standzeit und Ergebnis.",
+    highlights: [
+      {
+        title: "Millimeterarbeit",
+        text: "Ausrichtung und Erstjustierung bestimmen, wie sauber Ihre Maschine über Jahre arbeitet.",
+      },
+      {
+        title: "Anschlüsse geprüft",
+        text: "Strom, Wasser und Absaugung werden im Rahmen der Inbetriebnahme kontrolliert.",
+      },
+      {
+        title: "Auch Umzüge",
+        text: "Hallenumbau oder Standortwechsel: Demontage, Transportbegleitung, Wiederaufbau.",
+      },
     ],
     benefits: [
-      "Fachgerechte Ausrichtung und Erstjustierung für präzise Bearbeitungsergebnisse",
-      "Prüfung von Anschlüssen für Strom, Wasser und Absaugung im Rahmen der Inbetriebnahme",
-      "Erfahrung mit Umstellung und Wiederinbetriebnahme bei Standort- oder Hallenwechsel",
-      "Einweisung in die Bedienung im Anschluss an die Inbetriebnahme möglich",
-      "Ein Ansprechpartner für Aufstellung, Umstellung und spätere Wartung",
+      "Präzise Ausrichtung für saubere Ergebnisse",
+      "Testlauf unter realen Bedingungen",
+      "Einweisung direkt im Anschluss",
+      "Ein Ansprechpartner bis zur späteren Wartung",
     ],
     process: [
-      { title: "Planung", description: "Abstimmung zu Maschine, Standort und technischen Anschlüssen vor dem Termin." },
-      { title: "Aufstellung", description: "Positionierung, Ausrichtung und Anschluss der Maschine vor Ort." },
-      { title: "Inbetriebnahme", description: "Erstjustierung, Funktionsprüfung und Testlauf unter Praxisbedingungen." },
-      { title: "Übergabe", description: "Einweisung und Übergabe mit unterschriebenem Montagezettel." },
+      { title: "Vorabklärung", description: "Maschine, Standort und Anschlüsse besprechen." },
+      { title: "Aufstellen", description: "Positionieren, ausrichten, anschließen." },
+      { title: "In Betrieb nehmen", description: "Justieren, prüfen, Testlauf fahren." },
+      { title: "Übergabe", description: "Einweisung und Montagezettel." },
     ],
     faqs: [
       {
-        question: "Übernehmen Sie auch die Umstellung bestehender Maschinen?",
-        answer:
-          "Ja, Umstellung und Wiederinbetriebnahme bei Standort- oder Hallenwechsel gehören zum Leistungsumfang dieses Bereichs.",
+        question: "Übernehmen Sie auch Umzüge bestehender Maschinen?",
+        answer: "Ja — Demontage, Umstellung und Wiederinbetriebnahme gehören dazu.",
       },
       {
-        question: "Ist eine Einweisung im Preis der Inbetriebnahme enthalten?",
+        question: "Ist eine Einweisung dabei?",
         answer:
-          "Eine grundlegende Einweisung in die Bedienung erfolgt im Anschluss an die Inbetriebnahme. Für umfangreichere Schulungen, insbesondere zur CNC-Software, gibt es ein eigenes Schulungsangebot.",
-      },
-      {
-        question: "Übernehmen Sie auch Aufstellungen außerhalb von NRW?",
-        answer:
-          "Ja, Aufstellung, Inbetriebnahme und Umstellung erfolgen bei Bedarf deutschlandweit.",
+          "Eine Grundeinweisung ja. Für tiefergehende CNC-Software-Themen gibt es ein eigenes Schulungsangebot.",
       },
     ],
     relatedSlugs: ["schulungen", "an-und-verkauf", "wartung"],
@@ -203,179 +228,195 @@ export const services: Service[] = [
   {
     slug: "fehlersuche",
     navLabel: "Fehlersuche",
-    h1: "Fehlersuche an Steinbearbeitungsmaschinen – Rowi Maschinenservice",
+    teaser: "Ursache finden statt Symptome behandeln.",
+    icon: "search",
+    h1: "Fehlersuche an Steinbearbeitungsmaschinen",
     metaTitle: "Fehlersuche Steinbearbeitungsmaschinen | Rowi Maschinenservice",
     metaDescription:
-      "Systematische Fehlersuche an Steinbearbeitungsmaschinen durch erfahrenen Industriemechaniker. Rowi Maschinenservice, Heiden und deutschlandweit.",
-    intro:
-      "Nicht jeder Defekt ist auf den ersten Blick erkennbar. Bei unklaren Störungen an Steinbearbeitungsmaschinen hilft eine systematische Fehlersuche, die tatsächliche Ursache zu finden — statt nur Symptome zu beheben.",
-    description: [
-      "Unregelmäßige Aussetzer, Fehlermeldungen der Steuerung, nachlassende Präzision oder ungewöhnliche Geräusche haben oft mehrere mögliche Ursachen — mechanisch, elektrisch oder in der Steuerungstechnik. Mit über 20 Jahren Erfahrung im Service für Steinbearbeitungsmaschinen wird methodisch eingegrenzt, wo das eigentliche Problem liegt.",
-      "Ziel der Fehlersuche ist eine klare, nachvollziehbare Diagnose als Grundlage für die weitere Entscheidung: Reparatur, Ersatzteilbeschaffung oder gegebenenfalls Bewertung, ob sich eine Instandsetzung wirtschaftlich noch lohnt.",
+      "Systematische Fehlersuche an Steinbearbeitungsmaschinen durch erfahrenen Industriemechaniker. Heiden und deutschlandweit.",
+    intro: "Aussetzer, Fehlermeldungen, nachlassende Präzision: Wir finden die Ursache, statt am Symptom herumzuschrauben.",
+    highlights: [
+      {
+        title: "Drei Ebenen",
+        text: "Mechanik, Elektrik und Steuerung werden systematisch gegeneinander abgegrenzt.",
+      },
+      {
+        title: "Klartext",
+        text: "Sie bekommen eine verständliche Diagnose — kein Fachchinesisch, keine Vermutungen.",
+      },
+      {
+        title: "Ehrliche Empfehlung",
+        text: "Wenn sich eine Reparatur nicht mehr lohnt, sagen wir das auch.",
+      },
     ],
     benefits: [
-      "Systematische Eingrenzung mechanischer, elektrischer und steuerungstechnischer Ursachen",
-      "Klare, verständliche Rückmeldung statt reiner Vermutungen",
-      "Grundlage für eine fundierte Entscheidung über das weitere Vorgehen",
-      "Erfahrung mit Maschinen zahlreicher namhafter Hersteller",
-      "Fehlersuche vor Ort in der Werkstatt oder mobil bei Ihnen im Betrieb",
+      "Systematisch statt Teiletausch auf Verdacht",
+      "Verständliche Diagnose als Entscheidungsgrundlage",
+      "Direkte Weiterbearbeitung auf Wunsch",
+      "Erfahrung mit zahlreichen Herstellern",
     ],
     process: [
-      { title: "Problembeschreibung", description: "Sie schildern die Symptome — Fehlermeldungen, Geräusche, Zeitpunkt des Auftretens." },
-      { title: "Eingrenzung", description: "Systematische Prüfung von Mechanik, Elektrik und Steuerung zur Ursachenfindung." },
-      { title: "Diagnose-Rückmeldung", description: "Verständliche Erläuterung der gefundenen Ursache und möglicher nächster Schritte." },
-      { title: "Weiteres Vorgehen", description: "Auf Wunsch direkte Reparatur oder Ersatzteilbeschaffung im Anschluss." },
+      { title: "Symptome schildern", description: "Wann tritt es auf, welche Meldungen erscheinen?" },
+      { title: "Eingrenzen", description: "Mechanik, Elektrik und Steuerung prüfen." },
+      { title: "Diagnose", description: "Ursache benennen, Optionen erklären." },
+      { title: "Entscheiden", description: "Sie entscheiden — Reparatur, Ersatzteil oder Alternative." },
     ],
     faqs: [
       {
-        question: "Was kostet eine Fehlersuche, wenn die Ursache unklar ist?",
+        question: "Geht das auch telefonisch?",
         answer:
-          "Der Aufwand hängt von der Komplexität des Falls ab. Grundsätzlich gilt: Preise auf Anfrage, transparente Abrechnung nach unterschriebenem Montagezettel.",
+          "Eine erste Eingrenzung oft ja. Eine belastbare Diagnose braucht in der Regel die Maschine vor Augen.",
       },
       {
-        question: "Kann die Fehlersuche telefonisch vorab eingegrenzt werden?",
+        question: "Und wenn sich die Reparatur nicht lohnt?",
         answer:
-          "Eine erste telefonische Einschätzung ist oft möglich und hilfreich, eine abschließende Diagnose erfordert in der Regel aber die Prüfung vor Ort.",
-      },
-      {
-        question: "Was passiert, wenn sich eine Reparatur nicht mehr lohnt?",
-        answer:
-          "In diesem Fall wird das offen und nachvollziehbar kommuniziert — inklusive möglicher Alternativen, etwa über den An- und Verkauf von Maschinen.",
+          "Dann sagen wir das offen und zeigen Alternativen auf — zum Beispiel über den An- und Verkauf.",
       },
     ],
     relatedSlugs: ["reparatur", "ersatzteile", "sofortdienst"],
   },
   {
     slug: "ersatzteile",
-    navLabel: "Ersatzteilbeschaffung",
-    h1: "Ersatzteilbeschaffung für Steinbearbeitungsmaschinen – Rowi Maschinenservice",
+    navLabel: "Ersatzteile",
+    teaser: "Original oder günstige Alternative.",
+    icon: "parts",
+    h1: "Ersatzteile für Steinbearbeitungsmaschinen",
     metaTitle: "Ersatzteile für Steinbearbeitungsmaschinen | Rowi Maschinenservice",
     metaDescription:
-      "Ersatzteilbeschaffung inklusive Lieferung und Einbau für Steinbearbeitungsmaschinen. Original- oder kostengünstigere Alternativteile. Rowi Maschinenservice.",
-    intro:
-      "Ob Original-Ersatzteil oder eine wirtschaftlich sinnvolle Alternative: Rowi Maschinenservice beschafft passende Ersatzteile für Steinbearbeitungsmaschinen und übernimmt auf Wunsch auch Lieferung und Einbau.",
-    description: [
-      "Bei vielen Maschinenherstellern sind Ersatzteile nicht immer kurzfristig oder nur mit langen Lieferzeiten verfügbar. Über gewachsene Kontakte zu zahlreichen Herstellern und Zulieferern werden passende Teile beschafft — je nach Situation als Originalteil oder als geprüfte, kostengünstigere Alternative.",
-      "Der Service endet nicht bei der Beschaffung: Auf Wunsch übernimmt Rowi Maschinenservice auch Lieferung und fachgerechten Einbau, sodass Ihre Maschine ohne zusätzlichen Koordinationsaufwand wieder einsatzbereit ist.",
+      "Ersatzteilbeschaffung inklusive Lieferung und Einbau. Original- oder kostengünstigere Alternativteile für Steinbearbeitungsmaschinen.",
+    intro: "Über gewachsene Kontakte zu Herstellern und Zulieferern beschaffen wir auch Teile, die sonst schwer zu bekommen sind.",
+    highlights: [
+      {
+        title: "Zwei Wege",
+        text: "Originalteil vom Hersteller oder geprüfte Alternative — wir sagen ehrlich, was sich für Sie rechnet.",
+      },
+      {
+        title: "Auch ältere Modelle",
+        text: "Für viele Maschinen findet sich noch etwas, wo andere längst abwinken.",
+      },
+      {
+        title: "Inklusive Einbau",
+        text: "Auf Wunsch übernehmen wir Lieferung und fachgerechten Einbau gleich mit.",
+      },
     ],
     benefits: [
-      "Beschaffung von Ersatzteilen für Maschinen zahlreicher namhafter Hersteller",
-      "Original- oder kostengünstigere Alternativteile, je nach Bedarf und Budget",
-      "Lieferung und fachgerechter Einbau aus einer Hand möglich",
-      "Ehrliche Einschätzung, welche Teillösung für Ihren Fall sinnvoll ist",
-      "Kurze Wege durch direkten, persönlichen Ansprechpartner",
+      "Teile für zahlreiche Hersteller",
+      "Original oder günstigere Alternative",
+      "Lieferung und Einbau aus einer Hand",
+      "Kurze Wege über einen Ansprechpartner",
     ],
     process: [
-      { title: "Bedarf klären", description: "Sie nennen Maschine, Modell und benötigtes Teil oder beschreiben den Defekt." },
-      { title: "Beschaffungsoptionen", description: "Prüfung, ob Original- oder Alternativteile verfügbar und sinnvoll sind." },
-      { title: "Lieferung", description: "Beschaffung und Lieferung des passenden Ersatzteils." },
-      { title: "Einbau (optional)", description: "Fachgerechter Einbau vor Ort inklusive Funktionsprüfung, mit Montagezettel." },
+      { title: "Teil benennen", description: "Maschine, Modell und Teil — oder einfach den Defekt schildern." },
+      { title: "Optionen prüfen", description: "Verfügbarkeit und sinnvolle Alternativen klären." },
+      { title: "Beschaffen", description: "Bestellung und Lieferung." },
+      { title: "Einbauen", description: "Auf Wunsch inklusive Montage und Funktionsprüfung." },
     ],
     faqs: [
       {
-        question: "Bekomme ich auch Ersatzteile für ältere Maschinenmodelle?",
+        question: "Auch für alte Maschinen?",
         answer:
-          "In vielen Fällen ja — je nach Verfügbarkeit beim Hersteller oder über geprüfte Alternativteile. Am besten Modell und Teil konkret anfragen.",
+          "Häufig ja — je nach Verfügbarkeit beim Hersteller oder über geprüfte Alternativteile. Fragen Sie mit Modellbezeichnung an.",
       },
       {
-        question: "Muss ich das Ersatzteil selbst einbauen?",
+        question: "Original oder Alternative — was ist besser?",
         answer:
-          "Nein, der Einbau kann auf Wunsch komplett übernommen werden, inklusive Funktionsprüfung und Übergabe mit Montagezettel.",
-      },
-      {
-        question: "Was ist der Unterschied zwischen Original- und Alternativteilen?",
-        answer:
-          "Originalteile stammen vom Hersteller der Maschine, Alternativteile sind geprüfte, meist kostengünstigere Ersatzlösungen. Welche Variante sinnvoll ist, hängt vom Einzelfall ab und wird transparent besprochen.",
+          "Kommt auf das Teil an. Originalteile passen garantiert, Alternativen sind oft günstiger und schneller da. Wir empfehlen nicht pauschal das Teurere.",
       },
     ],
     relatedSlugs: ["reparatur", "wartung", "fehlersuche"],
   },
   {
     slug: "schulungen",
-    navLabel: "CNC-Software-Schulungen",
-    h1: "CNC-Software-Schulungen & Einweisungen – Rowi Maschinenservice",
+    navLabel: "CNC-Schulungen",
+    teaser: "Ihr Team sicher an der Steuerung.",
+    icon: "training",
+    h1: "CNC-Software-Schulungen & Einweisungen",
     metaTitle: "CNC-Software-Schulung Steinbearbeitungsmaschinen | Rowi Maschinenservice",
     metaDescription:
-      "Schulungen und Einweisungen in die CNC-Software Ihrer Steinbearbeitungsmaschine — praxisnah von Rowi Maschinenservice, Heiden und deutschlandweit.",
-    intro:
-      "Eine moderne Steinbearbeitungsmaschine ist nur so leistungsfähig wie ihre Bedienung. Rowi Maschinenservice bietet praxisnahe Schulungen und Einweisungen in die CNC-Software Ihrer Maschine.",
-    description: [
-      "Viele Steinbearbeitungsmaschinen werden heute über CNC-Steuerungen programmiert und bedient. Ob neue Mitarbeiter eingearbeitet werden müssen oder das vorhandene Team tiefergehendes Wissen zu Programmierung, Werkzeugverwaltung und Fehlermeldungen braucht: Die Schulung setzt direkt an Ihrer Maschine und Ihrem Arbeitsalltag an.",
-      "Im Mittelpunkt steht praktisches, anwendbares Wissen — keine reine Theorie. Nach der Schulung sollen Ihre Mitarbeiter die Maschine sicherer, effizienter und mit weniger Fehlbedienungen nutzen können.",
+      "Praxisnahe Schulungen und Einweisungen in die CNC-Software Ihrer Steinbearbeitungsmaschine — Heiden und deutschlandweit.",
+    intro: "Eine moderne Maschine kann nur so viel wie die Person davor. Wir schulen direkt an Ihrer Anlage.",
+    highlights: [
+      {
+        title: "An Ihrer Maschine",
+        text: "Geschult wird an Ihrer Anlage mit Ihren echten Werkstücken — nicht an Beispielen aus dem Handbuch.",
+      },
+      {
+        title: "Auf Ihr Team zugeschnitten",
+        text: "Von der Grundeinweisung für Neue bis zu Programmierung und Störungsbehebung für Erfahrene.",
+      },
+      {
+        title: "Weniger Fehlbedienung",
+        text: "Sicherheit an der Steuerung verhindert genau die Schäden, die später teuer werden.",
+      },
     ],
     benefits: [
-      "Praxisnahe Einweisung direkt an Ihrer Maschine",
-      "Geeignet für neue Mitarbeiter ebenso wie zur Auffrischung bei erfahrenem Personal",
-      "Themen individuell abstimmbar: Programmierung, Werkzeugverwaltung, Störungsbehebung",
-      "Weniger Fehlbedienungen und dadurch weniger vermeidbare Ausfälle",
-      "Direkt kombinierbar mit Inbetriebnahme neuer Maschinen",
+      "Praxis statt Theorie",
+      "Für neue und erfahrene Mitarbeiter",
+      "Inhalte frei abstimmbar",
+      "Direkt mit einer Inbetriebnahme kombinierbar",
     ],
     process: [
-      { title: "Bedarf klären", description: "Abstimmung zu Maschine, Softwarestand und Schulungsbedarf Ihres Teams." },
-      { title: "Terminplanung", description: "Vereinbarung eines Schulungstermins, der zu Ihrem Betriebsablauf passt." },
-      { title: "Praxis-Schulung", description: "Durchführung direkt an der Maschine mit realen Anwendungsfällen." },
-      { title: "Nachbereitung", description: "Klärung offener Fragen und Hinweise für den weiteren Umgang mit der Software." },
+      { title: "Bedarf klären", description: "Maschine, Softwarestand und Kenntnisse im Team." },
+      { title: "Termin planen", description: "Passend zum Betriebsablauf." },
+      { title: "Schulen", description: "Direkt an der Maschine, mit echten Anwendungsfällen." },
+      { title: "Nachfassen", description: "Offene Fragen klären, auch nach dem Termin." },
     ],
     faqs: [
       {
-        question: "Für welche CNC-Steuerungen bieten Sie Schulungen an?",
-        answer:
-          "Die Schulung richtet sich nach der Software Ihrer konkreten Maschine. Am besten Maschinentyp und Steuerung bei der Anfrage nennen.",
+        question: "Für welche Steuerungen?",
+        answer: "Nach der Software Ihrer konkreten Maschine. Nennen Sie bei der Anfrage Maschinentyp und Steuerung.",
       },
       {
-        question: "Ist die Schulung auch für neue Mitarbeiter ohne Vorerfahrung geeignet?",
-        answer:
-          "Ja, der Umfang der Schulung wird an das vorhandene Wissen Ihres Teams angepasst — von der Grundeinweisung bis zu vertiefenden Themen.",
-      },
-      {
-        question: "Kann die Schulung mit einer Inbetriebnahme kombiniert werden?",
-        answer:
-          "Ja, das ist häufig sinnvoll: direkt im Anschluss an die Aufstellung und Inbetriebnahme einer neuen Maschine.",
+        question: "Auch für Anfänger?",
+        answer: "Ja, der Umfang richtet sich nach dem Wissensstand Ihres Teams.",
       },
     ],
     relatedSlugs: ["maschinenaufstellung", "an-und-verkauf", "wartung"],
   },
   {
     slug: "an-und-verkauf",
-    navLabel: "An- und Verkauf von Maschinen",
-    h1: "An- und Verkauf von Steinbearbeitungsmaschinen – Rowi Maschinenservice",
+    navLabel: "An- & Verkauf",
+    teaser: "Neu und gebraucht, ehrlich bewertet.",
+    icon: "trade",
+    h1: "An- und Verkauf von Steinbearbeitungsmaschinen",
     metaTitle: "Steinbearbeitungsmaschinen kaufen & verkaufen | Rowi Maschinenservice",
     metaDescription:
-      "An- und Verkauf von Neu- und Gebrauchtmaschinen für die Steinbearbeitung. Fachliche Beratung von Rowi Maschinenservice, Heiden und deutschlandweit.",
-    intro:
-      "Ob Neuanschaffung, gebrauchte Maschine oder Verkauf einer nicht mehr benötigten Anlage: Rowi Maschinenservice unterstützt beim An- und Verkauf von Steinbearbeitungsmaschinen — mit fachlicher Einschätzung statt reinem Verkaufsinteresse.",
-    description: [
-      "Die Wahl der richtigen Maschine hängt von Werkstoff, Produktionsvolumen, verfügbarem Platz und Budget ab. Durch die tägliche Arbeit an Maschinen zahlreicher Hersteller besteht ein realistisches Bild davon, welche Maschine für welchen Einsatzzweck sinnvoll ist — auch bei Gebrauchtmaschinen, deren technischer Zustand fachlich eingeschätzt werden kann.",
-      "Beim Verkauf einer eigenen Maschine, etwa bei Umstellung der Produktion oder Betriebsaufgabe, hilft die Erfahrung aus dem Servicealltag bei einer realistischen Einschätzung von Zustand und Marktwert.",
+      "An- und Verkauf von Neu- und Gebrauchtmaschinen für die Steinbearbeitung, mit fachlicher Einschätzung statt Verkaufsdruck.",
+    intro: "Wer täglich an diesen Maschinen schraubt, weiß, welche wirklich taugen. Diese Einschätzung bekommen Sie hier — auch wenn sie gegen einen Kauf spricht.",
+    highlights: [
+      {
+        title: "Beratung ohne Druck",
+        text: "Welche Maschine zu Werkstoff, Menge und Platz passt — und welche Sie sich sparen können.",
+      },
+      {
+        title: "Gebrauchte realistisch bewertet",
+        text: "Zustand einschätzen ist Alltagsgeschäft. Wir sehen, was ein Verkäufer gerne verschweigt.",
+      },
+      {
+        title: "Auch Ihre Maschine",
+        text: "Bei Umstellung oder Betriebsaufgabe helfen wir bei Bewertung und Verkauf.",
+      },
     ],
     benefits: [
-      "Fachliche Beratung statt reinem Verkaufsdruck",
-      "Erfahrung mit Neu- und Gebrauchtmaschinen zahlreicher Hersteller",
-      "Realistische Einschätzung des technischen Zustands bei Gebrauchtmaschinen",
-      "Unterstützung bei Aufstellung und Inbetriebnahme direkt im Anschluss möglich",
-      "Ein Ansprechpartner für Kauf, Verkauf und den späteren Service der Maschine",
+      "Fachliche Einschätzung statt Verkaufsdruck",
+      "Neu- und Gebrauchtmaschinen",
+      "Realistische Zustandsbewertung",
+      "Aufstellung und Service aus derselben Hand",
     ],
     process: [
-      { title: "Bedarf klären", description: "Abstimmung zu gewünschtem Maschinentyp, Budget und Einsatzzweck bzw. zur zu verkaufenden Maschine." },
-      { title: "Fachliche Einschätzung", description: "Beratung zu passenden Modellen bzw. Bewertung des Zustands einer Gebrauchtmaschine." },
-      { title: "Abwicklung", description: "Abstimmung der Details zu Kauf, Verkauf, Lieferung bzw. Abholung." },
-      { title: "Inbetriebnahme (optional)", description: "Bei Neuerwerb: Aufstellung, Inbetriebnahme und Einweisung aus einer Hand." },
+      { title: "Bedarf klären", description: "Was soll die Maschine können, welches Budget?" },
+      { title: "Einschätzen", description: "Passende Modelle oder Zustandsbewertung Ihrer Maschine." },
+      { title: "Abwickeln", description: "Kauf, Verkauf, Lieferung oder Abholung." },
+      { title: "Aufstellen", description: "Auf Wunsch Inbetriebnahme und Einweisung." },
     ],
     faqs: [
       {
-        question: "Bieten Sie auch gebrauchte Steinbearbeitungsmaschinen an?",
-        answer:
-          "Ja, sowohl der Erwerb als auch der Verkauf gebrauchter Maschinen gehören zum Leistungsangebot. Aktuelle Verfügbarkeiten am besten direkt anfragen.",
+        question: "Haben Sie Gebrauchtmaschinen vorrätig?",
+        answer: "Der Bestand wechselt. Fragen Sie mit Ihrem Bedarf an, dann sagen wir, was gerade verfügbar ist.",
       },
       {
-        question: "Kann ich meine gebrauchte Maschine über Rowi verkaufen?",
-        answer:
-          "Grundsätzlich ja — melden Sie sich mit Angaben zu Maschine, Baujahr und Zustand, um das weitere Vorgehen zu besprechen.",
-      },
-      {
-        question: "Übernehmen Sie auch die Aufstellung neu erworbener Maschinen?",
-        answer:
-          "Ja, Aufstellung, Inbetriebnahme und auf Wunsch eine Einweisung in die Bedienung können direkt im Anschluss an den Erwerb erfolgen.",
+        question: "Kann ich meine Maschine über Sie verkaufen?",
+        answer: "Grundsätzlich ja. Melden Sie sich mit Maschine, Baujahr und Zustand.",
       },
     ],
     relatedSlugs: ["maschinenaufstellung", "schulungen", "wartung"],

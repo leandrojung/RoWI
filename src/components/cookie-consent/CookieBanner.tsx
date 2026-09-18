@@ -17,7 +17,8 @@ export default function CookieBanner() {
       role="dialog"
       aria-modal="false"
       aria-labelledby="cookie-banner-heading"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.12)]"
+      className="fixed inset-x-0 bottom-0 border-t border-border bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.12)]"
+      style={{ zIndex: "var(--z-banner)" }}
     >
       <div className="mx-auto max-w-6xl px-4 py-5 sm:px-6">
         <h2 id="cookie-banner-heading" className="text-base font-semibold text-ink">

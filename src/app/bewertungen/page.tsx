@@ -3,7 +3,9 @@ import Container from "@/components/ui/Container";
 import PageHero from "@/components/ui/PageHero";
 import CtaBanner from "@/components/ui/CtaBanner";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import StarRating from "@/components/StarRating";
+import Icon from "@/components/Icon";
+import Reveal from "@/components/motion/Reveal";
+import CountUp from "@/components/motion/CountUp";
 import { manufacturers, siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -13,79 +15,83 @@ export const metadata: Metadata = {
   alternates: { canonical: "/bewertungen" },
 };
 
-// Platzhalter-Struktur für Kundenstimmen — Texte folgen später von Robert Wikarek.
-const testimonialPlaceholders = [1, 2, 3];
-
 export default function BewertungenPage() {
   return (
     <>
       <Breadcrumbs items={[{ name: "Bewertungen", href: "/bewertungen" }]} />
       <PageHero
-        eyebrow="Bewertungen"
-        title="Was Kunden über Rowi Maschinenservice sagen"
-        lead="Kunden aus der Steinindustrie bewerten die Zusammenarbeit mit Rowi Maschinenservice durchgehend mit Bestnote."
+        title="5,0 von 5,0 bei Google"
+        lead="Kunden aus der Steinindustrie bewerten die Zusammenarbeit durchgehend mit Bestnote."
       >
-        <div className="mt-6">
-          <StarRating />
+        <div className="hero-in hero-in-delay-2 mt-8 flex items-center gap-2 text-gold" aria-hidden="true">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Icon key={i} name="star" size={30} />
+          ))}
         </div>
       </PageHero>
 
+      {/* Kennzahlen */}
+      <section className="border-b border-border py-14">
+        <Container className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+          {[
+            { value: 20, suffix: "+", label: "Jahre an Steinbearbeitungsmaschinen" },
+            { value: manufacturers.length, suffix: "+", label: "Hersteller im Service" },
+            { value: 5, decimals: 1, suffix: "", label: "Sterne im Google-Profil" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <p className="text-5xl font-bold text-accent">
+                <CountUp value={stat.value} decimals={stat.decimals ?? 0} />
+                {stat.suffix}
+              </p>
+              <p className="mt-2 text-sm text-ink-soft">{stat.label}</p>
+            </div>
+          ))}
+        </Container>
+      </section>
+
+      {/* Kundenstimmen */}
       <section className="py-16 sm:py-20">
         <Container>
-          <h2 className="text-2xl font-bold text-ink">Kundenstimmen</h2>
-          <p className="mt-2 max-w-2xl text-ink-soft">
-            [TODO — echte Kundenstimmen folgen von Robert Wikarek. Die folgenden Kacheln sind vorbereitete
-            Platzhalter für 3 Bewertungen und werden vor Live-Gang mit echten Texten befüllt.]
-          </p>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {testimonialPlaceholders.map((n) => (
-              <div key={n} className="rounded-lg border border-dashed border-border p-6">
-                <div className="flex gap-0.5" aria-hidden="true">
+          <Reveal>
+            <h2 className="text-3xl font-bold text-ink">Was Kunden sagen</h2>
+            <p className="mt-3 max-w-[60ch] text-ink-soft">
+              Die Original-Bewertungen stehen im Google-Profil. Ausgewählte Kundenstimmen folgen hier in Kürze.
+            </p>
+          </Reveal>
+
+          <Reveal stagger className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {[1, 2, 3].map((n) => (
+              <div key={n} className="rounded-2xl border-2 border-dashed border-border p-7">
+                <div className="flex gap-1 text-gold" aria-hidden="true">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <svg key={i} width="16" height="16" viewBox="0 0 20 20" fill="var(--color-accent)">
-                      <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L10 1.5z" />
-                    </svg>
+                    <Icon key={i} name="star" size={16} />
                   ))}
                 </div>
-                <p className="mt-4 text-sm italic text-ink-soft">
-                  „[Platzhalter für Kundenstimme {n} — Text folgt]“
+                <p className="mt-5 text-sm italic text-ink-soft/70">
+                  Platz für Kundenstimme {n} — Text folgt von Robert Wikarek.
                 </p>
-                <p className="mt-4 text-sm font-semibold text-ink">[Name / Betrieb, Ort]</p>
+                <p className="mt-5 text-sm font-semibold text-ink-soft/70">Name, Betrieb, Ort</p>
               </div>
             ))}
-          </div>
-          <a
-            href={siteConfig.links.googleBusinessProfile}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-8 inline-flex font-semibold text-accent hover:underline"
-          >
-            Alle Bewertungen bei Google ansehen →
-          </a>
+          </Reveal>
+
+          <Reveal className="mt-10">
+            <a
+              href={siteConfig.links.googleBusinessProfile}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 font-semibold text-accent"
+            >
+              Alle Bewertungen bei Google lesen
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                <Icon name="arrow-right" size={18} />
+              </span>
+            </a>
+          </Reveal>
         </Container>
       </section>
 
-      <section className="border-t border-border bg-surface-muted py-16 sm:py-20">
-        <Container>
-          <h2 className="text-2xl font-bold text-ink">Warum Kunden vertrauen</h2>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <div className="rounded-lg border border-border bg-white p-6">
-              <p className="text-3xl font-bold text-accent">20+</p>
-              <p className="mt-1 text-sm text-ink-soft">Jahre Erfahrung im Service für Steinbearbeitungsmaschinen</p>
-            </div>
-            <div className="rounded-lg border border-border bg-white p-6">
-              <p className="text-3xl font-bold text-accent">{manufacturers.length}+</p>
-              <p className="mt-1 text-sm text-ink-soft">Hersteller, für deren Maschinen Service angeboten wird</p>
-            </div>
-            <div className="rounded-lg border border-border bg-white p-6">
-              <p className="text-3xl font-bold text-accent">5,0 ★</p>
-              <p className="mt-1 text-sm text-ink-soft">Durchschnittliche Bewertung bei Google</p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <CtaBanner />
+      <CtaBanner title="Überzeugen Sie sich selbst" lead="Die nächste gute Bewertung könnte Ihre sein." />
     </>
   );
 }

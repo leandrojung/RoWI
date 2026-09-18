@@ -4,12 +4,14 @@ import PageHero from "@/components/ui/PageHero";
 import CtaBanner from "@/components/ui/CtaBanner";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
+import Icon from "@/components/Icon";
+import Reveal from "@/components/motion/Reveal";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Einsatzgebiet",
   description:
-    "Werkstatt und Firmensitz von Rowi Maschinenservice in Heiden im Münsterland, mobiler Service für Steinbearbeitungsmaschinen deutschlandweit.",
+    "Werkstatt und Sitz in Heiden im Münsterland, mobiler Service für Steinbearbeitungsmaschinen deutschlandweit.",
   alternates: { canonical: "/einsatzgebiet" },
 };
 
@@ -18,60 +20,98 @@ export default function EinsatzgebietPage() {
     <>
       <Breadcrumbs items={[{ name: "Einsatzgebiet", href: "/einsatzgebiet" }]} />
       <PageHero
-        eyebrow="Einsatzgebiet"
-        title="Unser Einsatzgebiet – Standort Heiden, Service deutschlandweit"
-        lead="Die Werkstatt ist in Heiden im Münsterland zu Hause. Der Service für Steinbearbeitungsmaschinen erfolgt darüber hinaus mobil in ganz Deutschland."
+        title="Sitz in Heiden, unterwegs in ganz Deutschland"
+        lead="Werkstatt im Münsterland, mobiler Service bundesweit — je nachdem, was für Ihre Maschine schneller geht."
       />
 
       <section className="py-16 sm:py-20">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-          <div>
-            <h2 className="text-2xl font-bold text-ink">Werkstatt & Sitz in Heiden</h2>
-            <p className="mt-4 text-ink-soft">
-              Der Firmensitz und die Werkstatt von Rowi Maschinenservice befinden sich in Heiden im Münsterland
-              (Nordrhein-Westfalen) und sind sowohl über die B67 als auch über die A31 gut erreichbar.
+          <Reveal className="min-w-0">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-white">
+              <Icon name="pin" size={22} />
+            </span>
+            <h2 className="mt-5 text-2xl font-bold text-ink">Werkstatt &amp; Sitz in Heiden</h2>
+            <p className="mt-3 max-w-[55ch] text-ink-soft">
+              Firmensitz und Werkstatt liegen in Heiden im Münsterland, gut erreichbar über B67 und A31. Hier
+              wird alles repariert, was besser auf der Werkbank liegt.
             </p>
-            <div className="mt-6 rounded-lg border border-border bg-surface-muted p-6 text-sm text-ink-soft">
-              <p className="font-semibold text-ink">{siteConfig.name}</p>
-              <p>{siteConfig.address.street}</p>
-              <p>
-                {siteConfig.address.zip} {siteConfig.address.city}
-              </p>
-              <p className="mt-3">{siteConfig.openingHours.label}</p>
-              <a
-                href={siteConfig.links.googleMaps}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-flex font-semibold text-accent hover:underline"
-              >
-                Route in Google Maps öffnen →
-              </a>
-            </div>
-            <div className="mt-6">
+
+            <dl className="mt-7 space-y-3 rounded-2xl border border-border p-6 text-sm">
+              <div className="flex gap-4">
+                <dt className="w-28 shrink-0 text-ink-soft">Adresse</dt>
+                <dd className="font-semibold text-ink">
+                  {siteConfig.address.street}
+                  <br />
+                  {siteConfig.address.zip} {siteConfig.address.city}
+                </dd>
+              </div>
+              <div className="flex gap-4 border-t border-border pt-3">
+                <dt className="w-28 shrink-0 text-ink-soft">Geöffnet</dt>
+                <dd className="font-semibold text-ink">{siteConfig.openingHours.labelLong}</dd>
+              </div>
+              <div className="flex gap-4 border-t border-border pt-3">
+                <dt className="w-28 shrink-0 text-ink-soft">Anfahrt</dt>
+                <dd className="font-semibold text-ink">über B67 und A31</dd>
+              </div>
+            </dl>
+
+            <a
+              href={siteConfig.links.googleMaps}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-5 inline-flex items-center gap-2 font-semibold text-accent"
+            >
+              Route in Google Maps öffnen
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                <Icon name="arrow-right" size={18} />
+              </span>
+            </a>
+
+            <div className="mt-7">
               <GoogleMapEmbed />
             </div>
-          </div>
+          </Reveal>
 
-          <div>
-            <h2 className="text-2xl font-bold text-ink">Deutschlandweiter mobiler Service</h2>
-            <p className="mt-4 text-ink-soft">
-              Rowi Maschinenservice ist nicht nur regional, sondern deutschlandweit für Steinmetze, Bildhauer,
-              natursteinverarbeitende Betriebe und Baumärkte im Einsatz. Ob Reparatur, Wartung oder
-              Inbetriebnahme: Der mobile Service erfolgt bei Bedarf direkt bei Ihnen vor Ort, unabhängig davon,
-              wo in Deutschland sich Ihr Betrieb befindet.
+          <Reveal className="min-w-0">
+            <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-white">
+              <Icon name="truck" size={22} />
+            </span>
+            <h2 className="mt-5 text-2xl font-bold text-ink">Mobiler Service bundesweit</h2>
+            <p className="mt-3 max-w-[55ch] text-ink-soft">
+              Die meisten Einsätze finden direkt beim Kunden statt — unabhängig davon, wo in Deutschland der
+              Betrieb sitzt. Maschinen dieser Größe transportiert man nicht mal eben.
             </p>
-            <p className="mt-4 text-ink-soft">
-              {/* [TODO] Falls es tatsächliche Schwerpunktregionen gibt, hier ergänzen — sonst bewusst allgemein gehalten. */}
-              Die Einsatzplanung erfolgt individuell nach Entfernung, Dringlichkeit und Art des Anliegens. Sprechen
-              Sie uns einfach direkt auf Ihren Standort an.
+
+            <ul className="mt-7 space-y-4">
+              {[
+                { title: "Reparatur vor Ort", text: "Fehlersuche und Instandsetzung direkt an der Anlage." },
+                { title: "Wartung im Betrieb", text: "Planbare Termine, abgestimmt auf Ihre Produktion." },
+                { title: "Aufstellung & Umzug", text: "Inbetriebnahme, Umstellung und Wiederaufbau." },
+                { title: "Schulung an Ihrer Maschine", text: "CNC-Einweisung mit Ihren echten Werkstücken." },
+              ].map((item) => (
+                <li key={item.title} className="flex gap-4 rounded-xl border border-border p-5">
+                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+                    <Icon name="check" size={14} strokeWidth={2.4} />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-bold text-ink">{item.title}</span>
+                    <span className="block text-sm text-ink-soft">{item.text}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-7 rounded-xl bg-surface-muted p-5 text-sm text-ink-soft">
+              Wie schnell wir bei Ihnen sein können, hängt von Entfernung und Dringlichkeit ab. Rufen Sie an —
+              dann bekommen Sie eine konkrete Aussage statt einer Werbeversprechung.
             </p>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
       <CtaBanner
-        title="Egal wo Sie sind — sprechen Sie uns an"
-        lead="Ob Werkstatt in Heiden oder mobiler Einsatz deutschlandweit: Wir finden die passende Lösung für Ihre Situation."
+        title="Egal wo Ihr Betrieb steht"
+        lead="Schildern Sie kurz Ihr Anliegen — wir sagen Ihnen, wie und wann wir es lösen."
       />
     </>
   );

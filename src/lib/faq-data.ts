@@ -5,52 +5,40 @@ export type FaqCategory = {
 
 export const faqCategories: FaqCategory[] = [
   {
-    category: "Unternehmen",
-    items: [
-      {
-        question: "Was macht Rowi Maschinenservice?",
-        answer:
-          "Rowi Maschinenservice ist ein Fachbetrieb für Service, Wartung, Reparatur und Verkauf von Steinbearbeitungsmaschinen. Inhaber Robert Wikarek ist ausgebildeter Industriemechaniker und seit 2001 in der Branche tätig, seit 2012 selbstständig.",
-      },
-      {
-        question: "Ist Rowi Maschinenservice auf eine bestimmte Branche spezialisiert?",
-        answer:
-          "Ja, der Fokus liegt ausschließlich auf Steinbearbeitungsmaschinen. Zielgruppe sind Steinmetze, Bildhauer, natursteinverarbeitende Betriebe und Baumärkte.",
-      },
-      {
-        question: "Wer ist mein Ansprechpartner?",
-        answer:
-          "Robert Wikarek ist Ihr direkter Ansprechpartner für alle Anliegen rund um Ihre Steinbearbeitungsmaschine.",
-      },
-    ],
-  },
-  {
     category: "Leistungen",
     items: [
       {
-        question: "Welche Leistungen bietet Rowi Maschinenservice an?",
+        question: "Was macht Rowi Maschinenservice genau?",
         answer:
-          "Das Angebot umfasst Reparatur, Wartung, Sofortdienst bei Eilfällen, Maschinenaufstellung und Inbetriebnahme (inkl. Umstellung), Fehlersuche, Ersatzteilbeschaffung inklusive Lieferung und Einbau, CNC-Software-Schulungen sowie An- und Verkauf von Neu- und Gebrauchtmaschinen.",
+          "Reparatur, Wartung, Sofortdienst, Aufstellung und Inbetriebnahme, Fehlersuche, Ersatzteile, CNC-Schulungen sowie An- und Verkauf — ausschließlich für Steinbearbeitungsmaschinen.",
       },
       {
-        question: "Bieten Sie auch eine Online-Buchung an?",
+        question: "Für welche Hersteller bieten Sie Service an?",
         answer:
-          "Nein, aktuell erfolgt die Terminvereinbarung persönlich per Telefon, E-Mail oder über das Kontaktformular.",
+          "Unter anderem Löffler, Kolb, Denver, Comandulli, Thibaut, Steup, Fickert & Winterling, Marmo Meccanica, Seitz Pumpen und weitere. Ist Ihre Marke nicht dabei, fragen Sie trotzdem an.",
+      },
+      {
+        question: "Gibt es eine Online-Terminbuchung?",
+        answer: "Nein. Termine werden persönlich abgestimmt — per Telefon, WhatsApp oder Kontaktformular.",
       },
     ],
   },
   {
-    category: "Hersteller & Marken",
+    category: "Ablauf & Termine",
     items: [
       {
-        question: "Für welche Hersteller bieten Sie Service an?",
+        question: "Wie schnell bekomme ich einen Termin?",
         answer:
-          "Service wird unter anderem für Maschinen von Löffler, Kolb, M. Kolb, Denver, Comandulli, Thibaut, Steup, Fickert & Winterling, Spielvogel, EuroMasiv, Schmidt & Exner, Burkhardt, Hensel, Schlatter, Marmo Meccanica, Seitz Pumpen, Eich Wasseraufbereitung und Martini Aeroimpianti angeboten. Service für weitere Hersteller ist auf Anfrage möglich.",
+          "Das hängt von Anliegen und Auslastung ab. Steht Ihre Produktion still, wird der Fall über den Sofortdienst vorgezogen.",
       },
       {
-        question: "Was, wenn mein Maschinenhersteller nicht aufgeführt ist?",
+        question: "Was ist ein Montagezettel?",
         answer:
-          "Einfach anfragen — Service für weitere Hersteller ist auf Anfrage möglich, auch wenn die Marke nicht in der Liste steht.",
+          "Ein Nachweis über die erbrachten Leistungen, den Sie nach dem Einsatz unterschreiben. Er ist die Grundlage der Abrechnung — damit nachvollziehbar bleibt, wofür Sie zahlen.",
+      },
+      {
+        question: "Wann sind Sie erreichbar?",
+        answer: "Montag bis Samstag von 8:00 bis 18:00 Uhr, telefonisch und per WhatsApp unter 0173 3082859.",
       },
     ],
   },
@@ -58,28 +46,14 @@ export const faqCategories: FaqCategory[] = [
     category: "Preise",
     items: [
       {
-        question: "Was kostet ein Service-Einsatz?",
+        question: "Was kostet ein Einsatz?",
         answer:
-          "Aktuell gilt: Preise auf Anfrage. Die Abrechnung erfolgt transparent nach unterschriebenem Montagezettel, sodass für Sie jederzeit nachvollziehbar ist, welche Leistungen erbracht wurden.",
+          "Preise auf Anfrage. Abgerechnet wird transparent nach unterschriebenem Montagezettel, zuzüglich Anfahrt und Spesen.",
       },
       {
-        question: "Warum steht kein fester Stundensatz auf der Website?",
+        question: "Warum steht kein Stundensatz auf der Website?",
         answer:
-          "Da sich Preise ändern können und aktuell keine bestätigte, aktuelle Angabe vorliegt, wird bewusst auf einen festen Stundensatz verzichtet. Konkrete Preise erhalten Sie auf Anfrage.",
-      },
-    ],
-  },
-  {
-    category: "Termine & Öffnungszeiten",
-    items: [
-      {
-        question: "Wie sind die Öffnungszeiten?",
-        answer: "Montag bis Samstag, 8:00–18:00 Uhr.",
-      },
-      {
-        question: "Wie schnell bekomme ich einen Termin?",
-        answer:
-          "Das hängt von Art des Anliegens und aktueller Auslastung ab. Bei akuten Ausfällen steht der Sofortdienst mit priorisierter Bearbeitung zur Verfügung.",
+          "Weil Preise sich ändern und ein veralteter Satz niemandem hilft. Sie bekommen auf Anfrage eine konkrete Aussage.",
       },
     ],
   },
@@ -87,34 +61,29 @@ export const faqCategories: FaqCategory[] = [
     category: "Einsatzgebiet",
     items: [
       {
-        question: "Arbeitet Rowi Maschinenservice nur in Heiden?",
+        question: "Arbeiten Sie nur im Münsterland?",
         answer:
-          "Nein. Die Werkstatt und der Firmensitz befinden sich in Heiden im Münsterland, der mobile Service erfolgt jedoch deutschlandweit.",
+          "Nein. Werkstatt und Sitz sind in Heiden, die mobilen Einsätze finden deutschlandweit statt.",
       },
       {
-        question: "Bis wohin fahren Sie für einen Vor-Ort-Einsatz?",
+        question: "Muss ich meine Maschine zu Ihnen bringen?",
         answer:
-          "Grundsätzlich deutschlandweit. Sprechen Sie uns zu Ihrem konkreten Standort und der Dringlichkeit an, dann wird der Einsatz entsprechend geplant.",
+          "In der Regel nicht — die meisten Arbeiten erfolgen direkt in Ihrem Betrieb. Manches lässt sich in der Werkstatt in Heiden aber schneller und günstiger erledigen. Das klären wir vorab.",
       },
     ],
   },
   {
-    category: "Kontakt & Ablauf",
+    category: "Zum Betrieb",
     items: [
       {
-        question: "Wie läuft eine Beauftragung ab?",
+        question: "Mit wem spreche ich?",
         answer:
-          "Nach Ihrer Anfrage folgt eine Diagnose bzw. Rückmeldung, anschließend die Terminvereinbarung und der Einsatz. Zum Abschluss erhalten Sie einen unterschriebenen Montagezettel als transparente Abrechnungsgrundlage.",
+          "Mit Robert Wikarek, Inhaber und ausgebildeter Industriemechaniker. Er nimmt die Anfrage an und führt den Einsatz durch.",
       },
       {
-        question: "Was ist ein Montagezettel und wofür wird er benötigt?",
+        question: "Wie lange gibt es den Betrieb schon?",
         answer:
-          "Der Montagezettel dokumentiert die erbrachten Leistungen und wird nach Abschluss des Einsatzes von Ihnen unterschrieben. Er dient als transparente und nachvollziehbare Grundlage für die Abrechnung.",
-      },
-      {
-        question: "Wie erreiche ich Rowi Maschinenservice am schnellsten?",
-        answer:
-          "Am schnellsten telefonisch unter +49 (0)2867 / 231 99 51 während der Öffnungszeiten. Alternativ per E-Mail an info@rowi-maschinenservice.de oder über das Kontaktformular.",
+          "Seit Januar 2012 selbstständig. In der Branche ist Robert Wikarek seit 2001 tätig.",
       },
     ],
   },

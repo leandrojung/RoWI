@@ -26,21 +26,25 @@ export const siteConfig = {
   },
 
   contact: {
-    phone: "+49 2867 2319951",
-    phoneDisplay: "+49 (0)2867 / 231 99 51",
-    phoneHref: "tel:+4928672319951",
+    // Hauptnummer für alle CTAs auf der Website
+    phone: "+49 173 3082859",
+    phoneDisplay: "0173 3082859",
+    phoneHref: "tel:+491733082859",
+    whatsappHref: "https://wa.me/491733082859",
+    // Festnetz und Fax bleiben für Impressum und Kontaktseite erhalten
+    landline: "+49 2867 2319951",
+    landlineDisplay: "+49 (0)2867 / 231 99 51",
+    landlineHref: "tel:+4928672319951",
     fax: "+49 2867 2319964",
     faxDisplay: "+49 (0)2867 / 231 99 64",
     email: "info@rowi-maschinenservice.de",
-    // [TODO] Aktualität mit Robert bestätigen. Eignet sich laut Vorgabe ggf. auch als WhatsApp-Nummer.
-    serviceHotline: "0173 3082859",
-    serviceHotlineHref: "tel:+491733082859",
   },
 
   vatId: "DE 240411078",
 
   openingHours: {
-    label: "Montag bis Samstag, 8:00–18:00 Uhr",
+    label: "Mo–Sa, 8–18 Uhr",
+    labelLong: "Montag bis Samstag, 8:00–18:00 Uhr",
     days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     opens: "08:00",
     closes: "18:00",
@@ -60,8 +64,6 @@ export const siteConfig = {
   rating: {
     value: 5.0,
     // [TODO] Anzahl der Google-Bewertungen ergänzen, sobald von Robert bestätigt.
-    // Bis zur Bestätigung wird im Schema Markup bewusst kein reviewCount ausgegeben,
-    // da AggregateRating ohne bestätigte Anzahl nicht korrekt ausgezeichnet werden darf.
     countKnown: false,
     count: null as number | null,
   },
@@ -74,28 +76,29 @@ export const siteConfig = {
 
 export const usps = [
   {
-    title: "Über 20 Jahre Branchenerfahrung",
-    description:
-      "Seit 2001 im Kundendienst für Steinbearbeitungsmaschinen unterwegs, seit 2012 selbstständig mit rowi Maschinenservice.",
+    icon: "clock",
+    title: "20+ Jahre Erfahrung",
+    description: "Seit 2001 an Steinbearbeitungsmaschinen, seit 2012 selbstständig.",
   },
   {
-    title: "Ausgebildeter Industriemechaniker",
-    description:
-      "Fachrichtung Betriebstechnik — fundiertes technisches Verständnis für mechanische, pneumatische und elektronische Baugruppen.",
+    icon: "wrench",
+    title: "Industriemechaniker",
+    description: "Ausgebildet in Betriebstechnik — Mechanik, Pneumatik, Steuerung.",
   },
   {
-    title: "Spezialist statt Generalist",
-    description:
-      "Kein Maschinenservice für alles, sondern Fokus auf Steinbearbeitungsmaschinen — Service für zahlreiche namhafte Hersteller aus einer Hand.",
+    icon: "target",
+    title: "Nur Steinbearbeitung",
+    description: "Kein Allround-Service. Ein Fach, und das richtig.",
   },
   {
+    icon: "star",
     title: "5,0 Sterne bei Google",
-    description: "Durchgehend zufriedene Kunden aus der Steinindustrie bewerten die Zusammenarbeit mit Bestnote.",
+    description: "Kunden aus der Steinindustrie bewerten mit Bestnote.",
   },
   {
+    icon: "layers",
     title: "Alles aus einer Hand",
-    description:
-      "Reparatur, Wartung, Ersatzteile, Schulung sowie An- und Verkauf — ein Ansprechpartner für den gesamten Maschinenlebenszyklus.",
+    description: "Reparatur, Wartung, Ersatzteile, Schulung, An- und Verkauf.",
   },
 ];
 
@@ -106,58 +109,59 @@ export const targetAudience = [
   "Baumärkte",
 ];
 
-export const manufacturers = [
-  "Löffler",
-  "Kolb",
-  "M. Kolb",
-  "Denver",
-  "Comandulli",
-  "Thibaut",
-  "Steup",
-  "Fickert & Winterling",
-  "Spielvogel",
-  "EuroMasiv",
-  "Schmidt & Exner",
-  "Burkhardt",
-  "Hensel",
-  "Schlatter",
-  "Marmo Meccanica",
-  "Seitz Pumpen",
-  "Eich Wasseraufbereitung",
-  "Martini Aeroimpianti",
+export const manufacturerGroups = [
+  {
+    category: "Sägen & Fräsen",
+    icon: "saw",
+    names: ["Löffler", "Kolb", "M. Kolb", "Thibaut", "Burkhardt"],
+  },
+  {
+    category: "Poliermaschinen & Kantenbearbeitung",
+    icon: "polish",
+    names: ["Comandulli", "Marmo Meccanica", "Fickert & Winterling", "Denver"],
+  },
+  {
+    category: "Anlagen & Handling",
+    icon: "crane",
+    names: ["Steup", "Spielvogel", "EuroMasiv", "Schmidt & Exner", "Hensel", "Schlatter"],
+  },
+  {
+    category: "Wasser, Pumpen & Absaugung",
+    icon: "water",
+    names: ["Seitz Pumpen", "Eich Wasseraufbereitung", "Martini Aeroimpianti"],
+  },
 ];
+
+export const manufacturers = manufacturerGroups.flatMap((group) => group.names);
 
 export const processSteps = [
   {
     step: "1",
-    title: "Anfrage stellen",
-    description: "Sie schildern uns Ihr Anliegen — telefonisch, per E-Mail oder über das Kontaktformular.",
+    title: "Anruf oder Nachricht",
+    description: "Sie schildern kurz, was los ist — Telefon, WhatsApp oder Formular.",
   },
   {
     step: "2",
-    title: "Diagnose & Rückmeldung",
-    description: "Wir klären den Sachverhalt, geben eine erste Einschätzung und stimmen das weitere Vorgehen ab.",
+    title: "Einschätzung",
+    description: "Wir grenzen die Ursache ein und stimmen das Vorgehen ab.",
   },
   {
     step: "3",
-    title: "Termin & Einsatz",
-    description: "Vor-Ort-Einsatz in Heiden/Münsterland oder deutschlandweit, je nach Aufwand und Dringlichkeit.",
+    title: "Einsatz",
+    description: "Werkstatt in Heiden oder mobil bei Ihnen — deutschlandweit.",
   },
   {
     step: "4",
-    title: "Abschluss per Montagezettel",
-    description: "Nach getaner Arbeit erhalten Sie einen unterschriebenen Montagezettel als transparente Abrechnungsgrundlage.",
+    title: "Montagezettel",
+    description: "Unterschrieben, transparent, nachvollziehbar abgerechnet.",
   },
 ];
 
 export const navigationMain = [
   { label: "Startseite", href: "/" },
   { label: "Über uns", href: "/ueber-uns" },
-  {
-    label: "Leistungen",
-    href: "/leistungen",
-  },
-  { label: "Maschinen & Hersteller", href: "/maschinen-hersteller" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Hersteller", href: "/maschinen-hersteller" },
   { label: "Einsatzgebiet", href: "/einsatzgebiet" },
   { label: "Aktuelles", href: "/aktuelles" },
   { label: "Kontakt", href: "/kontakt" },

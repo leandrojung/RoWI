@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig, navigationMain } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
+import Icon from "./Icon";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -12,68 +13,107 @@ export default function Header() {
   const [mobileLeistungenOpen, setMobileLeistungenOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-white/95 backdrop-blur">
+    <header className="sticky top-0 border-b border-border bg-white/95 backdrop-blur" style={{ zIndex: "var(--z-sticky)" }}>
       <a href="#main-content" className="skip-link">
         Zum Inhalt springen
       </a>
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2 shrink-0" aria-label={`${siteConfig.name} — Startseite`}>
+
+      {/* Info-Leiste */}
+      <div className="hidden bg-ink text-white lg:block">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2 text-xs">
+          <p className="flex items-center gap-2 text-white/70">
+            <Icon name="pin" size={14} />
+            {siteConfig.address.street}, {siteConfig.address.zip} {siteConfig.address.city} — Service deutschlandweit
+          </p>
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2 text-white/70">
+              <Icon name="clock" size={14} />
+              {siteConfig.openingHours.label}
+            </span>
+            <a
+              href={siteConfig.contact.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-white/70 transition-colors hover:text-white"
+            >
+              <Icon name="whatsapp" size={14} />
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-3 sm:px-6">
+        <Link href="/" className="shrink-0" aria-label={`${siteConfig.name} — Startseite`}>
           <Image
-            src="/logo.svg"
+            src="/logo.png"
             alt={`${siteConfig.name} Logo`}
-            width={180}
-            height={44}
+            width={488}
+            height={275}
             priority
-            className="h-10 w-auto"
+            className="h-12 w-auto sm:h-14"
           />
         </Link>
 
-        <nav aria-label="Hauptnavigation" className="hidden lg:block">
+        <nav aria-label="Hauptnavigation" className="hidden flex-1 justify-center lg:flex">
           <ul className="flex items-center gap-1">
             {navigationMain.map((item) => {
               if (item.label === "Leistungen") {
                 return (
-                  <li key={item.href} className="relative">
-                    <div
-                      onMouseEnter={() => setLeistungenOpen(true)}
-                      onMouseLeave={() => setLeistungenOpen(false)}
+                  <li
+                    key={item.href}
+                    className="relative"
+                    onMouseEnter={() => setLeistungenOpen(true)}
+                    onMouseLeave={() => setLeistungenOpen(false)}
+                  >
+                    <button
+                      type="button"
+                      className="flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-accent"
+                      aria-expanded={leistungenOpen}
+                      aria-haspopup="true"
+                      onClick={() => setLeistungenOpen((v) => !v)}
                     >
-                      <button
-                        type="button"
-                        className="flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-ink hover:text-accent"
-                        aria-expanded={leistungenOpen}
-                        aria-haspopup="true"
-                        onClick={() => setLeistungenOpen((v) => !v)}
+                      Leistungen
+                      <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" className={`transition-transform duration-200 ${leistungenOpen ? "rotate-180" : ""}`}>
+                        <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+                      </svg>
+                    </button>
+                    {leistungenOpen && (
+                      <div
+                        className="absolute left-1/2 top-full w-[34rem] -translate-x-1/2 pt-2"
+                        style={{ zIndex: "var(--z-dropdown)" }}
                       >
-                        Leistungen
-                        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
-                          <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                        </svg>
-                      </button>
-                      {leistungenOpen && (
-                        <ul className="absolute left-0 top-full w-72 rounded-md border border-border bg-white py-2 shadow-lg">
-                          <li>
-                            <Link
-                              href="/leistungen"
-                              className="block px-4 py-2 text-sm font-semibold text-ink hover:bg-surface-muted hover:text-accent"
-                            >
-                              Alle Leistungen im Überblick
-                            </Link>
-                          </li>
-                          <li className="my-1 border-t border-border" />
+                        <ul className="grid grid-cols-2 gap-1 rounded-xl border border-border bg-white p-2 shadow-xl">
                           {services.map((service) => (
                             <li key={service.slug}>
                               <Link
                                 href={`/leistungen/${service.slug}`}
-                                className="block px-4 py-2 text-sm text-ink hover:bg-surface-muted hover:text-accent"
+                                className="flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-surface-muted"
+                                onClick={() => setLeistungenOpen(false)}
                               >
-                                {service.navLabel}
+                                <span className="mt-0.5 text-accent">
+                                  <Icon name={service.icon} size={18} />
+                                </span>
+                                <span>
+                                  <span className="block text-sm font-semibold text-ink">{service.navLabel}</span>
+                                  <span className="block text-xs text-ink-soft">{service.teaser}</span>
+                                </span>
                               </Link>
                             </li>
                           ))}
+                          <li className="col-span-2 mt-1 border-t border-border pt-2">
+                            <Link
+                              href="/leistungen"
+                              className="flex items-center justify-center gap-2 rounded-lg p-2 text-sm font-semibold text-accent transition-colors hover:bg-surface-muted"
+                              onClick={() => setLeistungenOpen(false)}
+                            >
+                              Alle Leistungen im Überblick
+                              <Icon name="arrow-right" size={16} />
+                            </Link>
+                          </li>
                         </ul>
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </li>
                 );
               }
@@ -81,7 +121,7 @@ export default function Header() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="block rounded-md px-3 py-2 text-sm font-medium text-ink hover:text-accent"
+                    className="block whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-ink transition-colors hover:text-accent"
                   >
                     {item.label}
                   </Link>
@@ -91,18 +131,17 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-3 lg:flex">
-          <a
-            href={siteConfig.contact.phoneHref}
-            className="rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-dark"
-          >
-            {siteConfig.contact.phoneDisplay}
-          </a>
-        </div>
+        <a
+          href={siteConfig.contact.phoneHref}
+          className="hidden shrink-0 items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-accent-dark lg:flex"
+        >
+          <Icon name="phone" size={18} />
+          {siteConfig.contact.phoneDisplay}
+        </a>
 
         <button
           type="button"
-          className="rounded-md border border-border p-2 lg:hidden"
+          className="rounded-lg border border-border p-2.5 transition-colors hover:border-ink lg:hidden"
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
@@ -128,7 +167,7 @@ export default function Header() {
                     <div className="flex items-center justify-between">
                       <Link
                         href="/leistungen"
-                        className="block flex-1 rounded-md px-3 py-2 text-base font-medium text-ink hover:text-accent"
+                        className="block flex-1 rounded-md px-3 py-2.5 text-base font-medium text-ink"
                         onClick={() => setMobileOpen(false)}
                       >
                         Leistungen
@@ -137,17 +176,11 @@ export default function Header() {
                         type="button"
                         aria-expanded={mobileLeistungenOpen}
                         aria-label="Leistungen-Unterpunkte anzeigen"
-                        className="p-2"
+                        className="p-2.5"
                         onClick={() => setMobileLeistungenOpen((v) => !v)}
                       >
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 12 12"
-                          aria-hidden="true"
-                          className={mobileLeistungenOpen ? "rotate-180" : ""}
-                        >
-                          <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                        <svg width="16" height="16" viewBox="0 0 12 12" aria-hidden="true" className={`transition-transform duration-200 ${mobileLeistungenOpen ? "rotate-180" : ""}`}>
+                          <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" />
                         </svg>
                       </button>
                     </div>
@@ -157,9 +190,12 @@ export default function Header() {
                           <li key={service.slug}>
                             <Link
                               href={`/leistungen/${service.slug}`}
-                              className="block rounded-md px-3 py-2 text-sm text-ink-soft hover:text-accent"
+                              className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm text-ink-soft"
                               onClick={() => setMobileOpen(false)}
                             >
+                              <span className="text-accent">
+                                <Icon name={service.icon} size={16} />
+                              </span>
                               {service.navLabel}
                             </Link>
                           </li>
@@ -173,7 +209,7 @@ export default function Header() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="block rounded-md px-3 py-2 text-base font-medium text-ink hover:text-accent"
+                    className="block rounded-md px-3 py-2.5 text-base font-medium text-ink"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}
@@ -181,12 +217,22 @@ export default function Header() {
                 </li>
               );
             })}
-            <li className="pt-2">
+            <li className="grid grid-cols-2 gap-2 pt-3">
               <a
                 href={siteConfig.contact.phoneHref}
-                className="block rounded-md bg-accent px-4 py-3 text-center text-sm font-semibold text-white"
+                className="flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-bold text-white"
               >
-                Jetzt anrufen: {siteConfig.contact.phoneDisplay}
+                <Icon name="phone" size={16} />
+                Anrufen
+              </a>
+              <a
+                href={siteConfig.contact.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 py-3 text-sm font-bold text-white"
+              >
+                <Icon name="whatsapp" size={16} />
+                WhatsApp
               </a>
             </li>
           </ul>

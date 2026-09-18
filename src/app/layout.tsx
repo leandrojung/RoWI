@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileStickyCta from "@/components/MobileStickyCta";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/cookie-consent/CookieBanner";
 import JsonLd from "@/components/JsonLd";
 import { siteConfig } from "@/lib/site-config";
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        <WhatsAppButton />
         <MobileStickyCta />
         <CookieBanner />
       </body>

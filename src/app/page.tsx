@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Container from "@/components/ui/Container";
 import CtaBanner from "@/components/ui/CtaBanner";
-import ServiceCard from "@/components/ServiceCard";
-import ManufacturerList from "@/components/ManufacturerList";
-import StarRating from "@/components/StarRating";
+import ManufacturerMarquee from "@/components/ManufacturerMarquee";
 import FaqAccordion from "@/components/FaqAccordion";
 import JsonLd from "@/components/JsonLd";
-import { siteConfig, usps, processSteps, targetAudience } from "@/lib/site-config";
+import Icon from "@/components/Icon";
+import PhotoFrame from "@/components/PhotoFrame";
+import Reveal from "@/components/motion/Reveal";
+import CountUp from "@/components/motion/CountUp";
+import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
 import { faqCategories } from "@/lib/faq-data";
 import { faqSchema, jsonLdGraph } from "@/lib/schema";
+import { STEINBEARBEITUNGSMASCHINEN } from "@/lib/typography";
+import type { IconName } from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: "Service & Wartung für Steinbearbeitungsmaschinen",
@@ -20,209 +23,380 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const homepageFaqs = faqCategories.flatMap((c) => c.items).slice(0, 6);
+const homepageFaqs = faqCategories.flatMap((c) => c.items).slice(0, 5);
+
+const highlightService = services.find((s) => s.slug === "sofortdienst")!;
+const otherServices = services.filter((s) => s.slug !== "sofortdienst");
 
 export default function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border bg-ink text-white">
-        <Container className="grid min-w-0 gap-10 py-16 sm:py-20 lg:grid-cols-[3fr_2fr] lg:items-center lg:py-24">
-          <div className="min-w-0 animate-fade-in">
-            <p className="text-sm font-semibold uppercase tracking-wide text-accent">
-              Fachbetrieb für Steinbearbeitungsmaschinen
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-ink text-white">
+        <div className="absolute inset-0 grid-texture" aria-hidden="true" />
+        <div
+          className="absolute -right-32 top-1/4 h-96 w-96 rounded-full bg-accent/15 blur-3xl"
+          aria-hidden="true"
+        />
+        <Container className="relative grid grid-cols-1 gap-12 py-16 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:py-24">
+          <div className="min-w-0">
+            <p className="hero-in inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-semibold text-white/80">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              Seit 2012 selbstständig · seit 2001 in der Branche
             </p>
-            <h1 className="mt-3 text-4xl font-bold leading-tight sm:text-5xl">
-              Service &amp; Wartung für Steinbearbeitungsmaschinen – Ihr Fachbetrieb in Heiden &amp; deutschlandweit
+
+            <h1 className="hero-in hero-in-delay-1 mt-6 text-[clamp(2.25rem,5vw,3.5rem)] font-bold leading-[1.06]">
+              Service &amp; Wartung für {STEINBEARBEITUNGSMASCHINEN}
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-white/80">
-              Als spezialisierter Ansprechpartner für Steinmetze, Bildhauer, natursteinverarbeitende Betriebe und
-              Baumärkte sorgt Rowi Maschinenservice mit über 20 Jahren Branchenerfahrung dafür, dass Ihre
-              Maschinen zuverlässig laufen — fachkundig, termintreu und nachvollziehbar dokumentiert.
+
+            <p className="hero-in hero-in-delay-2 mt-5 max-w-[52ch] text-lg text-white/70">
+              Fachbetrieb in Heiden — im Einsatz in ganz Deutschland. Für Steinmetze, Bildhauer,
+              Natursteinbetriebe und Baumärkte.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+
+            <div className="hero-in hero-in-delay-3 mt-9 flex flex-col gap-3 sm:flex-row">
               <a
                 href={siteConfig.contact.phoneHref}
-                className="rounded-md bg-accent px-6 py-3.5 text-center text-base font-semibold text-white transition hover:bg-accent-dark"
+                className="group flex items-center justify-center gap-3 rounded-xl bg-accent px-7 py-4 text-base font-bold text-white transition-all duration-300 hover:bg-accent-dark hover:shadow-lg hover:shadow-accent/25"
               >
-                Jetzt anrufen: {siteConfig.contact.phoneDisplay}
+                <Icon name="phone" size={20} />
+                {siteConfig.contact.phoneDisplay}
               </a>
-              <Link
-                href="/kontakt#kontaktformular"
-                className="rounded-md border-2 border-white px-6 py-3.5 text-center text-base font-semibold text-white transition hover:bg-white hover:text-ink"
+              <a
+                href={siteConfig.contact.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 rounded-xl border border-white/25 px-7 py-4 text-base font-semibold text-white transition-colors duration-300 hover:bg-white hover:text-ink"
               >
-                Anfrage stellen
-              </Link>
+                <Icon name="whatsapp" size={20} />
+                WhatsApp
+              </a>
             </div>
-            <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-white/15 pt-8 sm:grid-cols-4">
-              <div>
-                <dt className="text-sm text-white/60">Google-Bewertung</dt>
-                <dd className="mt-1 text-xl font-bold">5,0 ★</dd>
-              </div>
-              <div>
-                <dt className="text-sm text-white/60">Erfahrung</dt>
-                <dd className="mt-1 text-xl font-bold">20+ Jahre</dd>
-              </div>
-              <div>
-                <dt className="text-sm text-white/60">Öffnungszeiten</dt>
-                <dd className="mt-1 text-xl font-bold">Mo–Sa 8–18 Uhr</dd>
-              </div>
-              <div>
-                <dt className="text-sm text-white/60">Einsatzgebiet</dt>
-                <dd className="mt-1 text-xl font-bold">Deutschlandweit</dd>
-              </div>
-            </dl>
           </div>
-          <div className="relative mx-auto aspect-square w-full max-w-sm rounded-2xl border border-white/15 bg-white/5 p-8">
-            <Image
-              src="/logo.svg"
-              alt={`${siteConfig.name} Logo`}
-              width={220}
-              height={54}
-              className="h-14 w-auto invert"
-            />
-            <p className="mt-8 text-sm text-white/70">
-              [Platzhalter für Foto: Robert Wikarek bei der Arbeit an einer Steinbearbeitungsmaschine in der
-              Werkstatt in Heiden]
+
+          <PhotoFrame photo="heroWorkshop" tone="dark" aspect="aspect-[4/5]" className="hero-in hero-in-delay-2 mx-auto w-full max-w-sm lg:max-w-none" priority />
+        </Container>
+      </section>
+
+      {/* Vertrauensleiste */}
+      <section className="border-y border-border bg-white">
+        <Container className="grid grid-cols-2 divide-x divide-y divide-border sm:divide-y-0 lg:grid-cols-4">
+          <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-8 text-center">
+            <span className="flex items-center gap-1 text-gold" aria-hidden="true">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Icon key={i} name="star" size={15} />
+              ))}
+            </span>
+            <p className="text-3xl font-bold text-ink">
+              <CountUp value={5} decimals={1} />
             </p>
+            <p className="text-sm text-ink-soft">Google-Bewertung</p>
+          </div>
+
+          <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-8 text-center">
+            <span className="text-accent" aria-hidden="true">
+              <Icon name="clock" size={24} />
+            </span>
+            <p className="text-3xl font-bold text-ink">
+              <CountUp value={20} />+
+            </p>
+            <p className="text-sm text-ink-soft">Jahre Erfahrung</p>
+          </div>
+
+          <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-8 text-center">
+            <span className="text-accent" aria-hidden="true">
+              <Icon name="shield" size={24} />
+            </span>
+            <p className="text-3xl font-bold text-ink">
+              <CountUp value={manufacturers.length} />+
+            </p>
+            <p className="text-sm text-ink-soft">Hersteller im Service</p>
+          </div>
+
+          <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-8 text-center">
+            <span className="text-accent" aria-hidden="true">
+              <Icon name="truck" size={24} />
+            </span>
+            <p className="text-3xl font-bold leading-none text-ink">Bundesweit</p>
+            <p className="text-sm text-ink-soft">Mobiler Einsatz</p>
           </div>
         </Container>
       </section>
 
-      <section className="py-16 sm:py-20">
+      {/* Leistungen */}
+      <section className="py-20 sm:py-24">
         <Container>
-          <h2 className="text-3xl font-bold text-ink">Warum Rowi Maschinenservice?</h2>
-          <p className="mt-3 max-w-2xl text-ink-soft">
-            Fünf Gründe, warum Steinmetze, Bildhauer und natursteinverarbeitende Betriebe auf die Zusammenarbeit
-            mit Rowi Maschinenservice setzen.
-          </p>
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {usps.map((usp) => (
-              <div key={usp.title} className="rounded-lg border border-border p-5">
-                <h3 className="font-semibold text-ink">{usp.title}</h3>
-                <p className="mt-2 text-sm text-ink-soft">{usp.description}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className="border-y border-border bg-surface-muted py-16 sm:py-20">
-        <Container>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <Reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-3xl font-bold text-ink">Unsere Leistungen</h2>
-              <p className="mt-3 max-w-2xl text-ink-soft">
-                Von der Reparatur bis zum Verkauf — alles rund um Ihre Steinbearbeitungsmaschine aus einer Hand.
+              <h2 className="max-w-[16ch] text-3xl font-bold text-ink sm:text-4xl">
+                Alles für Ihre Maschine, aus einer Hand
+              </h2>
+              <p className="mt-3 max-w-[55ch] text-ink-soft">
+                Von der Eilreparatur bis zur Schulung — ein Ansprechpartner für den gesamten
+                Maschinenlebenszyklus.
               </p>
             </div>
-            <Link href="/leistungen" className="font-semibold text-accent hover:underline">
-              Alle Leistungen im Überblick →
+            <Link
+              href="/leistungen"
+              className="group inline-flex shrink-0 items-center gap-2 font-semibold text-accent"
+            >
+              Alle Leistungen
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                <Icon name="arrow-right" size={18} />
+              </span>
             </Link>
-          </div>
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((service) => (
-              <ServiceCard key={service.slug} service={service} />
-            ))}
-          </div>
-        </Container>
-      </section>
+          </Reveal>
 
-      <section className="py-16 sm:py-20">
-        <Container>
-          <h2 className="text-3xl font-bold text-ink">Service für Maschinen namhafter Hersteller</h2>
-          <p className="mt-3 max-w-2xl text-ink-soft">
-            Ob Löffler, Kolb, Comandulli oder Marmo Meccanica — profitieren Sie von Erfahrung mit einer Vielzahl
-            an Herstellern aus einer Hand.
-          </p>
-          <div className="mt-10">
-            <ManufacturerList />
-          </div>
-        </Container>
-      </section>
-
-      <section className="border-y border-border bg-ink py-16 text-white sm:py-20">
-        <Container className="grid min-w-0 gap-10 lg:grid-cols-[2fr_3fr] lg:items-center">
-          <div className="min-w-0">
-            <p className="text-sm font-semibold uppercase tracking-wide text-accent">Über uns</p>
-            <h2 className="mt-3 text-3xl font-bold">Robert Wikarek — Ihr direkter Ansprechpartner</h2>
-          </div>
-          <div className="min-w-0">
-            <p className="text-white/80">
-              Ausgebildeter Industriemechaniker, Fachrichtung Betriebstechnik. Seit 2001 im Kundendienst für
-              Steinbearbeitungsmaschinen tätig, seit Januar 2012 selbstständig mit Rowi Maschinenservice —
-              spezialisiert auf Kunden aus der Steinindustrie: {targetAudience.join(", ")}.
-            </p>
-            <Link href="/ueber-uns" className="mt-5 inline-flex font-semibold text-accent hover:underline">
-              Mehr über Rowi Maschinenservice →
-            </Link>
-          </div>
-        </Container>
-      </section>
-
-      <section className="py-16 sm:py-20">
-        <Container>
-          <h2 className="text-3xl font-bold text-ink">So läuft die Zusammenarbeit ab</h2>
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step) => (
-              <div key={step.step} className="rounded-lg border border-border p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-lg font-bold text-white">
-                  {step.step}
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Hervorgehobene Leistung */}
+            <Link
+              href={`/leistungen/${highlightService.slug}`}
+              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-accent p-8 text-white transition-shadow duration-300 hover:shadow-xl hover:shadow-accent/20 sm:col-span-2 lg:row-span-2"
+            >
+              <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 transition-transform duration-500 group-hover:scale-125" aria-hidden="true" />
+              <div className="relative">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-bold">
+                  {highlightService.badge}
                 </span>
-                <h3 className="mt-4 font-semibold text-ink">{step.title}</h3>
-                <p className="mt-2 text-sm text-ink-soft">{step.description}</p>
+                <Icon name={highlightService.icon} size={44} className="mt-8" />
+                <h3 className="mt-5 text-2xl font-bold sm:text-3xl">Sofortdienst bei Stillstand</h3>
+                <p className="mt-3 max-w-[38ch] text-white/85">
+                  Produktion steht? Dringende Fälle werden vorgezogen — telefonische Ersteinschätzung
+                  sofort, Einsatz deutschlandweit.
+                </p>
               </div>
+              <span className="relative mt-10 inline-flex items-center gap-2 font-bold">
+                Jetzt melden
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  <Icon name="arrow-right" size={18} />
+                </span>
+              </span>
+            </Link>
+
+            {otherServices.map((service) => (
+              <Link
+                key={service.slug}
+                href={`/leistungen/${service.slug}`}
+                className="group rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink hover:shadow-lg"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-muted text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+                  <Icon name={service.icon} size={22} />
+                </span>
+                <h3 className="mt-4 text-lg font-bold text-ink">{service.navLabel}</h3>
+                <p className="mt-1.5 text-sm text-ink-soft">{service.teaser}</p>
+              </Link>
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="border-y border-border bg-surface-muted py-16 sm:py-20">
-        <Container className="flex flex-col items-start gap-4">
-          <h2 className="text-3xl font-bold text-ink">Bewertungen unserer Kunden</h2>
-          <StarRating />
-          <p className="max-w-2xl text-ink-soft">
-            Kunden aus der Steinindustrie bewerten die Zusammenarbeit mit Rowi Maschinenservice durchgehend mit
-            Bestnote.
-          </p>
-          <Link href="/bewertungen" className="font-semibold text-accent hover:underline">
-            Alle Bewertungen ansehen →
+      {/* Hersteller-Laufband */}
+      <section className="border-y border-border bg-surface-muted py-14">
+        <Container>
+          <div className="flex flex-col items-center gap-2 text-center">
+            <h2 className="text-2xl font-bold text-ink sm:text-3xl">Service für die Marken Ihrer Werkstatt</h2>
+            <p className="max-w-[55ch] text-ink-soft">
+              Über {manufacturers.length} Hersteller — und wenn Ihrer nicht dabei ist, fragen Sie einfach.
+            </p>
+          </div>
+        </Container>
+        <div className="mt-10">
+          <ManufacturerMarquee />
+        </div>
+        <Container className="mt-8 text-center">
+          <Link href="/maschinen-hersteller" className="group inline-flex items-center gap-2 font-semibold text-accent">
+            Alle Hersteller ansehen
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              <Icon name="arrow-right" size={18} />
+            </span>
           </Link>
         </Container>
       </section>
 
-      <section className="py-16 sm:py-20">
-        <Container className="grid min-w-0 gap-8 lg:grid-cols-2 lg:items-center">
-          <div className="min-w-0">
-            <h2 className="text-3xl font-bold text-ink">Einsatzgebiet: Heiden &amp; deutschlandweit</h2>
-            <p className="mt-4 text-ink-soft">
-              Die Werkstatt befindet sich in Heiden im Münsterland, gut erreichbar über B67 und A31. Der mobile
-              Service erfolgt deutschlandweit — direkt bei Ihnen im Betrieb.
-            </p>
-            <Link href="/einsatzgebiet" className="mt-5 inline-flex font-semibold text-accent hover:underline">
-              Zum Einsatzgebiet →
+      {/* Über uns */}
+      <section className="py-20 sm:py-24">
+        <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+          <Reveal>
+            <PhotoFrame photo="robertPortrait" aspect="aspect-[4/5]" className="mx-auto w-full max-w-sm lg:max-w-none" />
+          </Reveal>
+          <Reveal className="min-w-0">
+            <h2 className="text-3xl font-bold text-ink sm:text-4xl">
+              Bei uns schraubt der Chef noch selbst
+            </h2>
+            <div className="mt-5 max-w-[62ch] space-y-4 text-ink-soft">
+              <p>
+                Robert Wikarek ist ausgebildeter Industriemechaniker, Fachrichtung Betriebstechnik. Seit 2001
+                steht er an Steinbearbeitungsmaschinen — erst im Kundendienst, zuletzt als Geschäftsführer,
+                seit 2012 selbstständig mit dem eigenen Betrieb.
+              </p>
+              <p>
+                Sie haben einen Ansprechpartner. Der, der ans Telefon geht, ist auch der, der später an Ihrer
+                Maschine steht.
+              </p>
+            </div>
+            <div className="mt-7 flex flex-wrap gap-3">
+              {["Industriemechaniker", "Betriebstechnik", "Steinindustrie seit 2001"].map((chip) => (
+                <span
+                  key={chip}
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium text-ink"
+                >
+                  <span className="text-accent">
+                    <Icon name="check" size={15} />
+                  </span>
+                  {chip}
+                </span>
+              ))}
+            </div>
+            <Link href="/ueber-uns" className="group mt-7 inline-flex items-center gap-2 font-semibold text-accent">
+              Mehr über den Betrieb
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                <Icon name="arrow-right" size={18} />
+              </span>
             </Link>
-          </div>
-          <div className="min-w-0 rounded-lg border border-border bg-surface-muted p-8 text-sm text-ink-soft">
-            <p className="font-semibold text-ink">{siteConfig.address.street}</p>
-            <p>
-              {siteConfig.address.zip} {siteConfig.address.city}
-            </p>
-            <p className="mt-4">{siteConfig.openingHours.label}</p>
-          </div>
+          </Reveal>
         </Container>
       </section>
 
-      <section className="border-t border-border bg-surface-muted py-16 sm:py-20">
+      {/* Ablauf */}
+      <section className="border-y border-border bg-ink py-20 text-white sm:py-24">
         <Container>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <h2 className="text-3xl font-bold text-ink">Häufige Fragen</h2>
-            <Link href="/faq" className="font-semibold text-accent hover:underline">
-              Alle Fragen ansehen →
+          <Reveal>
+            <h2 className="max-w-[18ch] text-3xl font-bold sm:text-4xl">Vier Schritte bis die Maschine wieder läuft</h2>
+          </Reveal>
+          <Reveal stagger className="relative mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {processSteps.map((step, index) => (
+              <div key={step.step} className="relative">
+                <div className="flex items-center gap-4">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-accent text-lg font-bold text-accent">
+                    {step.step}
+                  </span>
+                  {index < processSteps.length - 1 && (
+                    <span className="hidden h-px flex-1 bg-white/15 lg:block" aria-hidden="true" />
+                  )}
+                </div>
+                <h3 className="mt-5 text-lg font-bold">{step.title}</h3>
+                <p className="mt-2 text-sm text-white/65">{step.description}</p>
+              </div>
+            ))}
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Stärken */}
+      <section className="py-20 sm:py-24">
+        <Container>
+          <Reveal>
+            <h2 className="max-w-[20ch] text-3xl font-bold text-ink sm:text-4xl">
+              Warum Betriebe uns anrufen
+            </h2>
+          </Reveal>
+          <Reveal stagger className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {usps.map((usp) => (
+              <div key={usp.title} className="flex gap-4">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-ink text-white">
+                  <Icon name={usp.icon as IconName} size={22} />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="text-lg font-bold text-ink">{usp.title}</h3>
+                  <p className="mt-1.5 text-sm text-ink-soft">{usp.description}</p>
+                </div>
+              </div>
+            ))}
+            <div className="flex flex-col justify-center rounded-2xl bg-surface-muted p-6">
+              <p className="text-sm text-ink-soft">Noch Fragen offen?</p>
+              <a
+                href={siteConfig.contact.phoneHref}
+                className="mt-2 text-xl font-bold text-accent transition-colors hover:text-accent-dark"
+              >
+                {siteConfig.contact.phoneDisplay}
+              </a>
+              <p className="mt-1 text-sm text-ink-soft">{siteConfig.openingHours.labelLong}</p>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Bewertungen & Einsatzgebiet */}
+      <section className="border-t border-border bg-surface-muted py-20 sm:py-24">
+        <Container className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <Reveal className="flex flex-col justify-between rounded-2xl bg-white p-8 sm:p-10">
+            <div>
+              <span className="flex items-center gap-1 text-gold" aria-hidden="true">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Icon key={i} name="star" size={22} />
+                ))}
+              </span>
+              <p className="mt-5 text-4xl font-bold text-ink">5,0 von 5,0</p>
+              <p className="mt-2 max-w-[42ch] text-ink-soft">
+                So bewerten Kunden aus der Steinindustrie die Zusammenarbeit bei Google.
+              </p>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href={siteConfig.links.googleBusinessProfile}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-accent hover:underline"
+              >
+                Bei Google ansehen
+              </a>
+              <Link href="/bewertungen" className="font-semibold text-ink hover:underline">
+                Referenzen
+              </Link>
+            </div>
+          </Reveal>
+
+          <Reveal className="flex flex-col justify-between rounded-2xl bg-white p-8 sm:p-10">
+            <div>
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-white">
+                <Icon name="pin" size={22} />
+              </span>
+              <h2 className="mt-5 text-2xl font-bold text-ink">Heiden im Münsterland</h2>
+              <p className="mt-2 max-w-[42ch] text-ink-soft">
+                Werkstatt und Sitz an der Friesenstraße, gut erreichbar über B67 und A31. Der mobile Service
+                fährt bundesweit.
+              </p>
+              <dl className="mt-6 space-y-2 text-sm">
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-ink-soft">Adresse</dt>
+                  <dd className="font-medium text-ink">
+                    {siteConfig.address.street}, {siteConfig.address.zip} {siteConfig.address.city}
+                  </dd>
+                </div>
+                <div className="flex gap-3">
+                  <dt className="w-24 shrink-0 text-ink-soft">Geöffnet</dt>
+                  <dd className="font-medium text-ink">{siteConfig.openingHours.labelLong}</dd>
+                </div>
+              </dl>
+            </div>
+            <Link href="/einsatzgebiet" className="mt-8 font-semibold text-accent hover:underline">
+              Einsatzgebiet ansehen
             </Link>
-          </div>
-          <div className="mt-8">
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 sm:py-24">
+        <Container className="grid grid-cols-1 gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <Reveal className="min-w-0">
+            <h2 className="text-3xl font-bold text-ink sm:text-4xl">Kurz beantwortet</h2>
+            <p className="mt-3 max-w-[40ch] text-ink-soft">
+              Die Fragen, die am häufigsten kommen. Alles Weitere gerne am Telefon.
+            </p>
+            <Link href="/faq" className="group mt-5 inline-flex items-center gap-2 font-semibold text-accent">
+              Alle Fragen
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                <Icon name="arrow-right" size={18} />
+              </span>
+            </Link>
+          </Reveal>
+          <Reveal className="min-w-0">
             <FaqAccordion items={homepageFaqs} />
-          </div>
+          </Reveal>
         </Container>
       </section>
 

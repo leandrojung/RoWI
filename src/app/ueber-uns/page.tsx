@@ -1,89 +1,190 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Container from "@/components/ui/Container";
 import PageHero from "@/components/ui/PageHero";
 import CtaBanner from "@/components/ui/CtaBanner";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { usps, targetAudience } from "@/lib/site-config";
+import Icon from "@/components/Icon";
+import Reveal from "@/components/motion/Reveal";
+import PhotoFrame from "@/components/PhotoFrame";
+import { siteConfig, targetAudience } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Über uns",
   description:
-    "Robert Wikarek — Industriemechaniker und Inhaber von Rowi Maschinenservice. Über 20 Jahre Erfahrung im Service für Steinbearbeitungsmaschinen.",
+    "Robert Wikarek, Industriemechaniker und Inhaber von Rowi Maschinenservice. Über 20 Jahre an Steinbearbeitungsmaschinen.",
   alternates: { canonical: "/ueber-uns" },
 };
+
+const milestones = [
+  {
+    year: "2001",
+    title: "Start im Kundendienst",
+    text: "Als Monteur bei der Industriebedarf Gördes GmbH in Dorsten — erste Jahre an Steinbearbeitungsmaschinen.",
+  },
+  {
+    year: "bis 2011",
+    title: "Vom Monteur zum Geschäftsführer",
+    text: "Verantwortung für Serviceeinsätze, Kunden und Abläufe im selben Betrieb.",
+  },
+  {
+    year: "2012",
+    title: "Eigener Betrieb",
+    text: "Gründung von rowi Maschinenservice in Heiden, spezialisiert auf die Steinindustrie.",
+  },
+  {
+    year: "heute",
+    title: "Werkstatt und bundesweiter Service",
+    text: "Werkstatt an der Friesenstraße, mobile Einsätze in ganz Deutschland.",
+  },
+];
+
+const values = [
+  {
+    icon: "shield" as const,
+    title: "Ehrliche Einschätzung",
+    text: "Lohnt sich eine Reparatur nicht mehr, sagen wir das — auch wenn wir daran nichts verdienen.",
+  },
+  {
+    icon: "clock" as const,
+    title: "Termintreue",
+    text: "Zugesagt ist zugesagt. Wenn etwas dazwischenkommt, erfahren Sie es vorher, nicht hinterher.",
+  },
+  {
+    icon: "wrench" as const,
+    title: "Handwerk statt Teiletausch",
+    text: "Erst die Ursache finden, dann reparieren. Teile auf Verdacht wechseln kann jeder.",
+  },
+];
 
 export default function UeberUnsPage() {
   return (
     <>
       <Breadcrumbs items={[{ name: "Über uns", href: "/ueber-uns" }]} />
       <PageHero
-        eyebrow="Über uns"
-        title="Ihr Fachbetrieb für Steinbearbeitungsmaschinen"
-        lead="Rowi Maschinenservice steht für fundiertes technisches Wissen, Zuverlässigkeit und Termintreue — mit dem klaren Fokus auf Steinbearbeitungsmaschinen."
+        title="Ein Mann, ein Fach, über 20 Jahre"
+        lead="Rowi Maschinenservice ist kein anonymer Dienstleister. Sie sprechen mit dem, der auch an Ihrer Maschine arbeitet."
       />
 
+      {/* Vorstellung */}
       <section className="py-16 sm:py-20">
-        <Container className="grid min-w-0 gap-10 lg:grid-cols-[2fr_1fr]">
-          <div className="prose-content min-w-0 max-w-none space-y-5 text-ink-soft">
-            <h2 className="text-2xl font-bold text-ink">Der Weg zu Rowi Maschinenservice</h2>
-            <p>
-              Hinter Rowi Maschinenservice steht Robert Wikarek, ausgebildeter Industriemechaniker mit
-              Fachrichtung Betriebstechnik. Seit 2001 ist er im Kundendienst für Steinbearbeitungsmaschinen
-              tätig — zunächst als Monteur bei der Industriebedarf Gördes GmbH in Dorsten, wo er zuletzt als
-              Geschäftsführer Verantwortung trug. Seit Januar 2012 ist er mit Rowi Maschinenservice selbstständig
-              und hat sich seither vollständig auf Kunden aus der Steinindustrie spezialisiert.
-            </p>
-            <p>
-              Diese über 20-jährige Erfahrung im Service für Steinbearbeitungsmaschinen ist die Grundlage für
-              den heutigen Fachbetrieb: fundiertes technisches Verständnis für Mechanik, Steuerungstechnik und
-              die besonderen Belastungen, denen Steinbearbeitungsmaschinen im Dauerbetrieb ausgesetzt sind.
-            </p>
-
-            <h2 className="text-2xl font-bold text-ink">Standort Heiden im Münsterland</h2>
-            <p>
-              Die Werkstatt von Rowi Maschinenservice befindet sich in Heiden im Münsterland, gut erreichbar
-              über die B67 und die A31. Von hier aus erfolgt der Service sowohl in der eigenen Werkstatt als
-              auch mobil deutschlandweit direkt bei Ihnen vor Ort.
-            </p>
-
-            <h2 className="text-2xl font-bold text-ink">Werte, die die Arbeit prägen</h2>
-            <p>
-              Fachkompetenz, Zuverlässigkeit und Termintreue sind keine Marketing-Floskeln, sondern der Anspruch,
-              mit dem jeder Auftrag angegangen wird. Dazu gehört auch eine ehrliche Einschätzung: Wenn eine
-              Reparatur wirtschaftlich keinen Sinn mehr ergibt, wird das offen kommuniziert — statt unnötige
-              Kosten zu verursachen.
-            </p>
-
-            <h2 className="text-2xl font-bold text-ink">Spezialisiert auf die Steinindustrie</h2>
-            <p>
-              Rowi Maschinenservice ist bewusst kein Maschinenservice für alles, sondern konzentriert sich
-              vollständig auf Steinbearbeitungsmaschinen. Zur Zielgruppe zählen {targetAudience.join(", ")} —
-              sowohl Einzelfirmen als auch Klein- und Großbetriebe.
-            </p>
-          </div>
-
-          <aside className="min-w-0 space-y-4">
-            <div className="rounded-lg border border-border p-6">
-              <h2 className="font-semibold text-ink">Auf einen Blick</h2>
-              <ul className="mt-4 space-y-3 text-sm text-ink-soft">
-                {usps.map((usp) => (
-                  <li key={usp.title} className="flex gap-2">
-                    <span aria-hidden="true" className="mt-0.5 text-accent">
-                      ✓
-                    </span>
-                    <span>{usp.title}</span>
-                  </li>
-                ))}
-              </ul>
+        <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+          <Reveal>
+            <PhotoFrame photo="robertPortrait" aspect="aspect-[4/5]" className="mx-auto w-full max-w-sm lg:max-w-none" />
+          </Reveal>
+          <Reveal className="min-w-0">
+            <h2 className="text-3xl font-bold text-ink sm:text-4xl">Robert Wikarek</h2>
+            <p className="mt-2 font-semibold text-accent">Inhaber &amp; Ihr direkter Ansprechpartner</p>
+            <div className="mt-6 max-w-[62ch] space-y-4 text-ink-soft">
+              <p>
+                Ausgebildeter Industriemechaniker, Fachrichtung Betriebstechnik. Seit 2001 an
+                Steinbearbeitungsmaschinen — erst im Kundendienst, später als Geschäftsführer, seit Januar 2012
+                mit dem eigenen Betrieb in Heiden.
+              </p>
+              <p>
+                In dieser Zeit sind hunderte Maschinen durch die Hände gegangen: Sägen, Fräsen, Poliermaschinen,
+                Bearbeitungszentren. Man merkt schnell, welche Bauteile zuerst aufgeben und woran es liegt, wenn
+                die Präzision nachlässt.
+              </p>
             </div>
-          </aside>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={siteConfig.contact.phoneHref}
+                className="flex items-center justify-center gap-3 rounded-xl bg-accent px-6 py-3.5 font-bold text-white transition-colors hover:bg-accent-dark"
+              >
+                <Icon name="phone" size={18} />
+                {siteConfig.contact.phoneDisplay}
+              </a>
+              <a
+                href={siteConfig.contact.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 rounded-xl border-2 border-ink px-6 py-3.5 font-semibold text-ink transition-colors hover:bg-ink hover:text-white"
+              >
+                <Icon name="whatsapp" size={18} />
+                WhatsApp
+              </a>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
-      <CtaBanner
-        title="Lernen Sie uns persönlich kennen"
-        lead="Nehmen Sie Kontakt auf — wir besprechen gemeinsam, wie wir Ihnen weiterhelfen können."
-      />
+      {/* Werdegang */}
+      <section className="border-y border-border bg-surface-muted py-16 sm:py-20">
+        <Container>
+          <Reveal>
+            <h2 className="text-3xl font-bold text-ink">Der Weg hierher</h2>
+          </Reveal>
+          <Reveal stagger className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {milestones.map((milestone, index) => (
+              <div key={milestone.year}>
+                <div className="flex items-center gap-3">
+                  <span className="rounded-full bg-accent px-3.5 py-1.5 text-sm font-bold text-white">
+                    {milestone.year}
+                  </span>
+                  {index < milestones.length - 1 && (
+                    <span className="hidden h-px flex-1 bg-border lg:block" aria-hidden="true" />
+                  )}
+                </div>
+                <h3 className="mt-4 font-bold text-ink">{milestone.title}</h3>
+                <p className="mt-1.5 text-sm text-ink-soft">{milestone.text}</p>
+              </div>
+            ))}
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Haltung */}
+      <section className="py-16 sm:py-20">
+        <Container>
+          <Reveal>
+            <h2 className="max-w-[22ch] text-3xl font-bold text-ink sm:text-4xl">Worauf Sie sich verlassen können</h2>
+          </Reveal>
+          <Reveal stagger className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+            {values.map((value) => (
+              <div key={value.title}>
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-white">
+                  <Icon name={value.icon} size={22} />
+                </span>
+                <h3 className="mt-5 text-lg font-bold text-ink">{value.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{value.text}</p>
+              </div>
+            ))}
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* Werkstatt & Zielgruppe */}
+      <section className="border-t border-border bg-ink py-16 text-white sm:py-20">
+        <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          <Reveal>
+            <PhotoFrame photo="workshopWide" aspect="aspect-[4/3]" tone="dark" />
+          </Reveal>
+          <Reveal className="min-w-0">
+            <h2 className="text-3xl font-bold">Werkstatt in Heiden, unterwegs in ganz Deutschland</h2>
+            <p className="mt-4 max-w-[55ch] text-white/70">
+              In der Werkstatt an der Friesenstraße wird repariert, was besser auf der Werkbank liegt. Alles
+              andere passiert direkt bei Ihnen im Betrieb.
+            </p>
+            <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-white/40">Kunden sind</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {targetAudience.map((group) => (
+                <li key={group} className="rounded-full border border-white/20 px-4 py-2 text-sm text-white/85">
+                  {group}
+                </li>
+              ))}
+            </ul>
+            <Link href="/einsatzgebiet" className="group mt-8 inline-flex items-center gap-2 font-semibold text-accent">
+              Einsatzgebiet ansehen
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                <Icon name="arrow-right" size={18} />
+              </span>
+            </Link>
+          </Reveal>
+        </Container>
+      </section>
+
+      <CtaBanner title="Lernen Sie uns kennen" lead="Ein Anruf genügt — Sie sprechen direkt mit Robert Wikarek." />
     </>
   );
 }
