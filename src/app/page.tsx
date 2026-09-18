@@ -63,8 +63,8 @@ export default function HomePage() {
             className="h-auto w-full object-contain"
             priority
             style={{
-              maskImage: "linear-gradient(to right, transparent 0%, black 32%), linear-gradient(to top, transparent 0%, black 18%)",
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 32%), linear-gradient(to top, transparent 0%, black 18%)",
+              maskImage: "linear-gradient(to right, transparent 0%, black 32%), linear-gradient(to top, transparent 0%, black 22%), linear-gradient(to bottom, transparent 0%, black 20%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 32%), linear-gradient(to top, transparent 0%, black 22%), linear-gradient(to bottom, transparent 0%, black 20%)",
               maskComposite: "intersect",
               WebkitMaskComposite: "source-in",
             }}
