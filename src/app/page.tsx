@@ -50,23 +50,6 @@ export default function HomePage() {
         {/* Bottom gradient — softens transition to trust bar */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-ink/55" aria-hidden="true" />
 
-        {/* Firmenwagen-Foto — unten rechts, interaktiv (klicken zum Weiterblättern) */}
-        <div className="hero-in hero-in-delay-3 absolute bottom-8 right-6 hidden w-[clamp(200px,22vw,300px)] lg:block">
-          <div className="relative overflow-hidden rounded-xl border border-white/20 shadow-2xl" style={{ height: "clamp(180px,20vw,280px)" }}>
-            <ImageFlip
-              images={[
-                { src: "/fotos/firmenwagen.webp", alt: "Rowi Firmenwagen", focusY: 50 },
-                { src: "/fotos/werkstatt-01.jpg", alt: "Werkstatt", focusY: 50 },
-                { src: "/fotos/werkstatt-04.jpg", alt: "Werkstatt Innen", focusY: 50 },
-              ]}
-              rounded={0}
-              tiltOptions={{ effect: "attract", tiltLimit: 10, scale: 104 }}
-            />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent px-3 py-2">
-              <p className="text-xs font-semibold text-white/90">Deutschlandweit im Einsatz — klicken zum Blättern</p>
-            </div>
-          </div>
-        </div>
 
         {/* Content stack — centered */}
         <div className="relative flex flex-1 flex-col items-center justify-center px-6 py-28 text-center">
@@ -262,20 +245,8 @@ export default function HomePage() {
 
       {/* Über uns */}
       <section className="py-20 sm:py-24">
-        <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <Reveal>
-            <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-xl lg:max-w-none">
-              <ImageFlip
-                images={[
-                  { src: "/fotos/inhaber-einsatz.webp", alt: "Robert Wikarek beim Maschineneinsatz", focusY: 40 },
-                  { src: "/fotos/team.webp", alt: "Das Rowi-Team auf der Messe", focusY: 45 },
-                  { src: "/fotos/firmenwagen.webp", alt: "Rowi Firmenwagen", focusY: 50 },
-                ]}
-                rounded={0}
-                tiltOptions={{ effect: "attract", tiltLimit: 8, scale: 103 }}
-              />
-            </div>
-          </Reveal>
+        <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          {/* Text */}
           <Reveal className="min-w-0">
             <h2 className="text-3xl font-bold text-ink sm:text-4xl">
               Bei uns packt der Chef selbst mit an
@@ -309,6 +280,42 @@ export default function HomePage() {
                 <Icon name="arrow-right" size={18} />
               </span>
             </Link>
+          </Reveal>
+
+          {/* Foto-Grid — alle 3 Bilder sofort sichtbar */}
+          <Reveal>
+            <div className="grid grid-cols-2 gap-3">
+              {/* Inhaber — groß, linke Spalte, 2 Zeilen hoch */}
+              <div className="relative row-span-2 overflow-hidden rounded-xl" style={{ minHeight: "360px" }}>
+                <Image
+                  src="/fotos/inhaber-einsatz.webp"
+                  alt="Robert Wikarek beim Einsatz an der Maschine"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                />
+              </div>
+              {/* Team */}
+              <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                <Image
+                  src="/fotos/team.webp"
+                  alt="Das Rowi-Team auf der Fachmesse"
+                  fill
+                  className="object-cover object-[center_45%]"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                />
+              </div>
+              {/* Firmenwagen */}
+              <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                <Image
+                  src="/fotos/firmenwagen.webp"
+                  alt="Rowi Maschinenservice Firmenwagen"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                />
+              </div>
+            </div>
           </Reveal>
         </Container>
       </section>
