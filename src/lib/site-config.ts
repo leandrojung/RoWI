@@ -5,7 +5,7 @@ export const siteConfig = {
   name: "Rowi Maschinenservice",
   legalName: "Rowi Maschinenservice — Robert Wikarek",
   owner: "Robert Wikarek",
-  claim: "Ihr Fachbetrieb für Steinbearbeitungsmaschinen",
+  claim: "Ihr Fachbetrieb für Maschinenservice & Wartung",
   domain: "www.rowi-maschinenservice.de",
   url: "https://www.rowi-maschinenservice.de",
 
@@ -78,7 +78,7 @@ export const usps = [
   {
     icon: "clock",
     title: "20+ Jahre Erfahrung",
-    description: "Seit 2001 an Steinbearbeitungsmaschinen, seit 2012 selbstständig.",
+    description: "Seit 2001 im Maschinenservice, seit 2012 selbstständig.",
   },
   {
     icon: "wrench",
@@ -87,8 +87,8 @@ export const usps = [
   },
   {
     icon: "target",
-    title: "Nur Steinbearbeitung",
-    description: "Kein Allround-Service. Ein Fach, und das richtig.",
+    title: "Ein Ansprechpartner",
+    description: "Wer ans Telefon geht, steht auch an Ihrer Maschine — kein Callcenter, kein Weiterleiten.",
   },
   {
     icon: "star",

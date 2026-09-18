@@ -14,13 +14,12 @@ import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config
 import { services } from "@/lib/services-data";
 import { faqCategories } from "@/lib/faq-data";
 import { faqSchema, jsonLdGraph } from "@/lib/schema";
-import { STEINBEARBEITUNGSMASCHINEN } from "@/lib/typography";
 import type { IconName } from "@/components/Icon";
 
 export const metadata: Metadata = {
-  title: "Service & Wartung für Steinbearbeitungsmaschinen",
+  title: "Maschinenservice & Wartung — Rowi Maschinenservice",
   description:
-    "Rowi Maschinenservice: Reparatur, Wartung, Sofortdienst, Ersatzteile und Verkauf von Steinbearbeitungsmaschinen. Fachbetrieb in Heiden, deutschlandweit im Einsatz.",
+    "Rowi Maschinenservice: Reparatur, Wartung, Sofortdienst, Ersatzteile und An-/Verkauf von Maschinen. Fachbetrieb in Heiden, deutschlandweit im Einsatz.",
   alternates: { canonical: "/" },
 };
 
@@ -60,8 +59,8 @@ export default function HomePage() {
           </p>
 
           {/* Headline */}
-          <h1 className="hero-in hero-in-delay-1 mt-6 max-w-[16ch] text-[clamp(2.75rem,6vw,4.75rem)] font-bold leading-[1.05] tracking-[-0.02em] text-balance">
-            Service &amp; Wartung für {STEINBEARBEITUNGSMASCHINEN}
+          <h1 className="hero-in hero-in-delay-1 mt-6 max-w-[18ch] text-[clamp(2.75rem,6vw,4.75rem)] font-bold leading-[1.05] tracking-[-0.02em] text-balance">
+            Maschinenservice & Wartung — direkt vom Fachmann
           </h1>
 
           {/* Lead text */}
