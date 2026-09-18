@@ -264,25 +264,33 @@ export default function HomePage() {
       <section className="py-20 sm:py-24">
         <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[0.8fr_1.2fr]">
           <Reveal>
-            <PhotoFrame photo="robertPortrait" aspect="aspect-[4/5]" className="mx-auto w-full max-w-sm lg:max-w-none" />
+            <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-xl lg:max-w-none">
+              <ImageFlip
+                images={[
+                  { src: "/fotos/team.webp", alt: "Das Rowi-Team auf der Messe", focusY: 45 },
+                  { src: "/fotos/firmenwagen.webp", alt: "Rowi Firmenwagen", focusY: 50 },
+                ]}
+                rounded={0}
+                tiltOptions={{ effect: "attract", tiltLimit: 8, scale: 103 }}
+              />
+            </div>
           </Reveal>
           <Reveal className="min-w-0">
             <h2 className="text-3xl font-bold text-ink sm:text-4xl">
-              Bei uns schraubt der Chef noch selbst
+              Das Team hinter dem Betrieb
             </h2>
             <div className="mt-5 max-w-[62ch] space-y-4 text-ink-soft">
               <p>
                 Robert Wikarek ist ausgebildeter Industriemechaniker, Fachrichtung Betriebstechnik. Seit 2001
-                steht er an Steinbearbeitungsmaschinen — erst im Kundendienst, zuletzt als Geschäftsführer,
-                seit 2012 selbstständig mit dem eigenen Betrieb.
+                im Maschinenservice aktiv — erst im Kundendienst, seit 2012 selbstständig mit dem eigenen Betrieb.
               </p>
               <p>
                 Sie haben einen Ansprechpartner. Der, der ans Telefon geht, ist auch der, der später an Ihrer
-                Maschine steht.
+                Maschine steht — unterstützt von einem eingespielten Team.
               </p>
             </div>
             <div className="mt-7 flex flex-wrap gap-3">
-              {["Industriemechaniker", "Betriebstechnik", "Steinindustrie seit 2001"].map((chip) => (
+              {["Industriemechaniker", "Betriebstechnik", "Im Service seit 2001"].map((chip) => (
                 <span
                   key={chip}
                   className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium text-ink"
