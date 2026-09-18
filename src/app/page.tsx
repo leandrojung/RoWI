@@ -50,6 +50,26 @@ export default function HomePage() {
         {/* Bottom gradient — softens transition to trust bar */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-ink/55" aria-hidden="true" />
 
+        {/* Firmenwagen — cinematic bottom-right, fließt aus dem Dunkel */}
+        <div
+          className="hero-in hero-in-delay-3 pointer-events-none absolute bottom-0 right-0 hidden w-[clamp(380px,50vw,720px)] select-none lg:block"
+          aria-hidden="true"
+        >
+          <Image
+            src="/fotos/firmenwagen-seite.jpg"
+            alt=""
+            width={1280}
+            height={853}
+            className="h-auto w-full object-contain"
+            priority
+            style={{
+              maskImage: "linear-gradient(to right, transparent 0%, black 32%), linear-gradient(to top, transparent 0%, black 18%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 32%), linear-gradient(to top, transparent 0%, black 18%)",
+              maskComposite: "intersect",
+              WebkitMaskComposite: "source-in",
+            }}
+          />
+        </div>
 
         {/* Content stack — centered */}
         <div className="relative flex flex-1 flex-col items-center justify-center px-6 py-28 text-center">
