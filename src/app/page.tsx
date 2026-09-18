@@ -49,6 +49,20 @@ export default function HomePage() {
         {/* Bottom gradient — softens transition to trust bar */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-ink/55" aria-hidden="true" />
 
+        {/* Firmenwagen-Foto — unten rechts, eingerahmt */}
+        <div className="hero-in hero-in-delay-3 absolute bottom-8 right-6 hidden w-[clamp(200px,22vw,320px)] overflow-hidden rounded-xl border border-white/20 shadow-2xl lg:block">
+          <Image
+            src="/fotos/firmenwagen.webp"
+            alt="Rowi Maschinenservice Firmenwagen"
+            width={640}
+            height={640}
+            className="h-auto w-full object-cover"
+          />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-3 py-2">
+            <p className="text-xs font-semibold text-white/90">Ihr Service-Fahrzeug — deutschlandweit im Einsatz</p>
+          </div>
+        </div>
+
         {/* Content stack — centered */}
         <div className="relative flex flex-1 flex-col items-center justify-center px-6 py-28 text-center">
           {/* Badge */}
