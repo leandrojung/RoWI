@@ -199,7 +199,7 @@ export default function HomePage() {
       </section>
 
       {/* Leistungen */}
-      <section className="bg-ink py-20 sm:py-28">
+      <section className="bg-ink py-16 sm:py-20">
         <Container>
           <Reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
