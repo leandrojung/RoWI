@@ -14,6 +14,7 @@ import PopcornText from "@/components/motion/PopcornText";
 import Hero from "@/components/motion/Hero";
 import ProcessSteps from "@/components/motion/ProcessSteps";
 import VanReveal from "@/components/motion/VanReveal";
+import VanRoadJourney from "@/components/motion/VanRoadJourney";
 import FolderFloat from "@/components/motion/FolderFloat";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
@@ -88,6 +89,7 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <VanRoadJourney>
       {/* Firmenwagen — Einsatzsignal */}
       <section
         className="overflow-hidden"
@@ -209,6 +211,7 @@ export default function HomePage() {
           </Reveal>
         </Container>
       </section>
+      </VanRoadJourney>
 
       {/* Hersteller-Laufband */}
       <section className="border-y border-border bg-surface-muted py-14">
