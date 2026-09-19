@@ -101,6 +101,8 @@ export default function Hero() {
   const contentY = useTransform(progress, [0, 0.25], [0, -56]);
   const contentScale = useTransform(progress, [0, 0.25], [1, 0.94]);
   const flashOpacity = useTransform(progress, [0.6, 0.88], [0, 1]);
+  const wordmarkOpacity = useTransform(progress, [0.68, 0.8], [0, 1], { clamp: true });
+  const wordmarkScale = useTransform(progress, [0.68, 0.79, 0.88], [0.72, 1.1, 1], { clamp: true });
 
   if (reduced) {
     return (
@@ -152,6 +154,21 @@ export default function Hero() {
 
         {/* Harter Farbschnitt auf Akzentrot — schließt den Tauchgang ab */}
         <motion.div className="absolute inset-0 bg-accent" style={{ opacity: flashOpacity }} aria-hidden="true" />
+
+        {/* Schriftzug poppt auf dem Rot auf — Markenmoment statt leerer Fläche */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center px-10"
+          style={{ opacity: wordmarkOpacity, scale: wordmarkScale }}
+          aria-hidden="true"
+        >
+          <Image
+            src="/brand/wordmark-flash.png"
+            alt=""
+            width={1687}
+            height={258}
+            className="h-auto w-full max-w-[560px]"
+          />
+        </motion.div>
       </section>
     </div>
   );
