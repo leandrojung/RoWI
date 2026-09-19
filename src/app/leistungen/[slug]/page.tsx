@@ -130,7 +130,6 @@ export default async function ServicePage({
                 rounded={9999}
                 padding="16px 32px"
                 blobSize={72}
-                className="shadow-lg shadow-accent/25"
               >
                 <Icon name="phone" size={18} />
                 {siteConfig.contact.phoneDisplay}
