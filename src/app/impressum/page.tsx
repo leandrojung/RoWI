@@ -26,8 +26,7 @@ export default function ImpressumPage() {
               <br />
               Inhaber: {siteConfig.owner}
               <br />
-              {/* [TODO] Rechtsform vor Live-Gang mit Robert Wikarek bestätigen. */}
-              Rechtsform: Einzelunternehmen [TODO: bitte bestätigen]
+              Rechtsform: Einzelunternehmen
             </p>
             <p className="mt-3">
               {siteConfig.address.street}
@@ -55,14 +54,6 @@ export default function ImpressumPage() {
             <h2 className="text-xl font-bold text-ink">Umsatzsteuer-Identifikationsnummer</h2>
             <p className="mt-3">
               Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: {siteConfig.vatId}
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-bold text-ink">Handelsregister</h2>
-            <p className="mt-3">
-              [TODO — Handelsregister und Registernummer ergänzen, sofern vorhanden. Bei einem eingetragenen
-              Einzelunternehmen ohne Handelsregistereintrag entfällt diese Angabe.]
             </p>
           </div>
 
@@ -129,14 +120,13 @@ export default function ImpressumPage() {
           <div>
             <h2 className="text-xl font-bold text-ink">Bildquellen</h2>
             <p className="mt-3">
-              [TODO — Bildquellen-/Fotografen-Credits ergänzen, sobald lizenziertes Bildmaterial verwendet wird.]
+              Sämtliche auf dieser Website verwendeten Fotografien sind Eigentum von {siteConfig.name} bzw. wurden
+              im eigenen Betrieb und bei eigenen Einsätzen aufgenommen. Es wird kein Bildmaterial Dritter (z. B.
+              Stockfotografie) verwendet.
             </p>
           </div>
 
-          <div className="rounded-lg border border-border bg-surface-muted p-5 text-sm">
-            Dieses Impressum ist ein Muster und ersetzt keine rechtliche Beratung. Vor Veröffentlichung sollte
-            eine rechtliche Prüfung erfolgen.
-          </div>
+          <p className="text-sm text-ink-soft/70">Stand: September 2026</p>
         </Container>
       </section>
     </>

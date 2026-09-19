@@ -65,12 +65,11 @@ export default function DatenschutzPage() {
           <div>
             <h2 className="text-xl font-bold text-ink">4. Hosting</h2>
             <p className="mt-3">
-              Diese Website wird bei einem externen Dienstleister gehostet (Hoster). Die dabei durch den Hoster
-              verarbeiteten personenbezogenen Daten umfassen insbesondere die in Ziffer 3 genannten Logfile-Daten.
-            </p>
-            <p className="mt-3">
-              [TODO — konkreter Hosting-Anbieter vor Live-Gang final bestätigen und hier eintragen, inkl. Hinweis
-              auf den mit dem Hoster abgeschlossenen Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO.]
+              Diese Website wird bei Hostinger gehostet. Die dabei durch den Hoster verarbeiteten
+              personenbezogenen Daten umfassen insbesondere die in Ziffer 3 genannten Logfile-Daten. Mit dem
+              Hoster besteht ein Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO, durch den dieser
+              verpflichtet ist, die Daten unserer Websitebesucher nur nach unseren Weisungen und unter Einhaltung
+              der DSGVO zu verarbeiten.
             </p>
           </div>
 
@@ -151,14 +150,12 @@ export default function DatenschutzPage() {
           <div>
             <h2 className="text-xl font-bold text-ink">9. Auftragsverarbeiter</h2>
             <p className="mt-3">
-              Zur Bereitstellung dieser Website und zur Bearbeitung von Kontaktanfragen setzen wir unter anderem
-              folgende Auftragsverarbeiter im Sinne von Art. 28 DSGVO ein, mit denen jeweils ein entsprechender
-              Vertrag zur Auftragsverarbeitung besteht bzw. vor Live-Gang abgeschlossen wird:
+              Zur Bereitstellung dieser Website setzen wir unseren Hosting-Anbieter Hostinger als
+              Auftragsverarbeiter im Sinne von Art. 28 DSGVO ein (siehe Ziffer 4). Für den Versand von Anfragen
+              über das Kontaktformular nutzen wir keinen externen Formular- oder E-Mail-Versanddienst: Die
+              Übermittlung erfolgt direkt über unser eigenes E-Mail-Postfach bei demselben Anbieter, ohne
+              Zwischenschaltung eines weiteren Drittanbieters.
             </p>
-            <ul className="mt-3 list-disc space-y-1 pl-5">
-              <li>unser Hosting-Anbieter (siehe Ziffer 4)</li>
-              <li>[TODO — ggf. Anbieter für den technischen Versand von Formularanfragen ergänzen]</li>
-            </ul>
           </div>
 
           <div>
@@ -195,9 +192,9 @@ export default function DatenschutzPage() {
           <div>
             <h2 className="text-xl font-bold text-ink">12. Datenschutzbeauftragter</h2>
             <p className="mt-3">
-              Ob die Bestellung eines Datenschutzbeauftragten gesetzlich erforderlich ist, hängt unter anderem
-              von der Mitarbeiterzahl ab. [TODO — Mitarbeiterzahl mit Robert Wikarek klären und diesen Abschnitt
-              bei Bedarf um Kontaktdaten eines Datenschutzbeauftragten ergänzen.]
+              Nach § 38 BDSG sind wir aufgrund der Größe unseres Betriebs nicht zur Bestellung eines
+              Datenschutzbeauftragten verpflichtet. Bei Fragen zum Datenschutz erreichen Sie uns direkt über die
+              in Ziffer 1 genannten Kontaktdaten.
             </p>
           </div>
 
@@ -220,10 +217,7 @@ export default function DatenschutzPage() {
             </p>
           </div>
 
-          <div className="rounded-lg border border-border bg-surface-muted p-5 text-sm">
-            Diese Datenschutzerklärung ist ein Muster und ersetzt keine rechtliche Beratung. Vor Veröffentlichung
-            sollte eine rechtliche Prüfung erfolgen.
-          </div>
+          <p className="text-sm text-ink-soft/70">Stand: September 2026</p>
         </Container>
       </section>
     </>
