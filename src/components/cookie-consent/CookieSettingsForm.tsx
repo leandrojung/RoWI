@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { writeConsent, acceptAll, rejectNonEssential } from "./consent-store";
 import { useConsent } from "./useConsent";
 import LiquidButton from "../ui/LiquidButton";
@@ -17,6 +17,17 @@ export default function CookieSettingsForm({ onSaved, compact = false }: Props) 
   const [override, setOverride] = useState<boolean | null>(null);
   const external = override ?? consent?.categories.external ?? false;
   const [savedHint, setSavedHint] = useState<string | null>(null);
+
+  // Verhindert, dass der Schalter beim Laden sichtbar von der Server-Vorgabe (aus) zur
+  // tatsächlich gespeicherten Einwilligung "rüberrutscht": Transition erst nach dem
+  // Abgleich mit dem echten Wert aktivieren, damit diese Korrektur unsichtbar passiert.
+  const [settled, setSettled] = useState(false);
+  useEffect(() => {
+    // Bewusstes Mount-Flag, kein Sync mit einem externen System: schaltet die
+    // Transition erst frei, nachdem React den Client-Wert übernommen hat.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setSettled(true);
+  }, []);
 
   function handleSave() {
     writeConsent({ necessary: true, external });
@@ -74,13 +85,13 @@ export default function CookieSettingsForm({ onSaved, compact = false }: Props) 
             id="consent-external"
             aria-checked={external}
             onClick={() => setOverride(!external)}
-            className={`relative mt-1 h-7 w-12 shrink-0 rounded-full transition-colors ${
+            className={`relative mt-1 h-7 w-12 shrink-0 rounded-full ${settled ? "transition-colors" : ""} ${
               external ? "bg-accent" : "bg-gray-300"
             }`}
           >
             <span className="sr-only">Externe Inhalte (Karten) {external ? "deaktivieren" : "aktivieren"}</span>
             <span
-              className={`absolute top-1 h-5 w-5 rounded-full bg-white shadow transition-transform ${
+              className={`absolute top-1 h-5 w-5 rounded-full bg-white shadow ${settled ? "transition-transform" : ""} ${
                 external ? "translate-x-6" : "translate-x-1"
               }`}
             />
