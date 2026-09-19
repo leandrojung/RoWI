@@ -373,7 +373,7 @@ export default function HomePage() {
               trigger="hover"
               closeOnSelect={false}
               autoPlayOnView
-              autoPlayHoldMs={2500}
+              autoPlayHoldMs={1750}
               folderColor="#1a1a1a"
               frontColor="#2d2d2d"
               paperColor="#ffffff"
