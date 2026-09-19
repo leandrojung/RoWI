@@ -14,7 +14,6 @@ import PopcornText from "@/components/motion/PopcornText";
 import ImageFlip from "@/components/motion/ImageFlip";
 import VanReveal from "@/components/motion/VanReveal";
 import FolderFloat from "@/components/motion/FolderFloat";
-import SideRays from "@/components/motion/SideRays";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
@@ -50,21 +49,7 @@ export default function HomePage() {
         />
         {/* Cinematic dark overlay */}
         <div className="absolute inset-0 bg-ink/78" aria-hidden="true" />
-        {/* Red light ray effect from top-right corner */}
-        <SideRays
-          rayColor1="#c8102e"
-          rayColor2="#ff4d6d"
-          intensity={1.8}
-          spread={1.8}
-          origin="top-right"
-          tilt={-10}
-          saturation={1.6}
-          blend={0.6}
-          falloff={1.8}
-          opacity={0.55}
-          speed={1.8}
-        />
-        {/* Bottom gradient — softens transition to trust bar */}
+{/* Bottom gradient — softens transition to trust bar */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-ink/55" aria-hidden="true" />
 
         {/* Content stack — centered */}
