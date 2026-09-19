@@ -238,7 +238,7 @@ export default async function ServicePage({
           <Reveal className="min-w-0">
             <h2 className="text-2xl font-bold text-ink sm:text-3xl">Was Sie davon haben</h2>
             <ul className="mt-8 space-y-4">
-              {service.benefits.map((benefit, i) => (
+              {service.benefits.map((benefit) => (
                 <li key={benefit} className="flex gap-4">
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-white">
                     <Icon name="check" size={14} strokeWidth={2.5} />
@@ -275,7 +275,7 @@ export default async function ServicePage({
                 href="/einsatzgebiet"
                 className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline"
               >
-                <Icon name="truck" size={15} />
+                <Icon name="van" size={15} />
                 Auch bundesweit im Einsatz
               </Link>
             </div>

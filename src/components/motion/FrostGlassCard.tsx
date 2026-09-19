@@ -1,17 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { animate } from "framer-motion";
-
-interface TransitionControl {
-  type?: string;
-  ease?: number[];
-  bounce?: number;
-  damping?: number;
-  duration?: number;
-  mass?: number;
-  stiffness?: number;
-}
+import { animate, type Transition } from "framer-motion";
 
 interface FrostGlassCardProps {
   src: string;
@@ -24,11 +14,11 @@ interface FrostGlassCardProps {
   reach?: number;
   tint?: string;
   rounded?: number;
-  transition?: TransitionControl;
+  transition?: Transition;
   className?: string;
 }
 
-const DEFAULT_TRANSITION: TransitionControl = {
+const DEFAULT_TRANSITION: Transition = {
   ease: [0.44, 0, 0.56, 1],
   type: "tween",
   duration: 0.8,
@@ -68,13 +58,14 @@ export default function FrostGlassCard({
       p.s += (p.ts - p.s) * 0.1;
       const el = frostRef.current;
       if (el) {
+        const style = el.style as CSSStyleDeclaration & { webkitMaskImage: string };
         if (p.s < 0.01) {
-          el.style.maskImage = "none";
-          (el.style as any).webkitMaskImage = "none";
+          style.maskImage = "none";
+          style.webkitMaskImage = "none";
         } else {
           const m = maskFor(p.x, p.y, reach * p.s);
-          el.style.maskImage = m;
-          (el.style as any).webkitMaskImage = m;
+          style.maskImage = m;
+          style.webkitMaskImage = m;
         }
       }
       rafRef.current = requestAnimationFrame(tick);
@@ -85,9 +76,9 @@ export default function FrostGlassCard({
 
   const apply = React.useCallback(
     (on: boolean) => {
-      if (containerRef.current) animate(containerRef.current, { scale: on ? 1.015 : 1 }, transition as any);
-      if (overlayRef.current) animate(overlayRef.current, { y: on ? -6 : 0 }, transition as any);
-      if (sheenRef.current) animate(sheenRef.current, { opacity: on ? 1 : 0.55 }, transition as any);
+      if (containerRef.current) animate(containerRef.current, { scale: on ? 1.015 : 1 }, transition);
+      if (overlayRef.current) animate(overlayRef.current, { y: on ? -6 : 0 }, transition);
+      if (sheenRef.current) animate(sheenRef.current, { opacity: on ? 1 : 0.55 }, transition);
     },
     [transition]
   );

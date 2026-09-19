@@ -102,7 +102,9 @@ export default function LiquidButton({
   const opts = () => (reduced ? ({ duration: 0 } as Transition) : DEFAULT_BLOB_TRANSITION);
 
   const live = useRef({ smoothness, reduced });
-  live.current = { smoothness, reduced };
+  useIsoLayoutEffect(() => {
+    live.current = { smoothness, reduced };
+  }, [smoothness, reduced]);
 
   const center = () => {
     const el = scope.current as HTMLElement | null;

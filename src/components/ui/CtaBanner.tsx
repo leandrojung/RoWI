@@ -13,9 +13,18 @@ export default function CtaBanner({
 }) {
   return (
     <section className="relative overflow-hidden bg-accent text-white">
+      <div className="stripe-drift absolute inset-0 opacity-70" aria-hidden="true" />
       <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-2xl" aria-hidden="true" />
+      <div className="absolute -bottom-24 right-[8%] h-72 w-72 rounded-full bg-white/10 blur-[90px]" aria-hidden="true" />
       <Container className="relative flex flex-col items-start gap-8 py-16 lg:flex-row lg:items-center lg:justify-between">
         <div className="min-w-0">
+          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1 text-xs font-bold uppercase tracking-[0.08em] text-white/90 backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+            </span>
+            {siteConfig.openingHours.label} — persönlich erreichbar
+          </p>
           <h2 className="max-w-[18ch] text-3xl font-bold sm:text-4xl">{title}</h2>
           <p className="mt-3 max-w-[52ch] text-white/85">{lead}</p>
         </div>

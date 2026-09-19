@@ -14,7 +14,7 @@ export default function ManufacturerMarquee() {
               <li
                 key={name}
                 role={copy === 0 ? "listitem" : undefined}
-                className="whitespace-nowrap rounded-lg border border-border bg-white px-6 py-3.5 text-base font-semibold text-ink-soft"
+                className="whitespace-nowrap rounded-lg border border-border bg-white px-6 py-3.5 text-base font-semibold text-ink-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:text-accent hover:shadow-[0_8px_20px_rgba(200,16,46,0.12)]"
               >
                 {name}
               </li>

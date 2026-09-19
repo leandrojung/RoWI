@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Container from "@/components/ui/Container";
 import PageHero from "@/components/ui/PageHero";
 import CtaBanner from "@/components/ui/CtaBanner";
@@ -118,9 +119,9 @@ export default function WerkstattPage() {
           <Reveal>
             <p className="text-sm text-ink-soft">
               Weitere Einblicke in aktuelle Projekte und Einsätze finden Sie im{" "}
-              <a href="/aktuelles" className="font-semibold text-accent hover:underline">
+              <Link href="/aktuelles" className="font-semibold text-accent hover:underline">
                 Aktuelles-Bereich
-              </a>
+              </Link>
               . Fotos werden laufend ergänzt.
             </p>
           </Reveal>

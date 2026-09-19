@@ -2,8 +2,6 @@
 
 import { motion } from "framer-motion";
 import {
-  useEffect,
-  useMemo,
   useRef,
   useState,
   type CSSProperties,

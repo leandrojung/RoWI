@@ -211,6 +211,77 @@ a {
   background-size: 64px 64px;
 }
 
+/* ---------------------------------------------------------------------------
+   Hero — kinematischer Zoom & Spotlight
+   Sanfter Ken-Burns-Effekt auf dem Hintergrundfoto plus ein langsam pulsierender
+   Glow hinter der Headline, um dem Hero mehr Tiefe und Kino-Charakter zu geben.
+--------------------------------------------------------------------------- */
+@keyframes hero-kenburns {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.hero-kenburns {
+  animation: hero-kenburns 6s var(--ease-out-expo) both;
+}
+
+@keyframes spotlight-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    scale: 1;
+  }
+  50% {
+    opacity: 0.85;
+    scale: 1.12;
+  }
+}
+
+.hero-spotlight {
+  transform: translate(-50%, -50%);
+  animation: spotlight-pulse 7s ease-in-out infinite;
+}
+
+/* Langsam wandernde Diagonalstreifen im CTA-Banner — dezente Energie */
+@keyframes stripe-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 84px 0;
+  }
+}
+
+.stripe-drift {
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.09) 0px,
+    rgba(255, 255, 255, 0.09) 2px,
+    transparent 2px,
+    transparent 42px
+  );
+  animation: stripe-drift 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns {
+    animation: none;
+  }
+
+  .hero-spotlight {
+    animation: none;
+    opacity: 0.6;
+  }
+
+  .stripe-drift {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

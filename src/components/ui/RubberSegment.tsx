@@ -189,7 +189,6 @@ export default function RubberSegment({
       edgeL.stop();
       edgeR.stop();
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [edgeL, edgeR]
   );
 

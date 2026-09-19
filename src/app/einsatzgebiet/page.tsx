@@ -74,7 +74,7 @@ export default function EinsatzgebietPage() {
 
           <Reveal className="min-w-0">
             <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-white">
-              <Icon name="truck" size={22} />
+              <Icon name="van" size={22} />
             </span>
             <h2 className="mt-5 text-2xl font-bold text-ink">Mobiler Service bundesweit</h2>
             <p className="mt-3 max-w-[55ch] text-ink-soft">

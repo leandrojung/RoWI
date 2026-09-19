@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
@@ -7,11 +8,9 @@ import ManufacturerMarquee from "@/components/ManufacturerMarquee";
 import FaqAccordion from "@/components/FaqAccordion";
 import JsonLd from "@/components/JsonLd";
 import Icon from "@/components/Icon";
-import PhotoFrame from "@/components/PhotoFrame";
 import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import PopcornText from "@/components/motion/PopcornText";
-import ImageFlip from "@/components/motion/ImageFlip";
 import VanReveal from "@/components/motion/VanReveal";
 import FolderFloat from "@/components/motion/FolderFloat";
 import LiquidButton from "@/components/ui/LiquidButton";
@@ -30,38 +29,75 @@ export const metadata: Metadata = {
 
 const homepageFaqs = faqCategories.flatMap((c) => c.items).slice(0, 5);
 
-const highlightService = services.find((s) => s.slug === "sofortdienst")!;
-const otherServices = services.filter((s) => s.slug !== "sofortdienst");
+const trustBadges: { icon: IconName | "stars"; render: ReactNode; label: string }[] = [
+  { icon: "stars", render: <CountUp value={5} decimals={1} />, label: "Google-Bewertung" },
+  {
+    icon: "clock",
+    render: (
+      <>
+        <CountUp value={20} />+
+      </>
+    ),
+    label: "Jahre Erfahrung",
+  },
+  {
+    icon: "shield",
+    render: (
+      <>
+        <CountUp value={manufacturers.length} />+
+      </>
+    ),
+    label: "Hersteller im Service",
+  },
+  { icon: "van", render: "Bundesweit", label: "Mobiler Einsatz" },
+];
 
 export default function HomePage() {
   return (
     <>
       {/* Hero */}
       <section className="relative flex min-h-[100svh] flex-col overflow-hidden text-white">
-        {/* Full-bleed background photo */}
+        {/* Full-bleed background photo — sanfter Ken-Burns-Zoom beim Laden */}
         <Image
           src="/fotos/werkstatt-03.jpg"
           alt=""
           fill
-          className="object-cover object-center"
+          className="hero-kenburns object-cover object-center"
           priority
           aria-hidden="true"
         />
         {/* Cinematic dark overlay */}
         <div className="absolute inset-0 bg-ink/78" aria-hidden="true" />
-{/* Bottom gradient — softens transition to trust bar */}
+        {/* Technische Raster-Textur — Werkstatt-Charakter ohne Bildasset */}
+        <div className="grid-texture absolute inset-0 opacity-60" aria-hidden="true" />
+        {/* Pulsierender Spotlight-Glow hinter der Headline */}
+        <div
+          className="hero-spotlight pointer-events-none absolute left-1/2 top-[38%] h-[32rem] w-[46rem] rounded-full bg-accent/25 blur-[110px]"
+          aria-hidden="true"
+        />
+        {/* Bottom gradient — softens transition to trust bar */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-ink/55" aria-hidden="true" />
 
         {/* Content stack — centered */}
         <div className="relative flex flex-1 flex-col items-center justify-center px-6 py-28 text-center">
-          {/* Badge */}
-          <p className="hero-in inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white/80">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-            </span>
-            Seit 2012 selbstständig · seit 2001 in der Branche
-          </p>
+          {/* Badges */}
+          <div className="hero-in flex flex-wrap items-center justify-center gap-2.5">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white/80 backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              Seit 2012 selbstständig · seit 2001 in der Branche
+            </p>
+            <p className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white/80 backdrop-blur-sm">
+              <span className="flex items-center gap-0.5 text-gold">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Icon key={i} name="star" size={11} />
+                ))}
+              </span>
+              5,0 bei Google
+            </p>
+          </div>
 
           {/* Headline */}
           <h1 className="hero-in hero-in-delay-1 mt-6 max-w-[18ch] text-[clamp(2.75rem,6vw,4.75rem)] font-bold leading-[1.08] tracking-[-0.02em] text-balance">
@@ -109,48 +145,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Vertrauensleiste */}
-      <section className="border-y border-border bg-white">
-        <Container className="grid grid-cols-2 divide-x divide-y divide-border sm:divide-y-0 lg:grid-cols-4">
-          <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-8 text-center">
-            <span className="flex items-center gap-1 text-gold" aria-hidden="true">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Icon key={i} name="star" size={15} />
-              ))}
-            </span>
-            <p className="text-3xl font-bold text-ink">
-              <CountUp value={5} decimals={1} />
-            </p>
-            <p className="text-sm text-ink-soft">Google-Bewertung</p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-8 text-center">
-            <span className="text-accent" aria-hidden="true">
-              <Icon name="clock" size={24} />
-            </span>
-            <p className="text-3xl font-bold text-ink">
-              <CountUp value={20} />+
-            </p>
-            <p className="text-sm text-ink-soft">Jahre Erfahrung</p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-8 text-center">
-            <span className="text-accent" aria-hidden="true">
-              <Icon name="shield" size={24} />
-            </span>
-            <p className="text-3xl font-bold text-ink">
-              <CountUp value={manufacturers.length} />+
-            </p>
-            <p className="text-sm text-ink-soft">Hersteller im Service</p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-8 text-center">
-            <span className="text-accent" aria-hidden="true">
-              <Icon name="truck" size={24} />
-            </span>
-            <p className="text-3xl font-bold leading-none text-ink">Bundesweit</p>
-            <p className="text-sm text-ink-soft">Mobiler Einsatz</p>
-          </div>
+      {/* Vertrauensleiste — Badges */}
+      <section className="relative border-y border-border bg-white py-3">
+        <Container className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {trustBadges.map((item) => (
+            <div
+              key={item.label}
+              className="group flex flex-col items-center justify-center gap-2 rounded-2xl border border-border/70 px-4 py-7 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent/25 hover:bg-accent/[0.03] hover:shadow-[0_12px_30px_rgba(200,16,46,0.1)]"
+            >
+              {item.icon === "stars" ? (
+                <span className="flex items-center gap-1 text-gold" aria-hidden="true">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Icon key={i} name="star" size={15} />
+                  ))}
+                </span>
+              ) : (
+                <span
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/10 text-accent transition-transform duration-300 group-hover:scale-110"
+                  aria-hidden="true"
+                >
+                  <Icon name={item.icon} size={20} />
+                </span>
+              )}
+              <p className="text-3xl font-bold leading-none text-ink">{item.render}</p>
+              <p className="text-sm text-ink-soft">{item.label}</p>
+            </div>
+          ))}
         </Container>
       </section>
 
