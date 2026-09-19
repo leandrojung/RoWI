@@ -12,6 +12,7 @@ import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import PopcornText from "@/components/motion/PopcornText";
 import Hero from "@/components/motion/Hero";
+import ProcessSteps from "@/components/motion/ProcessSteps";
 import VanReveal from "@/components/motion/VanReveal";
 import FolderFloat from "@/components/motion/FolderFloat";
 import LiquidButton from "@/components/ui/LiquidButton";
@@ -317,22 +318,7 @@ export default function HomePage() {
               <PopcornText text="Vier Schritte bis die Maschine wieder läuft" tag="span" appearTrigger="scroll" stagger={0.025} rotationRange={15} />
             </h2>
           </Reveal>
-          <Reveal stagger className="relative mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step, index) => (
-              <div key={step.step} className="relative">
-                <div className="flex items-center gap-4">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-accent text-lg font-bold text-accent">
-                    {step.step}
-                  </span>
-                  {index < processSteps.length - 1 && (
-                    <span className="hidden h-px flex-1 bg-white/15 lg:block" aria-hidden="true" />
-                  )}
-                </div>
-                <h3 className="mt-5 text-lg font-bold">{step.title}</h3>
-                <p className="mt-2 text-sm text-white/65">{step.description}</p>
-              </div>
-            ))}
-          </Reveal>
+          <ProcessSteps steps={processSteps} />
         </Container>
       </section>
 
