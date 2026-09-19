@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
-import PageHero from "@/components/ui/PageHero";
 import CtaBanner from "@/components/ui/CtaBanner";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
@@ -9,6 +9,7 @@ import Reveal from "@/components/motion/Reveal";
 import PhotoFrame from "@/components/PhotoFrame";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, targetAudience } from "@/lib/site-config";
+import { withSoftHyphens } from "@/lib/typography";
 
 export const metadata: Metadata = {
   title: "Über uns",
@@ -62,10 +63,39 @@ export default function UeberUnsPage() {
   return (
     <>
       <Breadcrumbs items={[{ name: "Über uns", href: "/ueber-uns" }]} />
-      <PageHero
-        title="Ein Mann, ein Fach, über 20 Jahre"
-        lead="Rowi Maschinenservice ist kein anonymer Dienstleister. Sie sprechen mit dem, der auch an Ihrer Maschine arbeitet."
-      />
+
+      {/* Persönlicher Auftakt — mit echtem Foto statt Raster-Banner */}
+      <div className="relative overflow-hidden border-b border-border bg-ink text-white">
+        <div
+          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/12 blur-3xl"
+          aria-hidden="true"
+        />
+        <Container className="relative grid grid-cols-1 items-center gap-10 py-14 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+          <div>
+            <h1 className="hero-in max-w-[20ch] text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.08]">
+              {withSoftHyphens("Ein Mann, ein Fach, über 20 Jahre")}
+            </h1>
+            <p className="hero-in hero-in-delay-1 mt-5 max-w-[54ch] text-lg text-white/70">
+              Rowi Maschinenservice ist kein anonymer Dienstleister. Sie sprechen mit dem, der auch an Ihrer
+              Maschine arbeitet.
+            </p>
+          </div>
+          <div className="hero-in hero-in-delay-2 relative mx-auto aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-2xl shadow-2xl shadow-black/40 lg:mx-0 lg:max-w-sm">
+            <Image
+              src="/fotos/inhaber-einsatz.webp"
+              alt="Robert Wikarek im Einsatz an einer Maschine"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 280px, 384px"
+            />
+            <div
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent"
+              aria-hidden="true"
+            />
+          </div>
+        </Container>
+      </div>
 
       {/* Vorstellung */}
       <section className="py-16 sm:py-20">
