@@ -263,6 +263,65 @@ a {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Section-Seam
+   Weicher, animierter Übergang zwischen zwei Abschnittsfarben statt eines
+   harten Farbschnitts (schwarz→weiß, weiß→rot, …): ein Verlauf von "from"
+   zu "to", eine diagonal wandernde Lichtspur im selben Rhythmus wie
+   .stripe-drift, und ein langsam driftender Akzent-Glow als wiederkehrendes
+   Markenelement an jedem Abschnittswechsel der Seite.
+--------------------------------------------------------------------------- */
+.seam {
+  position: relative;
+  height: clamp(40px, 6vw, 80px);
+  background: linear-gradient(
+    165deg,
+    var(--seam-from) 0%,
+    var(--seam-from) 40%,
+    var(--seam-to) 60%,
+    var(--seam-to) 100%
+  );
+  overflow: hidden;
+}
+
+.seam-sheen {
+  position: absolute;
+  inset: -30% -15%;
+  display: block;
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.14) 0px,
+    rgba(255, 255, 255, 0.14) 2px,
+    transparent 2px,
+    transparent 46px
+  );
+  mix-blend-mode: overlay;
+  animation: stripe-drift 6s linear infinite;
+}
+
+.seam-glow {
+  position: absolute;
+  top: 50%;
+  left: 18%;
+  width: 220px;
+  height: 220px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  filter: blur(46px);
+  opacity: 0.22;
+  transform: translate(-50%, -50%);
+  animation: seam-glow-drift 15s ease-in-out infinite alternate;
+}
+
+@keyframes seam-glow-drift {
+  from {
+    left: 12%;
+  }
+  to {
+    left: 78%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-stagger > * {

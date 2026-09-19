@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import CtaBanner from "@/components/ui/CtaBanner";
+import SectionSeam from "@/components/ui/SectionSeam";
 import ManufacturerMarquee from "@/components/ManufacturerMarquee";
 import FaqAccordion from "@/components/FaqAccordion";
 import JsonLd from "@/components/JsonLd";
@@ -138,6 +139,8 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <SectionSeam from="white" to="ink" />
+
       {/* Leistungen */}
       <section className="bg-ink py-16 sm:py-20">
         <Container>
@@ -210,8 +213,10 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <SectionSeam from="ink" to="muted" />
+
       {/* Hersteller-Laufband */}
-      <section className="border-y border-border bg-surface-muted py-14">
+      <section className="bg-surface-muted py-14">
         <Container>
           <div className="flex flex-col items-center gap-2 text-center">
             <h2 className="text-2xl font-bold text-ink sm:text-3xl">Service für die Marken Ihrer Werkstatt</h2>
@@ -232,6 +237,8 @@ export default function HomePage() {
           </Link>
         </Container>
       </section>
+
+      <SectionSeam from="muted" to="white" />
 
       {/* Über uns */}
       <section className="py-20 sm:py-24">
@@ -310,8 +317,10 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <SectionSeam from="white" to="ink" />
+
       {/* Ablauf */}
-      <section className="border-y border-border bg-ink py-20 text-white sm:py-24">
+      <section className="bg-ink py-20 text-white sm:py-24">
         <Container>
           <Reveal>
             <h2 className="max-w-[18ch] text-3xl font-bold sm:text-4xl">
@@ -321,6 +330,8 @@ export default function HomePage() {
           <ProcessSteps steps={processSteps} />
         </Container>
       </section>
+
+      <SectionSeam from="ink" to="white" />
 
       {/* Stärken */}
       <section className="py-20 sm:py-24">
@@ -356,8 +367,10 @@ export default function HomePage() {
         </Container>
       </section>
 
+      <SectionSeam from="white" to="muted" />
+
       {/* Bewertungen & Einsatzgebiet */}
-      <section className="border-t border-border bg-surface-muted py-20 sm:py-24">
+      <section className="bg-surface-muted py-20 sm:py-24">
         {/* FolderFloat — Kundenstimmen interaktiv */}
         <Container className="mb-12 flex flex-col items-center gap-4 text-center">
           <Reveal>
@@ -451,6 +464,8 @@ export default function HomePage() {
           </Reveal>
         </Container>
       </section>
+
+      <SectionSeam from="muted" to="white" />
 
       {/* FAQ */}
       <section className="py-20 sm:py-24">

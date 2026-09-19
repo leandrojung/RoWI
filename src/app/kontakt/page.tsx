@@ -7,6 +7,7 @@ import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/motion/Reveal";
 import LiquidButton from "@/components/ui/LiquidButton";
+import SectionSeam from "@/components/ui/SectionSeam";
 import { siteConfig, processSteps } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -153,6 +154,7 @@ export default function KontaktPage() {
           </Reveal>
         </Container>
       </section>
+      <SectionSeam from="white" to="ink" />
     </>
   );
 }

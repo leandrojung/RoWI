@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import PageHero from "@/components/ui/PageHero";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import SectionSeam from "@/components/ui/SectionSeam";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -129,6 +130,7 @@ export default function ImpressumPage() {
           <p className="text-sm text-ink-soft/70">Stand: September 2026</p>
         </Container>
       </section>
+      <SectionSeam from="white" to="ink" />
     </>
   );
 }

@@ -6,6 +6,7 @@ import CtaBanner from "@/components/ui/CtaBanner";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Reveal from "@/components/motion/Reveal";
 import RoundCarousel from "@/components/motion/RoundCarousel";
+import SectionSeam from "@/components/ui/SectionSeam";
 import Icon from "@/components/Icon";
 
 export const metadata: Metadata = {
@@ -76,10 +77,11 @@ export default function WerkstattPage() {
       <PageHero
         title="Unsere Werkstatt"
         lead="Einblick in die tägliche Arbeit — Reparaturen, Aufstellungen und Wartung an Steinbearbeitungsmaschinen."
+        seamTo="ink"
       />
 
       {/* 3D Carousel */}
-      <section className="border-b border-border bg-ink" aria-label="Galerie">
+      <section className="bg-ink" aria-label="Galerie">
         <RoundCarousel
           images={galleryImages}
           imageWidth={400}
@@ -95,6 +97,7 @@ export default function WerkstattPage() {
           Ziehen zum Drehen · Drag to rotate
         </p>
       </section>
+      <SectionSeam from="ink" to="white" />
 
       {/* Highlights */}
       <section className="py-16 sm:py-20">
@@ -113,8 +116,10 @@ export default function WerkstattPage() {
         </Container>
       </section>
 
+      <SectionSeam from="white" to="muted" />
+
       {/* Foto-Hinweis */}
-      <section className="border-t border-border bg-surface-muted py-10">
+      <section className="bg-surface-muted py-10">
         <Container className="max-w-2xl text-center">
           <Reveal>
             <p className="text-sm text-ink-soft">
@@ -128,7 +133,7 @@ export default function WerkstattPage() {
         </Container>
       </section>
 
-      <CtaBanner />
+      <CtaBanner seamFrom="muted" />
     </>
   );
 }

@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/motion/Reveal";
 import PhotoFrame from "@/components/PhotoFrame";
+import SectionSeam from "@/components/ui/SectionSeam";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, targetAudience } from "@/lib/site-config";
 import { withSoftHyphens } from "@/lib/typography";
@@ -65,7 +66,7 @@ export default function UeberUnsPage() {
       <Breadcrumbs items={[{ name: "Über uns", href: "/ueber-uns" }]} />
 
       {/* Persönlicher Auftakt — mit echtem Foto statt Raster-Banner */}
-      <div className="relative overflow-hidden border-b border-border bg-ink text-white">
+      <div className="relative overflow-hidden bg-ink text-white">
         <div
           className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/12 blur-3xl"
           aria-hidden="true"
@@ -96,6 +97,7 @@ export default function UeberUnsPage() {
           </div>
         </Container>
       </div>
+      <SectionSeam from="ink" to="white" />
 
       {/* Vorstellung */}
       <section className="py-16 sm:py-20">
@@ -142,8 +144,10 @@ export default function UeberUnsPage() {
         </Container>
       </section>
 
+      <SectionSeam from="white" to="muted" />
+
       {/* Werdegang */}
-      <section className="border-y border-border bg-surface-muted py-16 sm:py-20">
+      <section className="bg-surface-muted py-16 sm:py-20">
         <Container>
           <Reveal>
             <h2 className="text-3xl font-bold text-ink">Der Weg hierher</h2>
@@ -167,6 +171,8 @@ export default function UeberUnsPage() {
         </Container>
       </section>
 
+      <SectionSeam from="muted" to="white" />
+
       {/* Haltung */}
       <section className="py-16 sm:py-20">
         <Container>
@@ -187,8 +193,10 @@ export default function UeberUnsPage() {
         </Container>
       </section>
 
+      <SectionSeam from="white" to="ink" />
+
       {/* Werkstatt & Zielgruppe */}
-      <section className="border-t border-border bg-ink py-16 text-white sm:py-20">
+      <section className="bg-ink py-16 text-white sm:py-20">
         <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <Reveal>
             <PhotoFrame photo="workshopWide" aspect="aspect-[4/3]" tone="dark" />
@@ -217,7 +225,11 @@ export default function UeberUnsPage() {
         </Container>
       </section>
 
-      <CtaBanner title="Lernen Sie uns kennen" lead="Ein Anruf genügt — Sie sprechen direkt mit Robert Wikarek." />
+      <CtaBanner
+        title="Lernen Sie uns kennen"
+        lead="Ein Anruf genügt — Sie sprechen direkt mit Robert Wikarek."
+        seamFrom="ink"
+      />
     </>
   );
 }
