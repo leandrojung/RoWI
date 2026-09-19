@@ -12,6 +12,7 @@ import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import PopcornText from "@/components/motion/PopcornText";
 import VanReveal from "@/components/motion/VanReveal";
+import DispatchSignal from "@/components/motion/DispatchSignal";
 import FolderFloat from "@/components/motion/FolderFloat";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
@@ -175,17 +176,14 @@ export default function HomePage() {
       </section>
 
       {/* Firmenwagen — Einsatzsignal */}
-      <section
-        className="overflow-hidden"
+      <DispatchSignal
         style={{
           background:
             "radial-gradient(ellipse 45% 100% at 0% 50%, rgba(200,16,46,0.09) 0%, transparent 65%), " +
             "radial-gradient(ellipse 45% 100% at 100% 50%, rgba(200,16,46,0.09) 0%, transparent 65%), " +
             "#ffffff",
         }}
-      >
-        <Container className="grid grid-cols-1 items-center gap-8 py-16 sm:py-20 lg:grid-cols-[1fr_1.1fr] lg:gap-0 lg:py-0">
-          {/* Text */}
+        text={
           <Reveal className="py-0 lg:py-24">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Mobiler Einsatz</p>
             <h2 className="mt-4 max-w-[14ch] text-[clamp(2rem,4vw,3.25rem)] font-bold leading-[1.1] tracking-[-0.02em] text-ink text-balance">
@@ -219,10 +217,9 @@ export default function HomePage() {
               </a>
             </div>
           </Reveal>
-          {/* Van */}
-          <VanReveal />
-        </Container>
-      </section>
+        }
+        van={<VanReveal />}
+      />
 
       {/* Leistungen */}
       <section className="bg-ink py-16 sm:py-20">
