@@ -194,6 +194,7 @@ export const navigationMain = [
 
 export const footerLegalLinks = [
   { label: "Impressum", href: "/impressum" },
+  { label: "AGB", href: "/agb.pdf" },
   { label: "Datenschutz", href: "/datenschutz" },
   { label: "Cookie-Einstellungen", href: "/cookie-einstellungen" },
 ];

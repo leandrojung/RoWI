@@ -140,13 +140,27 @@ export default function Footer() {
             © {year} {siteConfig.name} — {siteConfig.owner}
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            {footerLegalLinks.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="transition-colors hover:text-white">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {footerLegalLinks.map((link) => {
+              const isFile = link.href.startsWith("/") && /\.[a-z0-9]+$/i.test(link.href);
+              return (
+                <li key={link.href}>
+                  {isFile ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors hover:text-white"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link href={link.href} className="transition-colors hover:text-white">
+                      {link.label}
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
