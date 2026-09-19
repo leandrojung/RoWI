@@ -11,8 +11,8 @@ import Icon from "@/components/Icon";
 import Reveal from "@/components/motion/Reveal";
 import CountUp from "@/components/motion/CountUp";
 import PopcornText from "@/components/motion/PopcornText";
+import Hero from "@/components/motion/Hero";
 import VanReveal from "@/components/motion/VanReveal";
-import DispatchSignal from "@/components/motion/DispatchSignal";
 import FolderFloat from "@/components/motion/FolderFloat";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
@@ -56,95 +56,7 @@ const trustBadges: { icon: IconName | "stars"; render: ReactNode; label: string 
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative flex min-h-[100svh] flex-col overflow-hidden text-white">
-        {/* Full-bleed background photo — sanfter Ken-Burns-Zoom beim Laden */}
-        <Image
-          src="/fotos/werkstatt-03.jpg"
-          alt=""
-          fill
-          className="hero-kenburns object-cover object-center"
-          priority
-          aria-hidden="true"
-        />
-        {/* Cinematic dark overlay */}
-        <div className="absolute inset-0 bg-ink/78" aria-hidden="true" />
-        {/* Technische Raster-Textur — Werkstatt-Charakter ohne Bildasset */}
-        <div className="grid-texture absolute inset-0 opacity-60" aria-hidden="true" />
-        {/* Pulsierender Spotlight-Glow hinter der Headline */}
-        <div
-          className="hero-spotlight pointer-events-none absolute left-1/2 top-[38%] h-[32rem] w-[46rem] rounded-full bg-accent/25 blur-[110px]"
-          aria-hidden="true"
-        />
-        {/* Bottom gradient — softens transition to trust bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-ink/55" aria-hidden="true" />
-
-        {/* Content stack — centered */}
-        <div className="relative flex flex-1 flex-col items-center justify-center px-6 py-28 text-center">
-          {/* Badges */}
-          <div className="hero-in flex flex-wrap items-center justify-center gap-2.5">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white/80 backdrop-blur-sm">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-              </span>
-              Seit 2012 selbstständig · seit 2001 in der Branche
-            </p>
-            <p className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white/80 backdrop-blur-sm">
-              <span className="flex items-center gap-0.5 text-gold">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Icon key={i} name="star" size={11} />
-                ))}
-              </span>
-              5,0 bei Google
-            </p>
-          </div>
-
-          {/* Headline */}
-          <h1 className="hero-in hero-in-delay-1 mt-6 max-w-[18ch] text-[clamp(2.75rem,6vw,4.75rem)] font-bold leading-[1.08] tracking-[-0.02em] text-balance">
-            <PopcornText
-              text="Maschinenservice & Wartung direkt vom Fachmann"
-              tag="span"
-              appearTrigger="default"
-              stagger={0.018}
-              rotationRange={18}
-              startY={28}
-              transition={{ type: "spring", stiffness: 420, damping: 16, mass: 0.9 }}
-            />
-          </h1>
-
-          {/* Lead text */}
-          <p className="hero-in hero-in-delay-2 mt-6 max-w-[48ch] text-lg leading-relaxed text-white/70">
-            Fachbetrieb in Heiden — im Einsatz in ganz Deutschland. Für Steinmetze, Bildhauer,
-            Natursteinbetriebe und Baumärkte.
-          </p>
-
-          {/* CTAs */}
-          <div className="hero-in hero-in-delay-3 mt-10 flex flex-col gap-3 sm:flex-row">
-            <LiquidButton
-              href={siteConfig.contact.phoneHref}
-              fill="#c8102e"
-              blobColor="#8b0b1c"
-              textColor="#ffffff"
-              rounded={9999}
-              padding="16px 32px"
-              blobSize={80}
-            >
-              <Icon name="phone" size={20} />
-              {siteConfig.contact.phoneDisplay}
-            </LiquidButton>
-            <a
-              href={siteConfig.contact.whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 rounded-full border border-white/30 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-colors duration-300 hover:bg-white/10"
-            >
-              <Icon name="whatsapp" size={20} />
-              WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* Vertrauensleiste — Badges */}
       <section className="relative border-y border-border bg-white py-3">
@@ -176,14 +88,17 @@ export default function HomePage() {
       </section>
 
       {/* Firmenwagen — Einsatzsignal */}
-      <DispatchSignal
+      <section
+        className="overflow-hidden"
         style={{
           background:
             "radial-gradient(ellipse 45% 100% at 0% 50%, rgba(200,16,46,0.09) 0%, transparent 65%), " +
             "radial-gradient(ellipse 45% 100% at 100% 50%, rgba(200,16,46,0.09) 0%, transparent 65%), " +
             "#ffffff",
         }}
-        text={
+      >
+        <Container className="grid grid-cols-1 items-center gap-8 py-16 sm:py-20 lg:grid-cols-[1fr_1.1fr] lg:gap-0 lg:py-0">
+          {/* Text */}
           <Reveal className="py-0 lg:py-24">
             <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Mobiler Einsatz</p>
             <h2 className="mt-4 max-w-[14ch] text-[clamp(2rem,4vw,3.25rem)] font-bold leading-[1.1] tracking-[-0.02em] text-ink text-balance">
@@ -217,9 +132,10 @@ export default function HomePage() {
               </a>
             </div>
           </Reveal>
-        }
-        van={<VanReveal />}
-      />
+          {/* Van */}
+          <VanReveal />
+        </Container>
+      </section>
 
       {/* Leistungen */}
       <section className="bg-ink py-16 sm:py-20">
