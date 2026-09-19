@@ -12,9 +12,7 @@ export default function VanReveal() {
       transition={{ type: "spring", stiffness: 55, damping: 18, mass: 1 }}
       className="relative flex items-center justify-end"
     >
-      {/* data-car-anchor: Startpunkt/Größenreferenz für CarScrollJourney (Hero-Ausfahrt) */}
       <Image
-        data-car-anchor="van-origin"
         src="/fotos/firmenwagen-hq.webp"
         alt="Rowi Maschinenservice Firmenwagen"
         width={1521}
