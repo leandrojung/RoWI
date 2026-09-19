@@ -263,62 +263,6 @@ a {
   }
 }
 
-/* ---------------------------------------------------------------------------
-   Section-Seam — "Funkenflug"
-   Weicher, animierter Übergang zwischen zwei Abschnittsfarben statt eines
-   harten Farbschnitts (schwarz→weiß, weiß→rot, …): ein senkrechter Verlauf
-   von "from" zu "to", darüber einzelne, unregelmäßig aufsteigende Funken in
-   Rot/Gold — wie Schleiffunken in der Werkstatt. Jeder Funke lebt für sich
-   (eigenes Timing, eigene Drift), kein repetitives Streifenmuster.
---------------------------------------------------------------------------- */
-.seam {
-  position: relative;
-  height: clamp(48px, 7vw, 96px);
-  background: linear-gradient(180deg, var(--seam-from) 0%, var(--seam-from) 42%, var(--seam-to) 58%, var(--seam-to) 100%);
-  overflow: hidden;
-}
-
-.seam-spark {
-  position: absolute;
-  bottom: 6px;
-  width: 4px;
-  height: 4px;
-  border-radius: 9999px;
-  opacity: 0;
-  animation-name: spark-rise;
-  animation-timing-function: ease-out;
-  animation-iteration-count: infinite;
-}
-
-.seam-spark-accent {
-  background: var(--color-accent);
-  box-shadow:
-    0 0 6px 2px rgba(200, 16, 46, 0.9),
-    0 0 16px 5px rgba(200, 16, 46, 0.45);
-}
-
-.seam-spark-gold {
-  background: var(--color-gold);
-  box-shadow:
-    0 0 6px 2px rgba(232, 163, 23, 0.9),
-    0 0 16px 5px rgba(232, 163, 23, 0.45);
-}
-
-@keyframes spark-rise {
-  0% {
-    transform: translate(0, 0) scale(0.4);
-    opacity: 0;
-  }
-  16% {
-    opacity: 1;
-    transform: translate(calc(var(--spark-drift, 10px) * 0.3), -18px) scale(1);
-  }
-  100% {
-    transform: translate(var(--spark-drift, 10px), -92px) scale(0.6);
-    opacity: 0;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal-stagger > * {

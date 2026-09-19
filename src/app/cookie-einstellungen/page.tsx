@@ -3,7 +3,6 @@ import Container from "@/components/ui/Container";
 import PageHero from "@/components/ui/PageHero";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import CookieSettingsForm from "@/components/cookie-consent/CookieSettingsForm";
-import SectionSeam from "@/components/ui/SectionSeam";
 
 export const metadata: Metadata = {
   title: "Cookie-Einstellungen",
@@ -26,7 +25,6 @@ export default function CookieEinstellungenPage() {
           <CookieSettingsForm />
         </Container>
       </section>
-      <SectionSeam from="white" to="ink" />
     </>
   );
 }

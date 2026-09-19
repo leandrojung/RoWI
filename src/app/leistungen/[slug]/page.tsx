@@ -10,7 +10,6 @@ import Icon from "@/components/Icon";
 import Reveal from "@/components/motion/Reveal";
 import PopcornText from "@/components/motion/PopcornText";
 import LiquidButton from "@/components/ui/LiquidButton";
-import SectionSeam from "@/components/ui/SectionSeam";
 import { getServiceBySlug, services } from "@/lib/services-data";
 import { siteConfig, targetAudience } from "@/lib/site-config";
 import { faqSchema, jsonLdGraph, serviceSchema } from "@/lib/schema";
@@ -163,7 +162,6 @@ export default async function ServicePage({
           </div>
         </Container>
       </section>
-      <SectionSeam from="ink" to="white" />
 
       {/* ── Kernaussagen ─────────────────────────────────── */}
       <section className="py-16 sm:py-20">
@@ -202,8 +200,6 @@ export default async function ServicePage({
         </Container>
       </section>
 
-      <SectionSeam from="white" to="ink" />
-
       {/* ── Ablauf ───────────────────────────────────────── */}
       <section className="bg-ink py-16 sm:py-20">
         <Container>
@@ -238,8 +234,6 @@ export default async function ServicePage({
           </Reveal>
         </Container>
       </section>
-
-      <SectionSeam from="ink" to="white" />
 
       {/* ── Vorteile + Zielgruppe ────────────────────────── */}
       <section className="py-16 sm:py-20">
@@ -292,10 +286,8 @@ export default async function ServicePage({
         </Container>
       </section>
 
-      <SectionSeam from="white" to="muted" />
-
       {/* ── FAQ ──────────────────────────────────────────── */}
-      <section className="bg-surface-muted py-16 sm:py-20">
+      <section className="border-y border-border bg-surface-muted py-16 sm:py-20">
         <Container className="max-w-3xl">
           <Reveal>
             <h2 className="text-2xl font-bold text-ink sm:text-3xl">Häufige Fragen</h2>
@@ -305,8 +297,6 @@ export default async function ServicePage({
           </Reveal>
         </Container>
       </section>
-
-      <SectionSeam from="muted" to="white" />
 
       {/* ── Verwandte Leistungen ─────────────────────────── */}
       <section className="py-16 sm:py-20">

@@ -7,7 +7,6 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/motion/Reveal";
 import PhotoFrame from "@/components/PhotoFrame";
-import SectionSeam from "@/components/ui/SectionSeam";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { manufacturerGroups, manufacturers, siteConfig } from "@/lib/site-config";
 import type { IconName } from "@/components/Icon";
@@ -71,9 +70,7 @@ export default function MaschinenHerstellerPage() {
         </Container>
       </section>
 
-      <SectionSeam from="white" to="muted" />
-
-      <section className="bg-surface-muted py-16 sm:py-20">
+      <section className="border-y border-border bg-surface-muted py-16 sm:py-20">
         <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <Reveal className="min-w-0">
             <h2 className="text-3xl font-bold text-ink">Ihre Marke ist nicht dabei?</h2>
@@ -110,7 +107,6 @@ export default function MaschinenHerstellerPage() {
       <CtaBanner
         title="Unsicher, ob Ihre Maschine dabei ist?"
         lead="Ein kurzer Anruf klärt das schneller als jede Liste."
-        seamFrom="muted"
       />
     </>
   );

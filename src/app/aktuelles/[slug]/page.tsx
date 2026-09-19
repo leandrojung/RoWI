@@ -36,10 +36,7 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <Breadcrumbs
-        items={[{ name: "Aktuelles", href: "/aktuelles" }, { name: post.title, href: `/aktuelles/${post.slug}` }]}
-        seamTo="white"
-      />
+      <Breadcrumbs items={[{ name: "Aktuelles", href: "/aktuelles" }, { name: post.title, href: `/aktuelles/${post.slug}` }]} />
 
       <article className="py-16 sm:py-20">
         <Container className="max-w-3xl">
