@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import MobileStickyCta from "@/components/MobileStickyCta";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/cookie-consent/CookieBanner";
+import CarScrollJourney from "@/components/CarScrollJourney";
 import JsonLd from "@/components/JsonLd";
 import { siteConfig } from "@/lib/site-config";
 import { jsonLdGraph, organizationSchema, websiteSchema } from "@/lib/schema";
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <WhatsAppButton />
         <MobileStickyCta />
         <CookieBanner />
+        <CarScrollJourney />
       </body>
     </html>
   );

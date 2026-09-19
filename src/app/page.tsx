@@ -88,9 +88,10 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Firmenwagen — Einsatzsignal */}
+      {/* Firmenwagen — Einsatzsignal (Startpunkt der CarScrollJourney) */}
       <section
-        className="overflow-hidden"
+        id="firmenwagen-hero"
+        className="overflow-hidden lg:pl-24"
         style={{
           background:
             "radial-gradient(ellipse 45% 100% at 0% 50%, rgba(200,16,46,0.09) 0%, transparent 65%), " +
@@ -138,8 +139,8 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Leistungen */}
-      <section className="bg-ink py-16 sm:py-20">
+      {/* Leistungen — erster Stopp der CarScrollJourney (Parkbucht am Sektionsende) */}
+      <section id="leistungen" className="bg-ink py-16 sm:py-20 lg:pl-24">
         <Container>
           <Reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
