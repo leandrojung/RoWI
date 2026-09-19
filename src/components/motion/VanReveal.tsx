@@ -15,10 +15,9 @@ export default function VanReveal() {
       <Image
         src="/fotos/firmenwagen-hq.webp"
         alt="Rowi Maschinenservice Firmenwagen"
-        width={720}
-        height={400}
-        className="w-full max-w-[680px] object-contain"
-        style={{ mixBlendMode: "multiply" }}
+        width={1521}
+        height={586}
+        className="h-auto w-full max-w-[680px] object-contain"
       />
     </motion.div>
   );
