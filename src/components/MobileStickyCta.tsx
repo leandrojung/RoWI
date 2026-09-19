@@ -1,5 +1,6 @@
 import { siteConfig } from "@/lib/site-config";
 import Icon from "./Icon";
+import LiquidButton from "./ui/LiquidButton";
 
 export default function MobileStickyCta() {
   return (
@@ -14,13 +15,16 @@ export default function MobileStickyCta() {
         <Icon name="phone" size={18} />
         Anrufen
       </a>
-      <a
+      <LiquidButton
         href="/kontakt#kontaktformular"
-        className="flex items-center justify-center gap-2 bg-accent py-4 text-sm font-bold text-white"
+        rounded={0}
+        padding="16px 12px"
+        blobSize={64}
+        className="w-full text-sm"
       >
         <Icon name="mail" size={18} />
         Anfrage stellen
-      </a>
+      </LiquidButton>
     </div>
   );
 }

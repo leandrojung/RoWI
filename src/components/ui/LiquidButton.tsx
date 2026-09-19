@@ -23,15 +23,16 @@ function hex(c: string): RGBA {
 
 const rgb = (c: RGBA) => `rgb(${c.r},${c.g},${c.b})`;
 
+// Der Blob soll spürbar sofort da sein, sobald man den Button berührt/hovert —
+// keine trägen 700ms-Reveals mehr.
 const DEFAULT_BLOB_TRANSITION: Transition = {
   type: "tween",
-  ease: [0.44, 0, 0.56, 1],
-  duration: 0.72,
+  ease: [0.3, 0, 0.4, 1],
+  duration: 0.15,
 };
 
-type Props = {
+type CommonProps = {
   children: ReactNode;
-  href: string;
   fill?: string;
   blobColor?: string;
   textColor?: string;
@@ -40,28 +41,49 @@ type Props = {
   /** CSS padding string, e.g. "14px 28px" */
   padding?: string;
   blobSize?: number;
-  target?: string;
-  rel?: string;
-  ariaLabel?: string;
   className?: string;
   smoothness?: number;
+  ariaLabel?: string;
+  /** Layout-Richtung des Inhalts — "column" für mehrzeilige Karten */
+  contentDirection?: "row" | "column";
+  /** Zeilenumbruch im Inhalt erlauben (Standard: eine Zeile) */
+  contentWrap?: boolean;
 };
 
-export default function LiquidButton({
-  children,
-  href,
-  fill = "#c8102e",
-  blobColor = "#8b0b1c",
-  textColor = "#ffffff",
-  rounded = 9999,
-  padding = "14px 28px",
-  blobSize = 72,
-  target,
-  rel,
-  ariaLabel,
-  className,
-  smoothness = 55,
-}: Props) {
+type AnchorProps = CommonProps & {
+  as?: "a";
+  href: string;
+  target?: string;
+  rel?: string;
+};
+
+type ButtonProps = CommonProps & {
+  as: "button";
+  type?: "button" | "submit" | "reset";
+  onClick?: () => void;
+  disabled?: boolean;
+};
+
+type Props = AnchorProps | ButtonProps;
+
+export default function LiquidButton(props: Props) {
+  const {
+    children,
+    fill = "#c8102e",
+    blobColor = "#8b0b1c",
+    textColor = "#ffffff",
+    rounded = 9999,
+    padding = "14px 28px",
+    blobSize = 72,
+    className,
+    smoothness = 55,
+    ariaLabel,
+    contentDirection = "row",
+    contentWrap = false,
+  } = props;
+  const isButton = props.as === "button";
+  const disabled = isButton ? !!props.disabled : false;
+
   const [scope, animate] = useAnimate();
   const reduced = useReducedMotion();
 
@@ -151,7 +173,7 @@ export default function LiquidButton({
   }, [animate, blob, rad]);
 
   const onEnter = (e: React.PointerEvent) => {
-    if (reduced || !biteRef.current) return;
+    if (reduced || disabled || !biteRef.current) return;
     hovered.current = true;
     const c = center();
     if (c) {
@@ -165,7 +187,7 @@ export default function LiquidButton({
   };
 
   const onMove = (e: React.PointerEvent) => {
-    if (reduced || !hovered.current) return;
+    if (reduced || disabled || !hovered.current) return;
     const c = center();
     if (!c) return;
     chase.current.tx = e.clientX - c.cx;
@@ -177,30 +199,23 @@ export default function LiquidButton({
     if (biteRef.current) animate(biteRef.current, { scale: 0 }, opts() as never);
   };
 
-  return (
-    <a
-      ref={scope}
-      href={href}
-      target={target}
-      rel={rel}
-      aria-label={ariaLabel}
-      onPointerEnter={onEnter}
-      onPointerMove={onMove}
-      onPointerLeave={onLeave}
-      className={className}
-      style={{
-        position: "relative",
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding,
-        cursor: "pointer",
-        textDecoration: "none",
-        userSelect: "none",
-        boxSizing: "border-box",
-        overflow: "visible",
-      }}
-    >
+  const sharedStyle: React.CSSProperties = {
+    position: "relative",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding,
+    cursor: disabled ? "not-allowed" : "pointer",
+    userSelect: "none",
+    boxSizing: "border-box",
+    overflow: "visible",
+    border: "none",
+    font: "inherit",
+    opacity: disabled ? 0.6 : 1,
+  };
+
+  const content = (
+    <>
       {/* SVG layer — button background + liquid blob effect */}
       <svg
         aria-hidden
@@ -242,17 +257,57 @@ export default function LiquidButton({
           position: "relative",
           zIndex: 2,
           display: "inline-flex",
+          flexDirection: contentDirection,
           alignItems: "center",
           gap: 10,
-          whiteSpace: "nowrap",
+          whiteSpace: contentWrap ? "normal" : "nowrap",
+          textAlign: contentDirection === "column" ? "center" : undefined,
           fontWeight: 700,
-          lineHeight: 1,
+          lineHeight: 1.3,
           color: textColor,
           pointerEvents: "none",
         }}
       >
         {children}
       </span>
+    </>
+  );
+
+  if (isButton) {
+    const { type = "button", onClick } = props as ButtonProps;
+    return (
+      <button
+        ref={scope}
+        type={type}
+        disabled={disabled}
+        onClick={onClick}
+        aria-label={ariaLabel}
+        onPointerEnter={onEnter}
+        onPointerMove={onMove}
+        onPointerLeave={onLeave}
+        className={className}
+        style={sharedStyle}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  const { href, target, rel } = props as AnchorProps;
+  return (
+    <a
+      ref={scope}
+      href={href}
+      target={target}
+      rel={rel}
+      aria-label={ariaLabel}
+      onPointerEnter={onEnter}
+      onPointerMove={onMove}
+      onPointerLeave={onLeave}
+      className={className}
+      style={{ ...sharedStyle, textDecoration: "none" }}
+    >
+      {content}
     </a>
   );
 }

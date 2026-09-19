@@ -6,6 +6,7 @@ import ContactForm from "@/components/ContactForm";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/motion/Reveal";
+import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, processSteps } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -27,14 +28,19 @@ export default function KontaktPage() {
       {/* Drei Wege */}
       <section className="border-b border-border py-14">
         <Container className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <a
+          <LiquidButton
             href={siteConfig.contact.phoneHref}
-            className="group flex flex-col items-center gap-3 rounded-2xl bg-accent p-8 text-center text-white transition-transform duration-300 hover:-translate-y-1"
+            rounded={16}
+            padding="32px"
+            blobSize={140}
+            contentDirection="column"
+            contentWrap
+            className="transition-transform duration-300 hover:-translate-y-1"
           >
             <Icon name="phone" size={30} />
             <span className="text-lg font-bold">{siteConfig.contact.phoneDisplay}</span>
             <span className="text-sm text-white/80">Am schnellsten während der Öffnungszeiten</span>
-          </a>
+          </LiquidButton>
 
           <a
             href={siteConfig.contact.whatsappHref}

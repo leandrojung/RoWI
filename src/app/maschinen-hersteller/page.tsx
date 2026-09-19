@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/motion/Reveal";
 import PhotoFrame from "@/components/PhotoFrame";
+import LiquidButton from "@/components/ui/LiquidButton";
 import { manufacturerGroups, manufacturers, siteConfig } from "@/lib/site-config";
 import type { IconName } from "@/components/Icon";
 
@@ -79,13 +80,15 @@ export default function MaschinenHerstellerPage() {
               einfach mit Maschinentyp und Baujahr an.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
+              <LiquidButton
                 href={siteConfig.contact.phoneHref}
-                className="flex items-center justify-center gap-3 rounded-xl bg-accent px-6 py-3.5 font-bold text-white transition-colors hover:bg-accent-dark"
+                rounded={12}
+                padding="14px 24px"
+                blobSize={68}
               >
                 <Icon name="phone" size={18} />
                 {siteConfig.contact.phoneDisplay}
-              </a>
+              </LiquidButton>
               <Link
                 href="/kontakt#kontaktformular"
                 className="flex items-center justify-center gap-3 rounded-xl border-2 border-ink px-6 py-3.5 font-semibold text-ink transition-colors hover:bg-ink hover:text-white"

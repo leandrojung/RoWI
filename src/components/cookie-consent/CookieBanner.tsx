@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useConsent } from "./useConsent";
 import { acceptAll, rejectNonEssential } from "./consent-store";
 import CookieSettingsForm from "./CookieSettingsForm";
+import LiquidButton from "../ui/LiquidButton";
 
 export default function CookieBanner() {
   const { hasDecided } = useConsent();
@@ -55,13 +56,17 @@ export default function CookieBanner() {
             >
               Einstellungen
             </button>
-            <button
+            <LiquidButton
+              as="button"
               type="button"
               onClick={acceptAll}
-              className="rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-accent-dark sm:order-3"
+              rounded={6}
+              padding="12px 20px"
+              blobSize={60}
+              className="text-sm sm:order-3"
             >
               Alle akzeptieren
-            </button>
+            </LiquidButton>
           </div>
         )}
       </div>

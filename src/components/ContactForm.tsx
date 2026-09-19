@@ -3,6 +3,7 @@
 import { useId, useState, type FormEvent } from "react";
 import Link from "next/link";
 import Icon from "./Icon";
+import LiquidButton from "./ui/LiquidButton";
 import { siteConfig } from "@/lib/site-config";
 
 const anliegenOptions = [
@@ -139,13 +140,16 @@ export default function ContactForm() {
           uns. Falls sich nichts geöffnet hat:
         </p>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-          <a
+          <LiquidButton
             href={mailtoHref}
-            className="flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-bold text-white hover:bg-accent-dark"
+            rounded={8}
+            padding="12px 20px"
+            blobSize={58}
+            className="text-sm"
           >
             <Icon name="mail" size={16} />
             E-Mail erneut öffnen
-          </a>
+          </LiquidButton>
           <a
             href={siteConfig.contact.phoneHref}
             className="flex items-center justify-center gap-2 rounded-lg border-2 border-ink px-5 py-3 text-sm font-bold text-ink hover:bg-ink hover:text-white"
@@ -286,10 +290,14 @@ export default function ContactForm() {
         </p>
       )}
 
-      <button
+      <LiquidButton
+        as="button"
         type="submit"
         disabled={status === "submitting"}
-        className="flex w-full items-center justify-center gap-3 rounded-xl bg-accent px-6 py-4 text-base font-bold text-white transition-colors hover:bg-accent-dark disabled:cursor-not-allowed disabled:opacity-60"
+        rounded={12}
+        padding="16px 24px"
+        blobSize={76}
+        className="w-full text-base"
       >
         {status === "submitting" ? (
           "Wird gesendet…"
@@ -299,7 +307,7 @@ export default function ContactForm() {
             Anfrage absenden
           </>
         )}
-      </button>
+      </LiquidButton>
     </form>
   );
 }

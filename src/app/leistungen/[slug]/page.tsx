@@ -9,6 +9,7 @@ import JsonLd from "@/components/JsonLd";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/motion/Reveal";
 import PopcornText from "@/components/motion/PopcornText";
+import LiquidButton from "@/components/ui/LiquidButton";
 import { getServiceBySlug, services } from "@/lib/services-data";
 import { siteConfig, targetAudience } from "@/lib/site-config";
 import { faqSchema, jsonLdGraph, serviceSchema } from "@/lib/schema";
@@ -124,13 +125,16 @@ export default async function ServicePage({
 
             {/* Right: CTAs */}
             <div className="hero-in hero-in-delay-3 flex shrink-0 flex-col gap-3 sm:flex-row lg:mt-2 lg:flex-col lg:pt-[88px]">
-              <a
+              <LiquidButton
                 href={siteConfig.contact.phoneHref}
-                className="flex items-center justify-center gap-3 rounded-full bg-accent px-8 py-4 font-bold text-white shadow-lg shadow-accent/25 transition-all duration-300 hover:bg-accent/85 hover:shadow-accent/40"
+                rounded={9999}
+                padding="16px 32px"
+                blobSize={72}
+                className="shadow-lg shadow-accent/25"
               >
                 <Icon name="phone" size={18} />
                 {siteConfig.contact.phoneDisplay}
-              </a>
+              </LiquidButton>
               <a
                 href={siteConfig.contact.whatsappHref}
                 target="_blank"

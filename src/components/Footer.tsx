@@ -3,6 +3,7 @@ import Image from "next/image";
 import { siteConfig, footerLegalLinks, footerServiceLinks } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
 import Icon from "./Icon";
+import LiquidButton from "./ui/LiquidButton";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -90,13 +91,16 @@ export default function Footer() {
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-white/40">Direkt erreichen</h2>
             <div className="mt-4 space-y-3">
-              <a
+              <LiquidButton
                 href={siteConfig.contact.phoneHref}
-                className="flex items-center gap-3 rounded-lg bg-accent px-4 py-3 text-sm font-bold text-white transition-colors hover:bg-accent-dark"
+                rounded={8}
+                padding="12px 16px"
+                blobSize={64}
+                className="w-full text-sm"
               >
                 <Icon name="phone" size={18} />
                 {siteConfig.contact.phoneDisplay}
-              </a>
+              </LiquidButton>
               <a
                 href={siteConfig.contact.whatsappHref}
                 target="_blank"

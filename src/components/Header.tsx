@@ -253,13 +253,16 @@ export default function Header() {
               );
             })}
             <li className="grid grid-cols-2 gap-2 pt-3">
-              <a
+              <LiquidButton
                 href={siteConfig.contact.phoneHref}
-                className="flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-bold text-white shadow-[0_4px_14px_rgba(200,16,46,0.35)]"
+                rounded={8}
+                padding="12px 16px"
+                blobSize={54}
+                className="w-full text-sm shadow-[0_4px_14px_rgba(200,16,46,0.35)]"
               >
                 <Icon name="phone" size={16} />
                 Anrufen
-              </a>
+              </LiquidButton>
               <a
                 href={siteConfig.contact.whatsappHref}
                 target="_blank"

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { writeConsent, acceptAll, rejectNonEssential } from "./consent-store";
 import { useConsent } from "./useConsent";
+import LiquidButton from "../ui/LiquidButton";
 
 type Props = {
   onSaved?: () => void;
@@ -102,13 +103,17 @@ export default function CookieSettingsForm({ onSaved, compact = false }: Props) 
         >
           Auswahl speichern
         </button>
-        <button
+        <LiquidButton
+          as="button"
           type="button"
           onClick={handleAcceptAll}
-          className="flex-1 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:bg-accent-dark"
+          rounded={6}
+          padding="12px 20px"
+          blobSize={60}
+          className="flex-1 text-sm"
         >
           Alle akzeptieren
-        </button>
+        </LiquidButton>
       </div>
       <p role="status" className="min-h-5 text-sm text-ink-soft">
         {savedHint}

@@ -196,13 +196,18 @@ export default function HomePage() {
               Robert Wikarek kommt persönlich.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
+              <LiquidButton
                 href={siteConfig.contact.phoneHref}
-                className="inline-flex items-center gap-3 rounded-full bg-accent px-7 py-3.5 text-sm font-bold text-white transition-colors hover:bg-accent/85"
+                fill="#c8102e"
+                blobColor="#8b0b1c"
+                textColor="#ffffff"
+                rounded={9999}
+                padding="14px 28px"
+                blobSize={70}
               >
                 <Icon name="phone" size={17} />
                 {siteConfig.contact.phoneDisplay}
-              </a>
+              </LiquidButton>
               <a
                 href={siteConfig.contact.whatsappHref}
                 target="_blank"

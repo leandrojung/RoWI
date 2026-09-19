@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useConsent } from "./cookie-consent/useConsent";
 import { acceptAll } from "./cookie-consent/consent-store";
+import LiquidButton from "./ui/LiquidButton";
 import { siteConfig } from "@/lib/site-config";
 
 const mapQuery = encodeURIComponent(
@@ -36,16 +37,21 @@ export default function GoogleMapEmbed() {
         dem Laden externer Inhalte zu, oder öffnen Sie die Anfahrt direkt bei Google Maps.
       </p>
       <div className="flex flex-wrap justify-center gap-3">
-        <button
+        <LiquidButton
+          as="button"
           type="button"
           onClick={() => {
             acceptAll();
             setJustAllowed(true);
           }}
-          className="rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-dark"
+          rounded={6}
+          padding="10px 16px"
+          blobSize={56}
+          contentWrap
+          className="max-w-[16rem] text-sm"
         >
           Karte laden & Cookies akzeptieren
-        </button>
+        </LiquidButton>
         <a
           href={siteConfig.links.googleMaps}
           target="_blank"
