@@ -84,6 +84,35 @@ p {
   text-wrap: pretty;
 }
 
+/* Eigener Cursor: feine Fadenkreuz-Reticle, passend zum Präzisions-/Werkstatt-
+   Thema und zum roten Punkt im Logo. Nur auf Geräten mit echter Maus aktiv;
+   Touch bleibt unberührt. Inline-`cursor`-Styles (grab/grabbing/not-allowed
+   in Carousel & Buttons) haben als Inline-Styles weiterhin Vorrang. */
+@media (hover: hover) and (pointer: fine) {
+  html {
+    cursor: url("/cursors/default.svg") 12 12, auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  select,
+  summary,
+  label[for],
+  .cursor-pointer {
+    cursor: url("/cursors/pointer.svg") 12 12, pointer;
+  }
+
+  button:disabled,
+  input:disabled,
+  [aria-disabled="true"] {
+    cursor: url("/cursors/default.svg") 12 12, not-allowed;
+  }
+}
+
 /* Sichtbarer, konsistenter Fokuszustand für Tastaturbedienung */
 :focus-visible {
   outline: 3px solid var(--color-accent);
