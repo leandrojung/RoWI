@@ -156,6 +156,7 @@ export const manufacturerGroups = [
 ];
 
 export const manufacturers = manufacturerGroups.flatMap((group) => group.brands.map((b) => b.name));
+export const manufacturerBrands = manufacturerGroups.flatMap((group) => group.brands);
 
 export const processSteps = [
   {
