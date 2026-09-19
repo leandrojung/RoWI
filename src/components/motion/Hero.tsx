@@ -92,7 +92,7 @@ export default function Hero() {
     target: wrapRef,
     offset: ["start start", "end end"],
   });
-  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 32, mass: 0.3 });
+  const progress = useSpring(scrollYProgress, { stiffness: 260, damping: 34, mass: 0.22 });
 
   const imgScale = useTransform(progress, [0, 1], [1, 2.15]);
   const imgY = useTransform(progress, [0, 1], ["0%", "-7%"]);
@@ -126,7 +126,7 @@ export default function Hero() {
   }
 
   return (
-    <div ref={wrapRef} className="relative" style={{ height: "185vh" }}>
+    <div ref={wrapRef} className="relative" style={{ height: "128vh" }}>
       <section className="sticky top-0 flex h-[100svh] flex-col overflow-hidden text-white">
         {/* Full-bleed background photo — taucht beim Scrollen in die Werkstatt ein */}
         <motion.div className="absolute inset-0" style={{ scale: imgScale, y: imgY }}>
