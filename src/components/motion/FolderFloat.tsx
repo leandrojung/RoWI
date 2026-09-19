@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 interface FolderFloatProps {
   items?: string[];
@@ -8,6 +8,11 @@ interface FolderFloatProps {
   sublabel?: string;
   trigger?: "hover" | "click";
   closeOnSelect?: boolean;
+  /** Öffnet den Ordner einmalig automatisch, sobald er in den Viewport scrollt,
+   * hält ihn `autoPlayHoldMs` lang offen und schließt ihn dann wieder. Danach
+   * verhält sich der Ordner ganz normal über `trigger`. */
+  autoPlayOnView?: boolean;
+  autoPlayHoldMs?: number;
   physics?: boolean;
   drift?: number;
   onSelect?: (value: string, index: number) => void;
@@ -37,6 +42,8 @@ export default function FolderFloat({
   sublabel,
   trigger = "hover",
   closeOnSelect = false,
+  autoPlayOnView = false,
+  autoPlayHoldMs = 2500,
   onSelect,
   folderColor = "#3f3f46",
   frontColor = "#52525b",
@@ -57,10 +64,41 @@ export default function FolderFloat({
   className,
 }: FolderFloatProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   const open = useCallback(() => setIsOpen(true), []);
   const close = useCallback(() => setIsOpen(false), []);
   const toggle = useCallback(() => setIsOpen((v) => !v), []);
+
+  // Einmaliger Auto-Play beim Reinscrollen: öffnen, kurz halten, wieder
+  // schließen — danach greift wieder ganz normal `trigger`.
+  useEffect(() => {
+    if (!autoPlayOnView) return;
+    const el = rootRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let holdTimeout: number | undefined;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            observer.disconnect();
+            setIsOpen(true);
+            holdTimeout = window.setTimeout(() => setIsOpen(false), autoPlayHoldMs);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(holdTimeout);
+    };
+  }, [autoPlayOnView, autoPlayHoldMs]);
 
   const handleSelect = useCallback(
     (value: string, index: number) => {
@@ -93,6 +131,7 @@ export default function FolderFloat({
 
   return (
     <div
+      ref={rootRef}
       className={className}
       style={{
         position: "relative",

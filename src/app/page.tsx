@@ -372,6 +372,8 @@ export default function HomePage() {
               sublabel="5,0 · Google Bewertung"
               trigger="hover"
               closeOnSelect={false}
+              autoPlayOnView
+              autoPlayHoldMs={2500}
               folderColor="#1a1a1a"
               frontColor="#2d2d2d"
               paperColor="#ffffff"
