@@ -13,6 +13,7 @@ import CountUp from "@/components/motion/CountUp";
 import PopcornText from "@/components/motion/PopcornText";
 import ImageFlip from "@/components/motion/ImageFlip";
 import VanReveal from "@/components/motion/VanReveal";
+import FolderFloat from "@/components/motion/FolderFloat";
 import LiquidButton from "@/components/ui/LiquidButton";
 import { siteConfig, usps, processSteps, manufacturers } from "@/lib/site-config";
 import { services } from "@/lib/services-data";
@@ -433,6 +434,40 @@ export default function HomePage() {
 
       {/* Bewertungen & Einsatzgebiet */}
       <section className="border-t border-border bg-surface-muted py-20 sm:py-24">
+        {/* FolderFloat — Kundenstimmen interaktiv */}
+        <Container className="mb-12 flex flex-col items-center gap-4 text-center">
+          <Reveal>
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Kundenstimmen</p>
+            <h2 className="mt-2 text-2xl font-bold text-ink sm:text-3xl">Was Betriebe über uns sagen</h2>
+            <p className="mt-2 text-sm text-ink-soft">Fahre mit der Maus über den Ordner</p>
+          </Reveal>
+          <div className="mt-4">
+            <FolderFloat
+              items={["Schnell & kompetent", "Kam noch am selben Tag", "Immer erreichbar", "Kann ich nur empfehlen"]}
+              label="Kundenstimmen"
+              sublabel="5,0 · Google Bewertung"
+              trigger="hover"
+              closeOnSelect={false}
+              folderColor="#1a1a1a"
+              frontColor="#2d2d2d"
+              paperColor="#ffffff"
+              itemColor="#ffffff"
+              itemTextColor="#1a1a1a"
+              labelColor="#ffffff"
+              width={210}
+              height={152}
+              radius={14}
+              spread={200}
+              lift={55}
+              flapAngle={36}
+              restAngle={14}
+              openDuration={500}
+              stagger={55}
+              bounce={0.35}
+            />
+          </div>
+        </Container>
+
         <Container className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <Reveal className="flex flex-col justify-between rounded-2xl bg-white p-8 sm:p-10">
             <div>
